@@ -6,9 +6,13 @@ Here goes your awesome project description!
 
 ## Technologies Used
 
-* Tech 1 - version 1.0
-* Tech 2 - version 2.0
-* Tech 3 - version 3.0
+* Spring MVC
+* Hibernate
+* React
+* Log4j
+* JUnit
+* Java
+* JavaScript
 
 ## Features
 
