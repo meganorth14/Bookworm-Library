@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 
-function Register({ showRegister, setShowRegister, setShowLogin }) {
+import '../../index.css';
+
+function Register({ showRegister, setShowRegister, setShowLogin , setLoggedIn}) {
 
   //potential error messages when validating form
   const [errorMessages, setErrorMessages] = useState({});
@@ -76,7 +78,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
 
             //PASS DATA RECIEVED FROM AXIOS CALL TO SETUSER
             //setUser(existingUser);
-
+            setLoggedIn(true);
             setErrorMessages({});
 
           } else {
@@ -123,6 +125,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
 
   function handleClose(){
     setShowRegister(false);
+    setErrorMessages({});
   }
 
   const renderForm = (
@@ -135,7 +138,15 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
     >
       <Form id="regform" onSubmit={handleSubmit}>
         <Modal.Header closeButton>
+          <img
+            alt="Bookworm Library Logo"
+            src="./bookworm_logo.svg"
+            width="30"
+          />{' '}
           <h3>Sign Up</h3>
+        </Modal.Header>
+
+        <Modal.Body>
           <div className="formbuttons">
             <button className="unselectedbutton" onClick={changeForm}>
               Sign In
@@ -144,9 +155,6 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
               Sign Up
             </button>
           </div>
-        </Modal.Header>
-
-        <Modal.Body>
           <Form.Group className="mb-2">
             <Form.Label>Enter first name: </Form.Label>
             <Form.Control type="text" name="first" placeholder="first name" required />
@@ -168,12 +176,15 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
             {renderErrorMessage("pass")}
           </Form.Group>
           <Form.Group className="mb-2">
-            <Form.Label bsPrefix="form-dark">Enter email: </Form.Label>
-            <Form.Control bsPrefix="form-control form-dark" type="email" name="email" placeholder="email" required />
+            <Form.Label >Enter email: </Form.Label>
+            <Form.Control type="email" name="email" placeholder="email" required />
           </Form.Group>
         </Modal.Body>
 
         <Modal.Footer>
+          <button className="resetbtn" variant="none" type="reset" onClick={()=>setErrorMessages({})}>
+            Clear
+          </button>
           <button className="loginbtn" variant="none" type="submit">
             Submit
           </button>

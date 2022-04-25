@@ -3,7 +3,9 @@ import Modal from 'react-bootstrap/Modal'
 import { useState } from 'react';
 //import axios from "axios";
 
-function Login({showLogin, setShowLogin, setShowRegister}) {
+import '../../index.css';
+
+function Login({showLogin, setShowLogin, setShowRegister, setLoggedIn}) {
 
   //potential error messages when validating form
   const [errorMessages, setErrorMessages] = useState({});
@@ -66,6 +68,7 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
           //PASS DATA RECIEVED FROM AXIOS CALL TO SETUSER
           //setUser(data);
           //localStorage.setItem("user", JSON.stringify(data));
+          setLoggedIn(true);
           setErrorMessages({});
 
         } else {
@@ -93,6 +96,7 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
 
   function handleClose(){
     setShowLogin(false);
+    setErrorMessages({});
   }
 
   const renderForm = (
@@ -105,7 +109,15 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
     >
       <Form id="loginform" onSubmit={handleSubmit}>
         <Modal.Header closeButton>
+          <img
+            alt="Bookworm Library Logo"
+            src="./bookworm_logo.svg"
+            width="30"
+          />{' '}
           <h3>Sign In</h3>
+        </Modal.Header>
+
+        <Modal.Body>
           <div className="formbuttons">
             <button className="selectedbutton" disabled>
               Sign In
@@ -114,9 +126,6 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
               Sign Up
             </button>
           </div>
-        </Modal.Header>
-
-        <Modal.Body>
           <Form.Group className="mb-2">
             <Form.Label>Enter username: </Form.Label>
             <Form.Control
@@ -140,6 +149,9 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
         </Modal.Body>
 
         <Modal.Footer>
+          <button className="resetbtn" variant="none" type="reset" onClick={() => setErrorMessages({})}>
+            Clear
+          </button>
           <button className="loginbtn" variant="none" type="submit">
             Submit
           </button>
