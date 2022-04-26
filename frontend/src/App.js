@@ -13,6 +13,7 @@ import AdminPage from './component/admin/AdminPage';
 function App() {
   return (<>
     <BrowserRouter>
+      <Header />
       <Routes>  
         <Route path='/'         element={<Home />}/>
         <Route path='/login'    element={<LoginRegisterPage />}/>
@@ -22,7 +23,6 @@ function App() {
         <Route path='/account'  element={<AccountPage />} />
         <Route path='/admin'    element={<AdminPage />}/>
       </Routes>
-      <Header />
     </BrowserRouter>
   </>);
 }

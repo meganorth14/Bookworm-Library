@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 
-import '../../index.css';
-
 function Register({ showRegister, setShowRegister, setShowLogin , setLoggedIn}) {
 
   //potential error messages when validating form

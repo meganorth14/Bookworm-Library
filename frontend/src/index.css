@@ -5,6 +5,10 @@
     --contrast: #EC8876;
 }
 
+.center{
+    text-align: center;
+}
+
 .headerbtn{
     background-color: transparent;
     color:rgb(155, 155, 155);
@@ -13,6 +17,10 @@
 
 .headerbtn:hover{
     color:lightgray;
+}
+
+.navoffset{
+    margin-top: 2%;
 }
 
 /* Login/Registration Form */
@@ -94,4 +102,31 @@
     position:absolute;
     bottom: 25px;
     right: 25px;
+}
+
+.removebtn{
+    width: fit-content;
+    border:none;
+    background-color: transparent;
+    color:gray;
+    font-size: small;
+}
+.removebtn:hover{
+    color:var(--secondary);
+}
+
+.cartlist{
+    width:80%;
+    margin:auto;
+}
+
+.cartlist th, td{
+    text-align: center;
+    border-bottom:lightgray solid 1px;
+    vertical-align: middle;
+}
+
+.deletebtn{
+    background-color: transparent;
+    border:none;
 }

@@ -3,8 +3,6 @@ import Modal from 'react-bootstrap/Modal'
 import { useState } from 'react';
 //import axios from "axios";
 
-import '../../index.css';
-
 function Login({showLogin, setShowLogin, setShowRegister, setLoggedIn}) {
 
   //potential error messages when validating form
