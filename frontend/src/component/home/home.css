@@ -63,8 +63,13 @@
   --handwrittingfont: 'Just Another Hand', cursive;
 }
 
-.featured-banner {
-  background-color: var(--copper);
+body{
+  letter-spacing: 1px;
+  font-family: var(--basicfont);
+}
+
+.recommendations-banner {
+  background-color: var(--medpink);
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   width: 100%;

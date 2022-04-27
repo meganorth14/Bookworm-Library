@@ -4,7 +4,7 @@ import { Card, CardGroup } from "react-bootstrap";
 function Recommend() {
   return (
     <>
-      <div className="featured-banner">
+      <div className="recommendations-banner">
         <div className="container">
           <div className="row">
             <CardGroup>
