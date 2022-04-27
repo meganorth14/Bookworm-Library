@@ -61,6 +61,10 @@
   --retrofont: 'Pacifico', cursive;
   --anniefont: 'Annie Use Your Telescope', cursive;
   --handwrittingfont: 'Just Another Hand', cursive;
+  --primary: #57b6a4;
+  --primary-light: #95CFC4;
+  --secondary: #F6B07E;
+  --contrast: #EC8876;
 }
 
 

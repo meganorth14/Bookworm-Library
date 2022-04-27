@@ -4,7 +4,8 @@ import Login from "../component/loginregister/Login";
 import Register from "../component/loginregister/Register";
 import CartSidebar from "./cart/CartSidebar";
 import {Navbar, Container, Nav} from 'react-bootstrap';
-import {FiShoppingCart} from 'react-icons/fi';
+import { FiShoppingCart } from 'react-icons/fi';
+import templogo from "./assets/images/chicken.png";
 import '../index.css';
 
 function Header() {
@@ -22,7 +23,7 @@ function Header() {
           <Navbar.Brand href="/">
             <img
               alt="Bookworm Library Logo"
-              src="./bookworm_logo.svg"
+              src={templogo}
               width="30"
               height="30"
               className="d-inline-block align-top"

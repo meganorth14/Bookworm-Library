@@ -24,7 +24,7 @@ function App() {
         <Route path='/account'  element={<AccountPage />} />
         <Route path='/admin'    element={<AdminPage />}/>
       </Routes>
-      <Header />
+      {/* <Header /> */}
     </BrowserRouter>
   </>);
 }
