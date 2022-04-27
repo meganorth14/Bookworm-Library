@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./component/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import Header from './component/Header';
 import Home from './component/home/Home';
 import LoginRegisterPage from './component/loginregister/LoginRegisterPage';
 import Logout from './component/Logout';
@@ -12,7 +13,7 @@ import AccountPage from './component/account/AccountPage';
 import AdminPage from './component/admin/AdminPage';
 
 function App() {
-  return (
+  return (<>
     <BrowserRouter>
       <Routes>  
         <Route path='/'         element={<Home />}/>
@@ -23,8 +24,9 @@ function App() {
         <Route path='/account'  element={<AccountPage />} />
         <Route path='/admin'    element={<AdminPage />}/>
       </Routes>
+      <Header />
     </BrowserRouter>
-  );
+  </>);
 }
 
 export default App;
