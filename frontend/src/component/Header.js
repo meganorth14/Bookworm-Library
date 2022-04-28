@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import {signout} from '../slices/login/LoginSlice';
 import Login from "../component/loginregister/Login";
 import Register from "../component/loginregister/Register";
-import CartSidebar from "./cart/CartSidebar";
 import {Navbar, Container, Nav, Badge} from 'react-bootstrap';
 import {FiShoppingCart} from 'react-icons/fi';
 
 function Header() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const user = useSelector((state)=>state.login.value.role_id);
+  const cartCount = useSelector((state)=>state.cart.value.count);
+  const dispatch = useDispatch();
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
-  const [showCart, setShowCart] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
+  
 
   const navigate = useNavigate();
 
@@ -19,7 +21,7 @@ function Header() {
     <>
       <Navbar bg="dark" variant="dark" sticky="top" expand="lg">
         <Container>
-          <Navbar.Brand href="/">
+          <Navbar.Brand as={Link} to="/">
             <img
               alt="Bookworm Library Logo"
               src="./bookworm_logo.svg"
@@ -32,26 +34,28 @@ function Header() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
             <Nav>
-              <button className="headerbtn" onClick={() => navigate('/#featured')}>Featured</button>
+              <button className="headerbtn" onClick={() => navigate('/')}>Featured</button>
               <button className="headerbtn" onClick={() => navigate('/products')}>Catalog</button>
-              {loggedIn?
+              {user === 1 ?
+                <button className="headerbtn" onClick={() => navigate('/admin')}>Admin Portal</button>
+                : ""
+              }
+              {user !== -1?
+                <>
                 <button className="headerbtn" onClick={() => navigate('/account')}>Account</button>
+                <button className="headerbtn" onClick={() =>dispatch(signout())}>Logout</button>
+                </>
                 : <button className="headerbtn" onClick={() => setShowLogin(true)}>Login/Register</button>
               }
-              {/* {admin?
-                <button className="headerbtn" onClick={() => navigate('/admin')}>Admin Portal</button>
-              : ""
-              } */}
-              <button className="headerbtn" onClick={()=>setShowCart(true)}>
+              <button className="headerbtn" onClick={()=>navigate('/cart')}>
                 <FiShoppingCart /> <Badge pill bg="secondary">{cartCount}</Badge><span className="visually-hidden">items in cart</span>
               </button>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Login showLogin={showLogin} setShowLogin={setShowLogin} setShowRegister={setShowRegister} setLoggedIn={setLoggedIn} />
-      <Register showRegister={showRegister} setShowLogin={setShowLogin} setShowRegister={setShowRegister} setLoggedIn={setLoggedIn} />
-      <CartSidebar showCart={showCart} setShowCart={setShowCart} />
+      <Login showLogin={showLogin} setShowLogin={setShowLogin} setShowRegister={setShowRegister} />
+      <Register showRegister={showRegister} setShowLogin={setShowLogin} setShowRegister={setShowRegister} />
     </>
   );
 }
