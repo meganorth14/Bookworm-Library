@@ -5,7 +5,7 @@ import Register from "../component/loginregister/Register";
 import CartSidebar from "./cart/CartSidebar";
 import {Navbar, Container, Nav} from 'react-bootstrap';
 import { FiShoppingCart } from 'react-icons/fi';
-import templogo from "./assets/images/chicken.png";
+import templogo from "./assets/images/meow.png";
 import '../index.css';
 
 function Header() {

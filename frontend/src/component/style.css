@@ -67,11 +67,18 @@
   --contrast: #EC8876;
 }
 
+body{
+  letter-spacing: 1px;
+  font-family: var(--basicfont);
+}
 
 /* FOOTER */
 footer{
-  position: absolute;
+  position: relative;
   bottom: 0;
+  width:100%;
+  height: auto;
+  letter-spacing: 2px;
 }
 
 .site-footer{
