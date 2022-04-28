@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 //import axios from "axios";
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
+import { useDispatch } from 'react-redux'
+import { signin } from '../../slices/login/LoginSlice'
 
-import '../../index.css';
+function Register({ showRegister, setShowRegister, setShowLogin }) {
 
-function Register({ showRegister, setShowRegister, setShowLogin , setLoggedIn}) {
+  const dispatch = useDispatch();
 
   //potential error messages when validating form
   const [errorMessages, setErrorMessages] = useState({});
@@ -78,7 +80,7 @@ function Register({ showRegister, setShowRegister, setShowLogin , setLoggedIn}) 
 
             //PASS DATA RECIEVED FROM AXIOS CALL TO SETUSER
             //setUser(existingUser);
-            setLoggedIn(true);
+            dispatch(signin(existingUser));
             setErrorMessages({});
 
           } else {
@@ -103,7 +105,7 @@ function Register({ showRegister, setShowRegister, setShowLogin , setLoggedIn}) 
             //newUser.userid = res.data.userid;
             //setUser(newUser);
             //localStorage.setItem("user", JSON.stringify(newUser));
-            console.log(newUser);
+            dispatch(signin(newUser));
             setErrorMessages({});
           //});
         }

@@ -42,12 +42,11 @@ function CartSidebar({ showCart, setShowCart }) {
                 <Offcanvas.Body>
                     {/* map cart contents */}
                     {cart.length > 0 ?
-                        cart.map((cart_item) => { return <Order key={cart_item.book_id} item={cart_item} /> })
+                        <>
+                        {cart.map((cart_item) =>  <Order key={cart_item.book_id} item={cart_item} /> )}
+                        < button className="checkoutbtn loginbtn" onClick={handleCheckout}>Review Order</button>
+                        </>
                         : <p>No items selected.</p>
-                    }
-                    {cart.length > 0 ?
-                        <button className="checkoutbtn loginbtn" onClick={handleCheckout}>Checkout</button>
-                        : ""
                     }
                 </Offcanvas.Body>
             </Offcanvas>
@@ -56,3 +55,8 @@ function CartSidebar({ showCart, setShowCart }) {
 }
 
 export default CartSidebar;
+
+//how to render on page
+//import CartSidebar from "./cart/CartSidebar";
+// const [showCart, setShowCart] = useState(false);
+//<CartSidebar showCart={showCart} setShowCart={setShowCart} />

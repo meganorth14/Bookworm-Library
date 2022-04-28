@@ -1,11 +1,13 @@
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import { useState } from 'react';
+import { useDispatch } from 'react-redux'
+import {signin} from '../../slices/login/LoginSlice'
 //import axios from "axios";
 
-import '../../index.css';
+function Login({showLogin, setShowLogin, setShowRegister}) {
 
-function Login({showLogin, setShowLogin, setShowRegister, setLoggedIn}) {
+  const dispatch = useDispatch();
 
   //potential error messages when validating form
   const [errorMessages, setErrorMessages] = useState({});
@@ -68,7 +70,7 @@ function Login({showLogin, setShowLogin, setShowRegister, setLoggedIn}) {
           //PASS DATA RECIEVED FROM AXIOS CALL TO SETUSER
           //setUser(data);
           //localStorage.setItem("user", JSON.stringify(data));
-          setLoggedIn(true);
+          dispatch(signin(data));
           setErrorMessages({});
 
         } else {
