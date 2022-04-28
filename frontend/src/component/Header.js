@@ -5,7 +5,8 @@ import {signout} from '../slices/login/LoginSlice';
 import Login from "../component/loginregister/Login";
 import Register from "../component/loginregister/Register";
 import {Navbar, Container, Nav, Badge} from 'react-bootstrap';
-import {FiShoppingCart} from 'react-icons/fi';
+import { FiShoppingCart } from 'react-icons/fi';
+import templogo from "./assets/images/bookworm_logo.svg";
 
 function Header() {
   const user = useSelector((state)=>state.login.value.role_id);

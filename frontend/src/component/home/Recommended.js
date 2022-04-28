@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { Card, CardGroup } from "react-bootstrap";
 import tempbookicon from "../assets/images/FeaturedBooksIconBase.jpg";
 import gideon from "../assets/images/GideonNinth.jpg";

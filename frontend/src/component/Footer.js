@@ -1,5 +1,5 @@
 import React from "react";
-import { Telephone, EnvelopeHeart, Facebook, Twitter, Github } from "react-bootstrap-icons";
+import {  Facebook, Twitter, Github } from "react-bootstrap-icons";
 
 
 function Footer() {
