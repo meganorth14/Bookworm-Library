@@ -7,7 +7,7 @@ function Book({item, removeItem}){
             <td>{item.title}</td>
             <td>{item.author}</td>
             <td>{item.rental_length}</td>
-            <td><button className="deletebtn" onClick={() => removeItem(item.book_id)}><TiDeleteOutline /></button></td>
+            <td><button id="delete" type="button" className="deletebtn" onClick={removeItem}><TiDeleteOutline /></button></td>
         </tr>
     );
 }

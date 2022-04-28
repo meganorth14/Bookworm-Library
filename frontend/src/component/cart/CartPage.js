@@ -31,14 +31,7 @@ function CartPage() {
   cart.forEach(book => console.log(book));
 
   function removeItem(id){
-    console.log("button clicked");
-    let temp = cart;
-    let index = temp.findIndex((book)=>book.book_id === id);
-    console.log("index = " + index);
-    temp.splice(index,1);
-    console.log("after splice");
-    temp.forEach(book => console.log(book));
-    setCart(temp);
+    setCart(cart.filter((book)=>book.book_id !== id));
   }
 
   return(
@@ -58,7 +51,7 @@ function CartPage() {
             <tbody>
               {cart.map((item) => { 
                 return (
-                  <Book key={item.book_id} item={item} removeItem={removeItem}/>
+                  <Book key={item.book_id} item={item} removeItem={()=>removeItem(item.book_id)}/>
                 );
               })}
             </tbody>
