@@ -12,7 +12,7 @@ export const loginSlice = createSlice({
             first_name: "",
             last_name: "",
             role_id: -1,
-            ...persistedState.user.value
+            // ...persistedState.user.value
         },
     },
     reducers: {
