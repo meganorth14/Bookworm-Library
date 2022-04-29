@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Header from './component/Header';
 import Home from './component/home/Home';
 import LoginRegisterPage from './component/loginregister/LoginRegisterPage';
 import Logout from './component/Logout';
@@ -10,8 +11,9 @@ import AccountPage from './component/account/AccountPage';
 import AdminPage from './component/admin/AdminPage';
 
 function App() {
-  return (
+  return (<>
     <BrowserRouter>
+      <Header />
       <Routes>  
         <Route path='/'         element={<Home />}/>
         <Route path='/login'    element={<LoginRegisterPage />}/>
@@ -22,7 +24,7 @@ function App() {
         <Route path='/admin'    element={<AdminPage />}/>
       </Routes>
     </BrowserRouter>
-  );
+  </>);
 }
 
 export default App;
