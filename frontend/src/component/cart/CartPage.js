@@ -1,38 +1,13 @@
-import React, {useState} from "react";
+import React from "react";
 import {Table} from 'react-bootstrap';
 import Book from './Book'
+import {useSelector, useDispatch} from 'react-redux'
+import {removeFromCart, emptyCart} from '../../slices/cart/CartSlice';
 
 function CartPage() {
 
-  const [cart, setCart] = useState([
-    {
-      book_id: 17,
-      cover: "3.png",
-      title: "Beauty of Nature",
-      author: "Hae-Won Jeon",
-      rental_length: "10 days"
-    },
-    {
-      book_id: 9,
-      cover: "5.png",
-      title: "Simple Recipe",
-      author: "Juliana Silva",
-      rental_length: "6 days"
-    },
-    {
-      book_id: 67,
-      cover: "9.png",
-      title: "Silent in the Dark",
-      author: "Sebastian Bennett",
-      rental_length: "3 days"
-    }
-  ]);
-
-  cart.forEach(book => console.log(book));
-
-  function removeItem(id){
-    setCart(cart.filter((book)=>book.book_id !== id));
-  }
+  const cart = useSelector((state)=>state.cart.value.items);
+  const dispatch = useDispatch();
 
   return(
     <div className="container navoffset">
@@ -51,7 +26,7 @@ function CartPage() {
             <tbody>
               {cart.map((item) => { 
                 return (
-                  <Book key={item.book_id} item={item} removeItem={()=>removeItem(item.book_id)}/>
+                  <Book key={item.book_id} item={item} removeItem={()=>dispatch(removeFromCart(item.book_id))}/>
                 );
               })}
             </tbody>

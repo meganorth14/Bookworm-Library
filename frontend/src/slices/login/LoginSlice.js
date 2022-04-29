@@ -6,14 +6,16 @@ const persistedState = loadState();
 export const loginSlice = createSlice({
     name: 'login',
     initialState: {
-        value: {
+        value: persistedState && persistedState.user ? 
+        persistedState.user.value
+        :{
             user_id: -1,
             username: "",
             first_name: "",
             last_name: "",
             role_id: -1,
-            ...persistedState.user.value
-        },
+        } 
+        
     },
     reducers: {
         signin: (state, action) => {

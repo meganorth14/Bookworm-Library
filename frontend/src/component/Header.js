@@ -9,7 +9,7 @@ import {FiShoppingCart} from 'react-icons/fi';
 
 function Header() {
   const user = useSelector((state)=>state.login.value.role_id);
-  const cartCount = useSelector((state)=>state.cart.value.count);
+  const cartCount = useSelector((state) => state.cart.value.count);
   const dispatch = useDispatch();
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
