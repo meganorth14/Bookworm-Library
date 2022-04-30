@@ -98,10 +98,18 @@
     max-width:80px;
 }
 
+@media (max-width:420px){
+    .cover{
+        max-width: 50px;
+    }
+    #cartlist{
+        width:100%;
+    }
+}
+
 .checkoutbtn{
-    position:absolute;
-    bottom: 25px;
-    right: 25px;
+    float:right;
+    margin: 10px;
 }
 
 .removebtn{
@@ -115,12 +123,12 @@
     color:var(--secondary);
 }
 
-.cartlist{
+#cartlist{
     width:80%;
     margin:auto;
 }
 
-.cartlist th, td{
+#cartlist th, td{
     text-align: center;
     border-bottom:lightgray solid 1px;
     vertical-align: middle;
@@ -129,4 +137,55 @@
 .deletebtn{
     background-color: transparent;
     border:none;
+}
+
+/* Product Page */
+/* overall product container */
+.gallery{
+    margin:auto 5%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content:space-evenly;
+}
+/* each book's card element */
+.bookcard{
+    width: 20%;
+    min-width: 300px;
+    margin: 20px;
+    height:fit-content;
+    text-align: center;
+}
+
+.bookcard img{
+    width: 100%;
+    padding: 20px;
+    margin: auto;
+    border-bottom: lightgrey solid 1px;
+}
+
+.cartbtn {
+    background: var(--contrast);
+    padding: 8px;
+    border: var(--contrast) solid 2px;
+    color: white;
+}
+
+.cartbtn:hover {
+    background-color: var(--secondary);
+    border: var(--secondary) solid 2px;
+    color: white;
+}
+
+.tooltip-inner {
+    background-color: rgb(97, 188, 97);
+}
+
+.tooltip .tooltip-arrow::before {
+    border-right-color: rgb(97, 188, 97);
+}
+
+.descriptionbtn{
+    color:lightgray;
+    font-weight: lighter;
 }
