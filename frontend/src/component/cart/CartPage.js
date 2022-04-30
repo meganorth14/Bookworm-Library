@@ -1,62 +1,66 @@
 import React, {useState} from "react";
-import {Table} from 'react-bootstrap';
+import {Table, Alert} from 'react-bootstrap';
 import Book from './Book'
+import {useSelector, useDispatch} from 'react-redux'
+import {removeFromCart, emptyCart} from '../../slices/cart/CartSlice';
 
 function CartPage() {
 
-  const [cart, setCart] = useState([
-    {
-      book_id: 17,
-      cover: "3.png",
-      title: "Beauty of Nature",
-      author: "Hae-Won Jeon",
-      rental_length: "10 days"
-    },
-    {
-      book_id: 9,
-      cover: "5.png",
-      title: "Simple Recipe",
-      author: "Juliana Silva",
-      rental_length: "6 days"
-    },
-    {
-      book_id: 67,
-      cover: "9.png",
-      title: "Silent in the Dark",
-      author: "Sebastian Bennett",
-      rental_length: "3 days"
+  const user = useSelector((state)=>state.login.value.username);
+  const cart = useSelector((state)=>state.cart.value.items);
+  const dispatch = useDispatch();
+
+  const [checkedOut, setCheckedOut] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  function handleCheckout(){
+    setCheckedOut(true);
+    if(user){
+      dispatch(emptyCart());
+      setSuccess(true);
     }
-  ]);
-
-  cart.forEach(book => console.log(book));
-
-  function removeItem(id){
-    setCart(cart.filter((book)=>book.book_id !== id));
   }
 
   return(
     <div className="container navoffset">
-      <h2 className="center">Your Order</h2>
+      {user && checkedOut && success &&
+        <Alert key="success" variant="success" onClose={() => { setCheckedOut(false); setSuccess(false) }} dismissible >
+          Checkout successful!
+        </Alert>
+      }
       {cart.length > 0 ?
-          <Table bsPrefix="table cartlist" responsive>
+        <>
+          {!user && checkedOut && !success &&
+            <Alert key="danger" variant="danger" onClose={() => { setCheckedOut(false); setSuccess(false) }} dismissible >
+              Cannot checkout. Please sign in.
+            </Alert>
+          }
+          <h2 className="center">Your Order</h2>
+          <Table id="cartlist" responsive>
             <thead>
               <tr>
                 <th>Cover</th>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Rental Period</th>
-                <th>Remove</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               {cart.map((item) => { 
                 return (
-                  <Book key={item.book_id} item={item} removeItem={()=>removeItem(item.book_id)}/>
+                  <Book key={item.book_id} item={item} removeItem={()=>dispatch(removeFromCart(item.book_id))}/>
                 );
               })}
             </tbody>
           </Table>
-        : <p>No items selected.</p>
+          < button className="checkoutbtn loginbtn" onClick={handleCheckout}>Checkout</button>
+          < button className="checkoutbtn resetbtn" onClick={()=>dispatch(emptyCart())}>Clear</button>
+        </>
+        : <>
+          <h2 className="center">Your Order</h2>
+          <p className="center">No items in cart.</p>
+        </>
       }
     </div>
   );
