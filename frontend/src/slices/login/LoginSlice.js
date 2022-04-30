@@ -13,7 +13,7 @@ export const loginSlice = createSlice({
             username: "",
             first_name: "",
             last_name: "",
-            role_id: -1,
+            role_type: null,
         } 
         
     },
@@ -25,7 +25,7 @@ export const loginSlice = createSlice({
                 username: action.payload.username,
                 first_name: action.payload.first_name,
                 last_name: action.payload.last_name,
-                role_id: action.payload.role_id,
+                role_type: action.payload.role_type,
             }
         },
         signout: (state) => {
@@ -35,7 +35,7 @@ export const loginSlice = createSlice({
                 username: "",
                 first_name: "",
                 last_name: "",
-                role_id: -1,
+                role_type: null,
 
             }
         },
