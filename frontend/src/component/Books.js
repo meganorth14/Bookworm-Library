@@ -9,10 +9,8 @@ function Books({book, addToCart}) {
         <img src={`./${book.cover}`} alt={`Cover for ${book.title}`}/>
         <Card.Body>
           <Card.Title>{book.title}</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">{book.author}</Card.Subtitle>
-          {/* <Card.Text>
-            {book.description}
-          </Card.Text> */}
+          <Card.Subtitle className="text-muted">{book.author}</Card.Subtitle>
+          <div><small className="text-muted">{book.genre}</small></div>
         </Card.Body>
         <OverlayTrigger
           placement="right"
@@ -29,6 +27,10 @@ function Books({book, addToCart}) {
             </Accordion.Header>
             <Accordion.Body>
               {book.description}
+              <hr/>
+              <div><small className="text-muted">{book.pages} pages</small></div>
+              <div><small className="text-muted">{book.publisher} <b>|</b> {book.publish_date}</small></div>
+              <div><small className="text-muted">ISBN:{book.isbn}</small></div>
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
