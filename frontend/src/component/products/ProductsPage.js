@@ -1,4 +1,5 @@
 import React from "react";
+import { DropdownButton, Dropdown } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../slices/cart/CartSlice";
 import Books from "../Books";
@@ -83,6 +84,18 @@ function ProductsPage() {
   return(
     <>
       <h2 className="center navoffset">Current Selection</h2>
+      <div className="sortfilter">
+        <DropdownButton
+          key="sort"
+          title="Sort By"
+          bsPrefix="sortfilterbtn"
+        >
+          <Dropdown.Item eventKey="1">Title</Dropdown.Item>
+          <Dropdown.Item eventKey="2">Author</Dropdown.Item>
+          <Dropdown.Item eventKey="3">Genre</Dropdown.Item>
+          <Dropdown.Item eventKey="4">Publish Date</Dropdown.Item>
+        </DropdownButton>
+      </div>
       <div className="gallery">
         {products.map((book)=>{
           return <Books key={book.book_id} book={book} addToCart={() => dispatch(addToCart(book))} />

@@ -189,3 +189,19 @@
     color:lightgray;
     font-weight: lighter;
 }
+
+.sortfilter{
+    display: flex;
+    margin-right: 5%;
+    justify-content: right;
+}
+
+.sortfilterbtn{
+    background-color: transparent;
+    border:none;
+    color:var(--primary);
+}
+
+.sortfilterbtn:hover{
+    color:var(--contrast);
+}
