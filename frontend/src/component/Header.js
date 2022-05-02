@@ -5,12 +5,13 @@ import {signout} from '../slices/login/LoginSlice';
 import Login from "../component/loginregister/Login";
 import Register from "../component/loginregister/Register";
 import {Navbar, Container, Nav, Badge} from 'react-bootstrap';
-import { FiShoppingCart } from 'react-icons/fi';
+import {FiShoppingCart} from 'react-icons/fi';
+import { emptyCart } from "../slices/cart/CartSlice";
 import templogo from "./assets/images/bookworm_logo.svg";
 
 function Header() {
-  const user = useSelector((state)=>state.login.value.role_id);
-  const cartCount = useSelector((state)=>state.cart.value.count);
+  const user = useSelector((state)=>state.login.value.role_type);
+  const cartCount = useSelector((state) => state.cart.value.count);
   const dispatch = useDispatch();
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
@@ -35,16 +36,15 @@ function Header() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
             <Nav>
-              <button className="headerbtn" onClick={() => navigate('/')}>Featured</button>
               <button className="headerbtn" onClick={() => navigate('/products')}>Catalog</button>
-              {user === 1 ?
+              {user === 'admin' ?
                 <button className="headerbtn" onClick={() => navigate('/admin')}>Admin Portal</button>
                 : ""
               }
-              {user !== -1?
+              {user !== null?
                 <>
                 <button className="headerbtn" onClick={() => navigate('/account')}>Account</button>
-                <button className="headerbtn" onClick={() =>dispatch(signout())}>Logout</button>
+                <button className="headerbtn" onClick={() => {dispatch(signout()); dispatch(emptyCart())}}>Logout</button>
                 </>
                 : <button className="headerbtn" onClick={() => setShowLogin(true)}>Login/Register</button>
               }

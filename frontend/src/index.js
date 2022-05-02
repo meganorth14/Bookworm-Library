@@ -9,6 +9,7 @@ import { saveState } from './app/localStorage';
 
 store.subscribe(()=>saveState({
   user:store.getState().login,
+  cart:store.getState().cart
 }))
 
 const container = document.getElementById('root');

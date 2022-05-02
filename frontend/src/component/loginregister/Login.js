@@ -25,7 +25,7 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
       first_name:"Megan",
       last_name:"Orth",
       email:"megan@gmail.com",
-      role_id:1,
+      role_type:"admin",
       registration_date:"04-22-2022",
       last_login:"04-22-2022"
     },
@@ -36,7 +36,7 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
       first_name: "Leslie",
       last_name: "Knope",
       email: "leslie@gmail.com",
-      role_id: 2,
+      role_type: "user",
       registration_date: "02-12-2020",
       last_login: "04-22-2022"
     }
@@ -67,9 +67,6 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
         if (data.password === password.value) {
           setShowLogin(false);
 
-          //PASS DATA RECIEVED FROM AXIOS CALL TO SETUSER
-          //setUser(data);
-          //localStorage.setItem("user", JSON.stringify(data));
           dispatch(signin(data));
           setErrorMessages({});
 

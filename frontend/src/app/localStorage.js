@@ -1,6 +1,6 @@
 export const loadState = () => {
     try {
-        const serialState = localStorage.getItem('appState');
+        const serialState = sessionStorage.getItem('appState');
         if (serialState === null) {
             return undefined;
         }
@@ -14,7 +14,7 @@ export const loadState = () => {
 export const saveState = (state) => {
     try {
         const serialState = JSON.stringify(state);
-        localStorage.setItem('appState', serialState);
+        sessionStorage.setItem('appState', serialState);
     } catch (err) {
         console.log(err);
     }
