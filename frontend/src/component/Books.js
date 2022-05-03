@@ -6,10 +6,16 @@ function Books({book, addToCart}) {
   return(
     <>
       <Card className="bookcard">
-        <img src={`./${book.cover}`} alt={`Cover for ${book.title}`}/>
+        {book.cover?
+          <img src={`./${book.cover}`} alt={`Cover for ${book.title}`}/>
+        : <img src="./no_cover.png" alt={`Cover for ${book.title}`}/>
+        }
         <Card.Body>
           <Card.Title>{book.title}</Card.Title>
-          <Card.Subtitle className="text-muted">{book.author}</Card.Subtitle>
+          {book.author?
+              <Card.Subtitle className="text-muted">{book.author}</Card.Subtitle>
+            : <Card.Subtitle className="text-muted">Unknown Author</Card.Subtitle>
+          }
           <div><small className="text-muted">{book.genre}</small></div>
         </Card.Body>
         <OverlayTrigger
@@ -28,9 +34,14 @@ function Books({book, addToCart}) {
             <Accordion.Body>
               {book.description}
               <hr/>
-              <div><small className="text-muted">{book.pages} pages</small></div>
-              <div><small className="text-muted">{book.publisher} <b>|</b> {book.publish_date}</small></div>
-              <div><small className="text-muted">ISBN:{book.isbn}</small></div>
+              {book.pages &&
+                <div><small className="text-muted">{book.pages} pages</small></div>
+              }
+              <div><small className="text-muted">{book.publisher} 
+              {book.publisher && book.publish_date && <b> | </b>} 
+              {book.publish_date}</small></div>
+              {book.isbn && 
+                <div><small className="text-muted">ISBN:{book.isbn}</small></div>}
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>

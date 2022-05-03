@@ -88,6 +88,15 @@ function ProductsPage() {
       title: "Spooky House",
       author: "Morgan Maxwell",
       description:"Description of featured item like plot summary or possibly could have a persuasive testimony type thing to reccommend the book. Why you liked it or why it is on the current featured list."
+    },
+    {
+      book_id: 0,
+      title: "Unknown Book",
+      author: "Unknown Author",
+      description: "Description of featured item like plot summary or possibly could have a persuasive testimony type thing to reccommend the book. Why you liked it or why it is on the current featured list. Description of featured item like plot summary or possibly could have a persuasive testimony type thing to reccommend the book. Why you liked it or why it is on the current featured list.",
+      isbn: "1234-56789-10",
+      pages: "12345",
+      genre: "Unknown"
     }
   ]
 
