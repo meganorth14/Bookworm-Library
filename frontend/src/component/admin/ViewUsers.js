@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Card, Table } from "react-bootstrap";
+import AddUserForm from "./AddUserForm";
 
 function ViewUsers() {
 
@@ -48,35 +49,35 @@ function ViewUsers() {
 
   const handleDelete = (event) => {
     event.preventDefault();
-    
-    let temp = users;
-    temp = temp.filter(function (value, _index, _arr) {
+
+    let temp = users.filter(function (value, _index, _arr) {
       return value.userId !== Number(event.target.value);
     });
     setUsers(temp);
   };
 
-  const renderUsers =
-    users.map(user => (
-      <tr key={user.userId}>
-        <td>{user.username}</td>
-        <td>{user.email}</td>
-        <td>{user.firstName}</td>
-        <td>{user.lastName}</td>
-        <td>{user.role}</td>
-        <td>{user.registerDate}</td>
-        <td>{user.lastLogin}</td>
-        <td>
-          <Button value={user.userId} onClick={handleDelete}>Delete</Button>
-        </td>
-      </tr>
-    ));
+  const renderUsers = users.map(user => (
+    <tr key={user.userId}>
+      <td>{user.username}</td>
+      <td>{user.email}</td>
+      <td>{user.firstName}</td>
+      <td>{user.lastName}</td>
+      <td>{user.role}</td>
+      <td>{user.registerDate}</td>
+      <td>{user.lastLogin}</td>
+      <td>
+        <Button value={user.userId} onClick={handleDelete}>Delete</Button>
+      </td>
+    </tr>
+  ));
 
   return (
     <>
+      <AddUserForm />
       <Card style={{ marginTop: '10px' }}>
+        <Card.Header>Total Users: {users.length}</Card.Header>
         <Card.Body>
-          <Card.Title>View All Users</Card.Title>
+          <Card.Title>All Users</Card.Title>
           <Table striped bordered hover responsive >
             <thead>
               <tr>
@@ -98,6 +99,7 @@ function ViewUsers() {
       </Card>
     </>
   );
+
 }
 
 export default ViewUsers;
