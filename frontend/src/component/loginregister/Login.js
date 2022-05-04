@@ -1,6 +1,7 @@
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import {signin} from '../../slices/login/LoginSlice'
 //import axios from "axios";
@@ -8,6 +9,7 @@ import {signin} from '../../slices/login/LoginSlice'
 function Login({showLogin, setShowLogin, setShowRegister}) {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //potential error messages when validating form
   const [errorMessages, setErrorMessages] = useState({});
@@ -81,6 +83,11 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
     }
   }
 
+  function forgotPassword(){
+    setShowLogin(false);
+    navigate('/');
+  }
+
   function renderErrorMessage(name) {
     if (name === errorMessages.name) {
       return (<div className="error">{errorMessages.message}</div>);
@@ -148,6 +155,7 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
         </Modal.Body>
 
         <Modal.Footer>
+          <button type="button" className="removebtn" onClick={forgotPassword}>Forgot Password?</button>
           <button className="resetbtn" variant="none" type="reset" onClick={() => setErrorMessages({})}>
             Clear
           </button>
