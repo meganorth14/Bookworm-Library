@@ -11,6 +11,7 @@ export const cartSlice = createSlice({
         :{
             count: 0,
             items: [],
+
         },
     },
     reducers: {

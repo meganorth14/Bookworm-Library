@@ -9,6 +9,7 @@ import ProductsPage from './component/products/ProductsPage';
 import CartPage from './component/cart/CartPage';
 import AccountPage from './component/account/AccountPage';
 import AdminPage from './component/admin/AdminPage';
+import EditAccount from './component/account/EditAccount';
 
 function App() {
   return (<>
@@ -22,6 +23,7 @@ function App() {
         <Route path='/cart'     element={<CartPage />}/>
         <Route path='/account'  element={<AccountPage />} />
         <Route path='/admin'    element={<AdminPage />}/>
+        <Route path='/editAccount'    element={<EditAccount />}/>
       </Routes>
     </BrowserRouter>
   </>);
