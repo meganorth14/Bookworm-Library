@@ -1,42 +1,42 @@
 import React from "react";
-import { Button, Card, Table } from "react-bootstrap";
-
-const authors = [
-  { authorId: 1, name: 'Jules Verne' },
-  { authorId: 2, name: 'F. Scott Fitzgerald' },
-  { authorId: 3, name: 'Aristotle' },
-  { authorId: 4, name: 'G.R.R. Martin' }
-];
+import { Card, Table } from "react-bootstrap";
 
 function ViewAuthors() {
+
+  const authors = [
+    { authorId: 1, name: 'Aravind Adiga' },
+    { authorId: 2, name: 'Ernest Hemingway' },
+    { authorId: 3, name: 'Neil Gaiman' },
+    { authorId: 4, name: 'Dave McKean' }
+  ];
+  
+  const renderAuthors = authors.map(author => (
+    <tr key={author.authorId}>
+      <td>{author.name}</td>
+    </tr>
+  ));
+  
   return (
     <>
       <Card style={{ marginTop: '10px' }}>
+        <Card.Header>Total Authors: {authors.length}</Card.Header>
         <Card.Body>
+          <Card.Title>All Authors</Card.Title>
           <Table striped bordered hover responsive >
             <thead>
               <tr>
                 <th>Author Name</th>
-                <th>Delete Author</th>
               </tr>
             </thead>
             <tbody>
-              {/* Dynamically Render Users START */}
-              {authors.map((author) => (
-                <tr key={author.authorId}>
-                  <td>{author.name}</td>
-                  <td>
-                    <Button disabled>Delete</Button>
-                  </td>
-                </tr>
-              ))}
-              {/* Dynamically Render Users END */}
+              {renderAuthors}
             </tbody>
           </Table>
         </Card.Body>
       </Card>
     </>
   );
+
 }
 
 export default ViewAuthors;
