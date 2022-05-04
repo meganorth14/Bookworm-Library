@@ -9,7 +9,7 @@ export const cartSlice = createSlice({
         value: {
             count: 0,
             items: [],
-            ...persistedState.cart
+            //...persistedState.cart
         },
     },
     reducers: {
