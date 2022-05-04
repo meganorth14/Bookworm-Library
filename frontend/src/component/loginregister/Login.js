@@ -1,6 +1,7 @@
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import {signin} from '../../slices/login/LoginSlice'
 //import axios from "axios";
@@ -8,6 +9,7 @@ import {signin} from '../../slices/login/LoginSlice'
 function Login({showLogin, setShowLogin, setShowRegister}) {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //potential error messages when validating form
   const [errorMessages, setErrorMessages] = useState({});
@@ -25,7 +27,7 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
       first_name:"Megan",
       last_name:"Orth",
       email:"megan@gmail.com",
-      role_id:1,
+      role_type:"admin",
       registration_date:"04-22-2022",
       last_login:"04-22-2022"
     },
@@ -36,7 +38,7 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
       first_name: "Leslie",
       last_name: "Knope",
       email: "leslie@gmail.com",
-      role_id: 2,
+      role_type: "user",
       registration_date: "02-12-2020",
       last_login: "04-22-2022"
     }
@@ -67,9 +69,6 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
         if (data.password === password.value) {
           setShowLogin(false);
 
-          //PASS DATA RECIEVED FROM AXIOS CALL TO SETUSER
-          //setUser(data);
-          //localStorage.setItem("user", JSON.stringify(data));
           dispatch(signin(data));
           setErrorMessages({});
 
@@ -82,6 +81,11 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
         setErrorMessages({ name: "uname", message: errors.uname });
       }
     }
+  }
+
+  function forgotPassword(){
+    setShowLogin(false);
+    navigate('/');
   }
 
   function renderErrorMessage(name) {
@@ -151,6 +155,7 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
         </Modal.Body>
 
         <Modal.Footer>
+          <button type="button" className="removebtn" onClick={forgotPassword}>Forgot Password?</button>
           <button className="resetbtn" variant="none" type="reset" onClick={() => setErrorMessages({})}>
             Clear
           </button>

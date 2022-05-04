@@ -13,7 +13,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
   const [errorMessages, setErrorMessages] = useState({});
   const errors = {
     fullname: "please enter your name",
-    uname: "invalid username",
+    uname: "username should be between 6-30 characters and only contain letters, numbers, periods, or underscores",
     unameused: "username taken",
     email: "invalid email format"
   };
@@ -53,8 +53,10 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
     const emailFormat =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
+    const usernameFormat = /^[a-zA-Z0-9._-]*$/;
+
     //check that username is not only whitespace
-    if (!username.value.trim()) {
+    if (username.value.trim().length < 6 || username.value.trim().length > 30 || !username.value.match(usernameFormat)) {
 
       setErrorMessages({ name: "uname", message: errors.uname });
 
@@ -102,9 +104,6 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
           //.then((res) => {
 
             setShowRegister(false);
-            //newUser.userid = res.data.userid;
-            //setUser(newUser);
-            //localStorage.setItem("user", JSON.stringify(newUser));
             dispatch(signin(newUser));
             setErrorMessages({});
           //});
@@ -171,6 +170,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
             <Form.Label>Enter username: </Form.Label>
             <Form.Control type="text" name="username" placeholder="username" required />
             {renderErrorMessage("unameused")}
+            {renderErrorMessage("uname")}
           </Form.Group>
           <Form.Group className="mb-2">
             <Form.Label>Enter password: </Form.Label>

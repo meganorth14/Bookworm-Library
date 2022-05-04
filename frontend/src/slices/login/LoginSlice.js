@@ -6,14 +6,17 @@ const persistedState = loadState();
 export const loginSlice = createSlice({
     name: 'login',
     initialState: {
-        value: {
+        value: persistedState && persistedState.user ? 
+        persistedState.user.value
+        :{
             user_id: -1,
             username: "",
             first_name: "",
             last_name: "",
-            role_id: -1,
-           // ...persistedState.user.value
-        },
+            role_type: null,
+        } 
+        
+
     },
     reducers: {
         signin: (state, action) => {
@@ -23,7 +26,16 @@ export const loginSlice = createSlice({
                 username: action.payload.username,
                 first_name: action.payload.first_name,
                 last_name: action.payload.last_name,
-                role_id: action.payload.role_id,
+                role_type: action.payload.role_type,
+            }
+        },
+        editAccount: (state, action) => {
+            //update state with user info
+            state.value = {
+                ...state.value,
+                username: action.payload.username,
+                first_name: action.payload.first_name,
+                last_name: action.payload.last_name,
             }
         },
         signout: (state) => {
@@ -33,7 +45,7 @@ export const loginSlice = createSlice({
                 username: "",
                 first_name: "",
                 last_name: "",
-                role_id: -1,
+                role_type: null,
 
             }
         },
@@ -41,6 +53,6 @@ export const loginSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { signin, signout } = loginSlice.actions
+export const { signin, editAccount, signout } = loginSlice.actions
 
 export default loginSlice.reducer

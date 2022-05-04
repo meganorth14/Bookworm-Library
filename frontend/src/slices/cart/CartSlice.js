@@ -6,29 +6,30 @@ const persistedState = loadState();
 export const cartSlice = createSlice({
     name: 'cart',
     initialState: {
-        value: {
+        value: persistedState && persistedState.cart?
+        persistedState.cart.value
+        :{
             count: 0,
             items: [],
-            //...persistedState.cart
+
         },
     },
     reducers: {
         addToCart: (state, action) => {
             //add item to cart
-            state.value = {
-                count: state.value.count + 1,
-                items: state.value.items.push(action.payload)
+            if(!state.value.items.find((book)=>book.book_id === action.payload.book_id)){
+                state.value = {
+                    count: state.value.count + 1,
+                    items: [...state.value.items, action.payload]
+                }
             }
         },
         removeFromCart: (state,action) => {
             //remove item from cart
-            let index = state.value.cart.items.findIndex((book)=>book.book_id === action.payload.book_id);
-            if(index > -1){
-                state.value = {
-                    count: state.value.count - 1,
-                    items: state.value.items.splice(index, 1)
-                }
-            }     
+            state.value = {
+                count: state.value.count - 1,
+                items: state.value.items.filter((book) => book.book_id !== action.payload)
+            }   
         },
         emptyCart: (state) => {
             //remove user info
