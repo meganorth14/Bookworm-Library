@@ -1,6 +1,7 @@
 import React from "react";
-import { Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
-import SearchBar from "./Searchbar";
+// import { Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
+import Search from "../products/Search";
+// import SearchBar from "./Searchbar";
 
 function SearchBanner() {
   return (
@@ -8,8 +9,8 @@ function SearchBanner() {
       <div className="search-banner">
         <div className="container">
           <div className="banner-main">
-            <h5>Browse Books By:</h5>
-            <ButtonToolbar aria-label="searchtoolbar">
+            <h5>Welcome to the Bookworm Digital Library!</h5>
+            {/* <ButtonToolbar aria-label="searchtoolbar">
               <ButtonGroup className="me-2" aria-label="genrebutton">
                 <Button href="/genres">Genres</Button>
               </ButtonGroup>
@@ -19,11 +20,11 @@ function SearchBanner() {
               <ButtonGroup className="me-2" aria-label="authorbutton">
                 <Button href="/authors">Authors</Button>
               </ButtonGroup>
-            </ButtonToolbar>
+            </ButtonToolbar> */}
           </div>
           <hr></hr>
           <div className="browse-container">
-            <SearchBar />
+            <Search />
           </div>
         </div>
       </div>
