@@ -16,6 +16,7 @@ export const loginSlice = createSlice({
             role_type: null,
         } 
         
+
     },
     reducers: {
         signin: (state, action) => {
@@ -26,6 +27,15 @@ export const loginSlice = createSlice({
                 first_name: action.payload.first_name,
                 last_name: action.payload.last_name,
                 role_type: action.payload.role_type,
+            }
+        },
+        editAccount: (state, action) => {
+            //update state with user info
+            state.value = {
+                ...state.value,
+                username: action.payload.username,
+                first_name: action.payload.first_name,
+                last_name: action.payload.last_name,
             }
         },
         signout: (state) => {
@@ -43,6 +53,6 @@ export const loginSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { signin, signout } = loginSlice.actions
+export const { signin, editAccount, signout } = loginSlice.actions
 
 export default loginSlice.reducer
