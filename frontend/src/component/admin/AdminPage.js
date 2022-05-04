@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Tab, Tabs } from "react-bootstrap";
-import Books from "../Books";
+import Inventory from "./Inventory";
 import ViewAuthors from "./ViewAuthors";
 import ViewOrders from "./ViewOrders";
 import ViewGenres from "./ViewGenres";
@@ -17,8 +17,8 @@ function AdminPage() {
           <Tab eventKey='users' title='Users'>
             <ViewUsers />
           </Tab>
-          <Tab eventKey='inventory' title='Inventory' disabled>
-            <Books />
+          <Tab eventKey='inventory' title='Inventory'>
+            <Inventory />
           </Tab>
           <Tab eventKey='orders' title='Order History'>
             <ViewOrders />

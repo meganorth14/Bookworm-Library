@@ -24,14 +24,24 @@ function CartPage() {
   return(
     <div className="container navoffset">
       {user && checkedOut && success &&
-        <Alert key="success" variant="success" onClose={() => { setCheckedOut(false); setSuccess(false) }} dismissible >
-          Checkout successful!
+        <Alert 
+          key="success" 
+          variant="success"
+          className="center"
+          onClose={() => { setCheckedOut(false); setSuccess(false) }} 
+          dismissible >
+          Checkout successful! You will receive an email with your download link soon.
         </Alert>
       }
       {cart.length > 0 ?
         <>
           {!user && checkedOut && !success &&
-            <Alert key="danger" variant="danger" onClose={() => { setCheckedOut(false); setSuccess(false) }} dismissible >
+            <Alert 
+              key="danger" 
+              variant="danger" 
+              className="center"
+              onClose={() => { setCheckedOut(false); setSuccess(false) }} 
+              dismissible >
               Cannot checkout. Please sign in.
             </Alert>
           }
@@ -42,7 +52,6 @@ function CartPage() {
                 <th>Cover</th>
                 <th>Title</th>
                 <th>Author</th>
-                <th>Rental Period</th>
                 <th></th>
               </tr>
             </thead>

@@ -139,6 +139,42 @@
     border:none;
 }
 
+
+.account-page {
+    text-align: center;
+    padding : 15px;
+    background-color: #95CFC4;
+    border : solid black;
+    color: darkslateblue;
+}
+
+.updateAccount {
+    text-align: center;
+    width: 40%;
+    margin-left: 5px;
+    margin-top: 5px;
+    background: #57b6a4;
+    color: darkblue;
+}
+
+/* .editbtn {
+    margin-left: 180px;
+} */
+.submitBtn {
+background-color: darkblue; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.submitBtn:hover {
+    background-color: goldenrod;
+  }
+
 /* Product Page */
 /* overall product container */
 .gallery{
@@ -189,3 +225,84 @@
     color:lightgray;
     font-weight: lighter;
 }
+
+.sortfilter{
+    display: flex;
+    margin-right: 5%;
+    justify-content: right;
+}
+
+.sortfilterbtn{
+    background-color: transparent;
+    border:none;
+    color:var(--primary);
+}
+
+.sortfilterbtn:hover{
+    color:var(--contrast);
+}
+
+.iconbtn{
+    background-color: transparent;
+    border:none;
+}
+
+#search{
+    width:70%;
+}
+
+#searchtype{
+    width:fit-content;
+    background-color: var(--contrast);
+    color:white;
+}
+
+#searchvalue{
+    width: 70%;
+}
+
+#searchbtn{
+    background-color: var(--contrast);
+    color:white;
+    border: var(--contrast) solid 1px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding:5px 20px;
+}
+
+@media (max-width:420px) {
+    #search {
+        width: 100%;
+    }
+    
+    #searchtype {
+        width: 20%;
+    }
+    
+    #searchvalue {
+        width: 50%;
+    }
+    
+    #searchbtn {
+        padding: 5px 10px;
+    }
+}
+
+@media (max-width:1100px) {
+    #search {
+        width: 90%;
+    }
+
+    #searchtype {
+        width: fit-content;
+    }
+
+    #searchvalue {
+        width: 50%;
+    }
+
+    #searchbtn {
+        padding: 5px 10px;
+    }
+}
+
