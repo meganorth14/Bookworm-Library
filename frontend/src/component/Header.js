@@ -7,6 +7,7 @@ import Register from "../component/loginregister/Register";
 import {Navbar, Container, Nav, Badge} from 'react-bootstrap';
 import {FiShoppingCart} from 'react-icons/fi';
 import { emptyCart } from "../slices/cart/CartSlice";
+import templogo from "./assets/images/bookworm_logo.svg";
 
 function Header() {
   const user = useSelector((state)=>state.login.value.role_type);
@@ -25,7 +26,7 @@ function Header() {
           <Navbar.Brand as={Link} to="/">
             <img
               alt="Bookworm Library Logo"
-              src="./bookworm_logo.svg"
+              src={templogo}
               width="30"
               height="30"
               className="d-inline-block align-top"
