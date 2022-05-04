@@ -2,10 +2,18 @@ package bookwormlibrary.entities;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Book class contains all information about an individual book
  */
+@Entity
+@Table(name="books")
 public class Book {
+
+    @Id
     private int book_id;
     private String isbn;
     private String title;
