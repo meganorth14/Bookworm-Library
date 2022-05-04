@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 // import axios from "axios";
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import { Container, Row, Col } from 'react-bootstrap';
 import DataStore from "../../dataStore/dataStore";
 import { useNavigate } from 'react-router-dom';
