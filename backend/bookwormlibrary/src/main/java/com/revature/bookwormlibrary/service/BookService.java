@@ -1,8 +1,11 @@
 package com.revature.bookwormlibrary.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.revature.bookwormlibrary.entity.Author;
 import com.revature.bookwormlibrary.entity.Book;
+import com.revature.bookwormlibrary.entity.Genre;
 
 public interface BookService {
     /**
@@ -16,7 +19,7 @@ public interface BookService {
      * @param id specific book's unique identifier
      * @return Information about specific book
      */
-    public Book getBookById(int id);
+    public Optional<Book> getBookById(int id);
 
     /**
      * Retrieves all books from database
@@ -35,20 +38,8 @@ public interface BookService {
      * @param id Unique identifier for book to be deleted
      */
     public void deleteBook(int id);
-
-    /**
-     * Sorts collection of books by author
-     * @param books unsorted list of books
-     * @return sorted list of books
-     */
-    public List<Book> sortBooksByAuthor(List<Book> books);
-
-    /**
-     * Sorts collection of books by genre
-     * @param books unsorted list of books
-     * @return sorted list of books
-     */
-    public List<Book> sortBooksByGenre(List<Book> books);
+    
+    public List<Book> sortBooksByISBN13(List<Book> books);
 
     /**
      * Sorts collection of books by title
@@ -57,24 +48,31 @@ public interface BookService {
      */
     public List<Book> sortBooksByTitle(List<Book> books);
 
+    public List<Book> sortBooksByPages(List<Book> books);
+    
+    public List<Book> sortBooksByPublisher(List<Book> books);
+    
+    public List<Book> sortBooksByPublishYear(List<Book> books);
+    
     /**
      * Filters collection of books by author
      * @param books unfiltered list of books
      * @return filtered list of books
      */
-    public List<Book> filterBooksByAuthor(List<Book> books);
+    public List<Book> filterBooksByAuthor(List<Book> books, Author author);
 
     /**
      * Filters collection of books by genre
      * @param books unfiltered list of books
      * @return filtered list of books
      */
-    public List<Book> filterBooksByGenre(List<Book> books);
+    public List<Book> filterBooksByGenre(List<Book> books, Genre genre);
 
     /**
      * Filters collection of books by title
      * @param books unfiltered list of books
      * @return filtered list of books
      */
-    public List<Book> filterBooksByTitle(List<Book> books);
+    public List<Book> filterBooksByTitle(List<Book> books, String title);
+
 }
