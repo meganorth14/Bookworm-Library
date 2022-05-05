@@ -1,6 +1,7 @@
 package com.revature.bookwormlibrary.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.revature.bookwormlibrary.entity.Author;
 
@@ -18,7 +19,7 @@ public interface AuthorService {
      * @param id Specific author's unique identifier
      * @return Author information
      */
-    public Author getAuthorById(int id);
+    public Optional<Author> getAuthorById(int id);
 
     /**
      * Retrieves all author records from database
@@ -37,5 +38,7 @@ public interface AuthorService {
      * @param id Author's unique id
      */
     public void deleteAuthor(int id);
+    
+    public List<Author> sortAuthorsByName(List<Author> authors);
 }
 
