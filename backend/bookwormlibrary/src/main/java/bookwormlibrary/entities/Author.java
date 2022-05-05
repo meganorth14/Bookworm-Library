@@ -1,10 +1,23 @@
 package bookwormlibrary.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /**
  * Author class defines the unique identifier and name of each author
  */
+@Entity
+@Table(name="authors")
 public class Author {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO) // auto-generated id numbers
+    @Column(name = "emp_id")
     private int author_id;
+
+    @Column(name="name")
     private String name;
 
     //constructors

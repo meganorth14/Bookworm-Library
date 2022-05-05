@@ -16,7 +16,7 @@ public interface UserDAO {
      * @param id user's unique id
      * @return User object with information
      */
-    public User getUserById(int id);
+    public User getUserById(Integer id);
 
     /**
      * Retrieve specific user's information from database (for login)
@@ -41,5 +41,5 @@ public interface UserDAO {
      * Deletes user from database
      * @param id Unique id of user to delete
      */
-    public void deleteUser(int id);
+    public void deleteUser(Integer id);
 }

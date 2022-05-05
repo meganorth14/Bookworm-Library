@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: samuelsholib
+Build-Jdk: 17.0.2
+Implementation-Title: Bookworm Digital Library
+Implementation-Version: 1.0
+Implementation-Vendor-Id: bookwormlibrary
+Implementation-Vendor: Pivotal Software, Inc.
+Main-Class: bookwormlibrary.App
+Created-By: Maven Integration for Eclipse
+
