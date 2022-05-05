@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Grandstander:wght@200&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
-@import url('https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope');
-@import url('https://fonts.googleapis.com/css?family=Just+Another+Hand');
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@400;500;700&family=Poppins:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800');
 
 
 :root{
+  --primary: #57b6a4;
+  --primary-light: #95CFC4;
+  --secondary: #F6B07E;
+  --contrast: #EC8876;
   --red: #d90429;
   --darkred: #ba181b;
   --burgandy: #9B2226;
@@ -12,6 +16,7 @@
   --hotpink:#e91e63;
   --pink: #da627d;
   --bs-danger: #e56b6f;
+  --rose: #F55767;
   --blush: #f3a4b5;
   --medpink: #c1666b;
   --peach: #dd9787;
@@ -34,187 +39,49 @@
   --darkgreen: #386641;
   --olive: #606C38;
   --darkgreen: #283618;
-  --teal: #335c67;
-  --darkblue: #284b63;
+  --darkteal: #335c67;
+  --darkteal2: #284b63;
+  --blue: #299EF3;
+  --blue2: #3EB8F4;
   --turquoise:#00bcd4;
-  --blue: #669bbc;
-  --skyblue: #98c1d9;
+  --paleblue: #669bbc;
+  --babyblue: #98c1d9;
+  --darkblue: #1F3A63;
+  --darkblue2: #172b4d;
   --navy: #3d5a80;
   --cornblue: #a1b5d8;
   --bluegrey: #738290;
-  --lilac: #8d99ae;
+  --brightblue: #5e72e4;
+  --greylilac: #8d99ae;
   --indigo: #4a4e69;
   --indigo2: #3d405b;
-  --darkpurple: #2b2d42;
+  --darkindigo: #2b2d42;
   --fuschia: #5f0f40;
+  --barney: #44224B;
   --purple: #6a4c93;
+  --brightpurple: #8965e0;
   --purple2: #6d597a;
   --prune: #6d6875;
-  --greyilac: #9a8c98;
-  --grey: #C3BCC4;
-  --medgrey: #737373;
+  --grey2: #B0A7B2;
+  --grey3: #8898aa;
+  --palegrey: #C3BCC4;
+  --grey: #737373;
   --lightgrey: #d9d9d9;
+  --light: #F9FAFD;
+  --light2: #ced4da;
+  --lighter: #e9ecef;
   --darkgrey: #333533;
   --dark: #1e2d2f;
   --dark2: #26272b;
+  --dark3: #212529;
   --basicfont: 'Grandstander', cursive;
   --retrofont: 'Pacifico', cursive;
-  --anniefont: 'Annie Use Your Telescope', cursive;
-  --handwrittingfont: 'Just Another Hand', cursive;
-  --primary: #57b6a4;
-  --primary-light: #95CFC4;
-  --secondary: #F6B07E;
-  --contrast: #EC8876;
+  --lg-font: 'Kaisei Tokumin', serif;
+  --sm-font: 'Poppins', sans-serif;
 }
 
-body{
-  letter-spacing: 1px;
-  font-family: var(--basicfont);
-}
 
-/* FOOTER */
-footer{
-  position: relative;
-  bottom: 0;
-  width:100%;
-  height: auto;
-  letter-spacing: 2px;
-}
 
-.site-footer{
-  background-color: var(--dark2);
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-  box-sizing: border-box;
-  width: 100%;
-  padding: 45px 0 20px;
-  text-align: center;
-  font-size: 15px;
-  line-height: 24px;
-  color: #737373;
-}
-.site-footer hr{
-  border-top-color: #bbb;
-  opacity: 0.5;
-}
-.site-footer hr.small{
-  margin: 20px 0;
-}
-.site-footer a{
-  color: #737373;
-}
-.site-footer a:hover{
-  color: var(--neongreen);
-  text-decoration: none;
-}
 
-.footer-links a:active,.footer-links a:focus,.footer-links a:hover{
-  color: var(--neongreen);
-  text-decoration: none;
-}
-.footer-links.inline li{
-  display: inline-block;
-}
-.site-footer .social-icons{
-  text-align: right;
-}
-.site-footer .social-icons a
-{
-  width:40px;
-  height:40px;
-  line-height:40px;
-  margin-left:6px;
-  margin-right:0;
-  border-radius:100%;
-  background-color:#33353d
-}
-.copyright-text
-{
-  margin:0;
-  text-align: center;
-  vertical-align: middle;
-}
-
-@media (max-width:767px)
-{
-  .site-footer
-  {
-    padding-bottom:0
-  }
-  .site-footer .copyright-text,.site-footer .social-icons
-  {
-    text-align:center
-  }
-}
-.social-icons
-{
-  padding-left:0;
-  margin-bottom:0;
-  list-style:none
-}
-.social-icons li
-{
-  display:inline-block;
-  margin-bottom:4px
-}
-.social-icons li.title
-{
-  margin-right:15px;
-  text-transform:uppercase;
-  color:#96a2b2;
-  font-weight:700;
-  font-size:13px
-}
-.social-icons a{
-  background-color:#eceeef;
-  color:#818a91;
-  font-size:16px;
-  display:inline-block;
-  line-height:44px;
-  width:44px;
-  height:44px;
-  text-align:center;
-  margin-right:8px;
-  border-radius:100%;
-  -webkit-transition:all .2s linear;
-  -o-transition:all .2s linear;
-  transition:all .2s linear
-}
-.social-icons a:active,.social-icons a:focus,.social-icons a:hover
-{
-  color:#fff;
-  background-color:#29aafe
-}
-.social-icons.size-sm a
-{
-  line-height:34px;
-  height:34px;
-  width:34px;
-  font-size:14px
-}
-.social-icons a.facebook:hover
-{
-  background-color:#3b5998
-}
-.social-icons a.twitter:hover
-{
-  background-color:#00aced
-}
-.social-icons a.linkedin:hover
-{
-  background-color:#007bb6
-}
-.social-icons a.dribbble:hover
-{
-  background-color:#ea4c89
-}
-@media (max-width:767px)
-{
-  .social-icons li.title
-  {
-    display:block;
-    margin-right:0;
-    font-weight:600
-  }
-}
 
 

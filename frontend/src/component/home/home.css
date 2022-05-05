@@ -85,6 +85,15 @@ body{
   text-align: center;
 }
 
+.containerbuttons{
+  justify-content: space-evenly;
+}
+.iconbtn{
+  background-color: transparent !important;
+  color: var(--primary);
+  border: none;
+}
+
 
 .search-banner{
   width: 100%;
