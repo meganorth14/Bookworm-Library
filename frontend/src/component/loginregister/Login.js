@@ -113,7 +113,7 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Form id="loginform" onSubmit={handleSubmit}>
+      <Form id="loginform" className='loginform' onSubmit={handleSubmit}>
         <Modal.Header closeButton>
           <img
             alt="Bookworm Library Logo"
@@ -132,23 +132,25 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
               Sign Up
             </button>
           </div>
-          <Form.Group className="mb-2">
+          <Form.Group className="mb-2 logininput">
             <Form.Label>Enter username: </Form.Label>
             <Form.Control
               type="text"
               name="username"
               placeholder="username"
               required
+              className='formcontrol'
             />
             {renderErrorMessage("uname")}
           </Form.Group>
-          <Form.Group className="mb-2">
+          <Form.Group className="mb-2 logininput">
             <Form.Label>Enter password: </Form.Label>
             <Form.Control
               type="password"
               name="password"
               placeholder="password"
               required
+              className='formcontrol'
             />
             {renderErrorMessage("pass")}
           </Form.Group>

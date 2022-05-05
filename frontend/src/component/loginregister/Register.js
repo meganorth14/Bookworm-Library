@@ -137,7 +137,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Form id="regform" onSubmit={handleSubmit}>
+      <Form id="regform" className='regform' onSubmit={handleSubmit}>
         <Modal.Header closeButton>
           <img
             alt="Bookworm Library Logo"
@@ -156,28 +156,28 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
               Sign Up
             </button>
           </div>
-          <Form.Group className="mb-2">
+          <Form.Group className="mb-2 logininput">
             <Form.Label>Enter first name: </Form.Label>
             <Form.Control type="text" name="first" placeholder="first name" required />
             {renderErrorMessage("fullname")}
           </Form.Group>
-          <Form.Group className="mb-2">
+          <Form.Group className="mb-2 logininput">
             <Form.Label>Enter last name: </Form.Label>
             <Form.Control type="text" name="last" placeholder="last name" required />
             {renderErrorMessage("fullname")}
           </Form.Group>
-          <Form.Group className="mb-2">
+          <Form.Group className="mb-2 logininput">
             <Form.Label>Enter username: </Form.Label>
             <Form.Control type="text" name="username" placeholder="username" required />
             {renderErrorMessage("unameused")}
             {renderErrorMessage("uname")}
           </Form.Group>
-          <Form.Group className="mb-2">
+          <Form.Group className="mb-2 logininput">
             <Form.Label>Enter password: </Form.Label>
             <Form.Control type="password" name="password" placeholder="password" required />
             {renderErrorMessage("pass")}
           </Form.Group>
-          <Form.Group className="mb-2">
+          <Form.Group className="mb-2 logininput">
             <Form.Label >Enter email: </Form.Label>
             <Form.Control type="email" name="email" placeholder="email" required />
           </Form.Group>
