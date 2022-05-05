@@ -3,7 +3,12 @@ package com.revature.bookwormlibrary.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -14,6 +19,7 @@ import javax.persistence.Table;
 public class Book {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int book_id;
     private String isbn;
     private String title;
@@ -23,7 +29,18 @@ public class Book {
     private String description;
     private String cover;
 
+    @ManyToMany
+    @JoinTable(
+        name="credit", 
+        joinColumns = @JoinColumn(name="book_id"),
+        inverseJoinColumns = @JoinColumn(name="author_id"))
     private List<Author> authors;
+    
+    @ManyToMany
+    @JoinTable(
+        name="category", 
+        joinColumns = @JoinColumn(name="book_id"),
+        inverseJoinColumns = @JoinColumn(name="genre_id"))
     private List<Genre> genres;
 
     //constructors

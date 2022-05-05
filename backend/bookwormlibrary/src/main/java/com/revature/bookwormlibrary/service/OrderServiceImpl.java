@@ -21,31 +21,18 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Optional<Order> getOrderById(int id) {
+    public Optional<Order> getOrderById(Integer id) {
         return repository.findById(id);
     }
 
     @Override
-    public List<Order> getOrderByUserid(int id) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Order> getOrderByUserid(Integer id) {
+        return repository.getOrderByUserid(id);
     }
 
     @Override
     public List<Order> getAllOrders() {
         return (List<Order>)repository.findAll();
-    }
-
-    @Override
-    public List<Order> filterByDate(List<Order> orders) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public List<Order> filterByUser(List<Order> orders) {
-        // TODO Auto-generated method stub
-        return null;
     }
     
 }
