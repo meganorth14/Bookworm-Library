@@ -13,7 +13,7 @@
   --primary-light: #95CFC4;
   --secondary: #F6B07E;
   --contrast: #EC8876;
-  --red: #d90429;
+  --red: #ea1407;
   --darkred: #ba181b;
   --burgandy: #9B2226;
   --burgandy2: #660708;
@@ -33,7 +33,7 @@
   --cream: #eae0d5;
   --beige: #d6cfcb;
   --brown: #5e503f;
-  --greenbeige: #b7b7a4;
+  --greenbeige: #76735d;
   --mint: #d8e2dc;
   --lightolive: #a5a58d;
   --green2: #a7c957;
@@ -53,6 +53,7 @@
   --darkblue: #1F3A63;
   --darkblue2: #172b4d;
   --navy: #3d5a80;
+  --blue2: #525f7f;
   --cornblue: #a1b5d8;
   --bluegrey: #738290;
   --brightblue: #5e72e4;
@@ -66,16 +67,16 @@
   --brightpurple: #8965e0;
   --purple2: #6d597a;
   --prune: #6d6875;
-  --grey2: #B0A7B2;
+  --grey2: #adb5bd;
   --grey3: #8898aa;
-  --palegrey: #C3BCC4;
+  --medgrey: #888;
   --grey: #737373;
   --lightgrey: #d9d9d9;
   --light: #F9FAFD;
   --light2: #ced4da;
   --lighter: #e9ecef;
   --darkgrey: #333533;
-  --dark: #1e2d2f;
+  --dark: #24252a;
   --dark2: #26272b;
   --dark3: #212529;
   --basicfont: 'Grandstander', cursive;
@@ -86,4 +87,40 @@
   --gloriafont: 'Glorio Hollelujah', cursive;
   --patrickfont: 'Patrick Hand', cursive;
   --ranchofont: 'Rancho', cursive;
+}
+
+
+button{
+  border-radius: 5px;
+}
+button:focus{
+  outline: 1px dotted;
+  outline: 5px autp -webkit-focus-ring-color;
+}
+.btn{
+  font-size: 1rem;
+  line-height: 1.5;
+  display: inline-flexbox;
+  padding: .625rem 1.25rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: .375rem;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
+}
+
+/* FORMS */
+.form-control-alternative {
+  transition: box-shadow .15s ease;
+  border: 0;
+  box-shadow: 0 1px 3px rgba(50, 50, 93, .15), 0 1px 0 rgba(0, 0, 0, .02);
+}
+
+.form-control-alternative:focus {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
 }

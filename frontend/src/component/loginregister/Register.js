@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FloatingLabel } from 'react-bootstrap';
 //import axios from "axios";
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
@@ -138,50 +139,87 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
       centered
     >
       <Form id="regform" className='regform' onSubmit={handleSubmit}>
+        <div className="formbuttons">
+          <button className="unselectedbutton" onClick={changeForm}>
+            Sign In
+          </button>
+          <button className="selectedbutton" disabled>
+            Sign Up
+          </button>
+        </div>
         <Modal.Header closeButton>
           <img
             alt="Bookworm Library Logo"
             src="./bookworm_logo.svg"
             width="30"
           />{' '}
-          <h3>Sign Up</h3>
+          <h3>Register an Account:</h3>
         </Modal.Header>
 
         <Modal.Body>
-          <div className="formbuttons">
-            <button className="unselectedbutton" onClick={changeForm}>
-              Sign In
-            </button>
-            <button className="selectedbutton" disabled>
-              Sign Up
-            </button>
-          </div>
           <Form.Group className="mb-2 logininput">
-            <Form.Label>Enter first name: </Form.Label>
-            <Form.Control type="text" name="first" placeholder="first name" required />
-            {renderErrorMessage("fullname")}
+            <FloatingLabel controlId='floatingInput' label="First Name" className='mb-3 floatinglabel'>
+              <Form.Control
+                type='text'
+                name='first'
+                placeholder='first name'
+                required
+                className='formcontrol'
+              />
+              {renderErrorMessage("fullname")}
+            </FloatingLabel>
           </Form.Group>
           <Form.Group className="mb-2 logininput">
-            <Form.Label>Enter last name: </Form.Label>
-            <Form.Control type="text" name="last" placeholder="last name" required />
-            {renderErrorMessage("fullname")}
+            <FloatingLabel controlId='floatingInput' label="Last Name" className='mb-3 floatinglabel'>
+              <Form.Control
+                type='text'
+                name='last'
+                placeholder='last name'
+                required
+                className='formcontrol'
+              />
+              {renderErrorMessage("fullname")}
+            </FloatingLabel>
           </Form.Group>
           <Form.Group className="mb-2 logininput">
-            <Form.Label>Enter username: </Form.Label>
-            <Form.Control type="text" name="username" placeholder="username" required />
-            {renderErrorMessage("unameused")}
-            {renderErrorMessage("uname")}
+            <FloatingLabel controlId='floatingInput' label="Username" className='mb-3 floatinglabel'>
+              <Form.Control
+                type='text'
+                name='username'
+                placeholder='username'
+                required
+                className='formcontrol'
+              />
+              {renderErrorMessage("unameused")}
+              {renderErrorMessage("uname")}
+            </FloatingLabel>
           </Form.Group>
           <Form.Group className="mb-2 logininput">
-            <Form.Label>Enter password: </Form.Label>
-            <Form.Control type="password" name="password" placeholder="password" required />
-            {renderErrorMessage("pass")}
-          </Form.Group>
+            <FloatingLabel controlId='floatingInput' label="Password" className='mb-3 floatinglabel'>
+              <Form.Control
+                type='password'
+                name='password'
+                placeholder='password'
+                required
+                className='formcontrol'
+              />
+              {renderErrorMessage("pass")}
+            </FloatingLabel>
+          </Form.Group>          
           <Form.Group className="mb-2 logininput">
-            <Form.Label >Enter email: </Form.Label>
-            <Form.Control type="email" name="email" placeholder="email" required />
-          </Form.Group>
+            <FloatingLabel controlId='floatingInput' label="Email" className='mb-3 floatinglabel'>
+              <Form.Control
+                type='email'
+                name='email'
+                placeholder='email'
+                required
+                className='formcontrol'
+              />
+              {renderErrorMessage("pass")}
+            </FloatingLabel>
+          </Form.Group>   
         </Modal.Body>
+
 
         <Modal.Footer>
           <button className="resetbtn" variant="none" type="reset" onClick={()=>setErrorMessages({})}>
