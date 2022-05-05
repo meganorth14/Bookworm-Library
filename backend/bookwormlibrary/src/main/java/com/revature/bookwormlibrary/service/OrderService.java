@@ -17,32 +17,18 @@ public interface OrderService {
      * @param id Unique order identifier
      * @return Order details
      */
-    public Optional<Order> getOrderById(int id);
+    public Optional<Order> getOrderById(Integer id);
 
     /**
      * Retrieves orders for specific user from database
      * @param id User identifier
      * @return List of all orders for a user
      */
-    public List<Order> getOrderByUserid(int id);
+    public List<Order> getOrderByUserid(Integer id);
 
     /**
      * Retrieves all order records from database
      * @return List of all records
      */
     public List<Order> getAllOrders();
-
-    /**
-     * Filters order records based on order date
-     * @param orders unfiltered list of orders
-     * @return filtered list of orders
-     */
-    public List<Order> filterByDate(List<Order> orders);
-    
-    /**
-     * Filters order records based on user that placed order
-     * @param orders unfiltered list of orders
-     * @return filtered list of orders
-     */
-    public List<Order> filterByUser(List<Order> orders);
 }

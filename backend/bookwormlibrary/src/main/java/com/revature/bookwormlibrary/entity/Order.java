@@ -4,10 +4,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,8 +18,13 @@ import javax.persistence.Table;
 public class Order {
 
     @Id
-    private int order_id;
-    private int user_id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer order_id;
+    
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
+    private User user;
+    
     private LocalDate order_date;
 
     @ManyToMany
@@ -29,28 +37,28 @@ public class Order {
     //constructors
     public Order(){}
 
-    public Order(int order_id, int user_id, LocalDate order_date, List<Book> books) {
+    public Order(Integer order_id, User user, LocalDate order_date, List<Book> books) {
         this.order_id = order_id;
-        this.user_id = user_id;
+        this.user = user;
         this.order_date = order_date;
         this.books = books;
     }
 
     //getters and setters
-    public int getOrder_id() {
+    public Integer getOrder_id() {
         return order_id;
     }
 
-    public void setOrder_id(int order_id) {
+    public void setOrder_id(Integer order_id) {
         this.order_id = order_id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public User getUser_id() {
+        return user;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser_id(User user) {
+        this.user = user;
     }
 
     public LocalDate getOrder_date() {
@@ -73,7 +81,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order [books=" + books + ", order_date=" + order_date + ", order_id=" + order_id
-                + ", user_id=" + user_id + "]";
+                + ", user=" + user + "]";
     }
 
     //hashCode and equals
