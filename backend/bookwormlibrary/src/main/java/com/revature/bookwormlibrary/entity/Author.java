@@ -1,27 +1,32 @@
 package com.revature.bookwormlibrary.entity;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
 /**
  * Author class defines the unique identifier and name of each author
  */
 @Entity
 @Table(name="authors")
 public class Author {
+	
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // auto-generated id numbers
-    @Column(name = "emp_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int author_id;
-
-    @Column(name="name")
     private String name;
+    
+    @ManyToMany(mappedBy="credit")
+    private List<Book> books;
 
     //constructors
     public Author(){
+    	
     }
 
     public Author(int id, String name){
@@ -30,11 +35,11 @@ public class Author {
     }
 
     //getters and setters
-    public int getAuthor_id() {
+    public int getAuthorId() {
         return author_id;
     }
 
-    public void setAuthor_id(int author_id) {
+    public void setAuthorId(int author_id) {
         this.author_id = author_id;
     }
 
@@ -51,7 +56,6 @@ public class Author {
     public String toString() {
         return "Author [author_id=" + author_id + ", name=" + name + "]";
     }
-
 
     //hashCode and equals
     @Override
@@ -80,5 +84,6 @@ public class Author {
             return false;
         return true;
     }
+    
 }
 

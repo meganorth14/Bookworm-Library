@@ -1,11 +1,33 @@
 package com.revature.bookwormlibrary.entity;
 
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+/**
+ * Genre class defines the unique identifier and name of each genre
+ */
+@Entity
+@Table(name="genres")
 public class Genre {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
     private int genre_id;
     private String name;
+    
+    @ManyToMany(mappedBy="category")
+    private List<Book> books;
 
     //constructors
-    public Genre(){}
+    public Genre(){
+    	
+    }
 
     public Genre(int genre_id, String name) {
         this.genre_id = genre_id;
@@ -13,11 +35,11 @@ public class Genre {
     }
 
     //getters and setters
-    public int getGenre_id() {
+    public int getGenreId() {
         return genre_id;
     }
 
-    public void setGenre_id(int genre_id) {
+    public void setGenreId(int genre_id) {
         this.genre_id = genre_id;
     }
 
@@ -56,6 +78,7 @@ public class Genre {
         if (genre_id != other.genre_id)
             return false;
         return true;
-    }    
+    }
+    
 }
 
