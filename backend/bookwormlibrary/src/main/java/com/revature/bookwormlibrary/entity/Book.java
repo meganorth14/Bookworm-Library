@@ -3,7 +3,12 @@ package com.revature.bookwormlibrary.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -12,27 +17,44 @@ import javax.persistence.Table;
 @Entity
 @Table(name="books")
 public class Book {
-
+	
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int book_id;
-    private String isbn;
+    private String isbn13;
     private String title;
     private int pages;
     private String publisher;
     private int publish_year;
     private String description;
     private String cover;
-
+    
+    @ManyToMany(mappedBy="selection")
+    private List<Order> orders;
+    
+    @ManyToMany
+    @JoinTable(
+    	name="credit",
+    	joinColumns = @JoinColumn(name="author_id"),
+    	inverseJoinColumns = @JoinColumn(name="book_id"))
     private List<Author> authors;
+    
+    @ManyToMany
+    @JoinTable(
+    	name="category",
+    	joinColumns = @JoinColumn(name="genre_id"),
+    	inverseJoinColumns = @JoinColumn(name="book_id"))
     private List<Genre> genres;
 
     //constructors
-    public Book(){}
+    public Book(){
+    	
+    }
 
-    public Book(int book_id, String isbn, String title, int pages, String publisher, int publish_year,
+    public Book(int book_id, String isbn13, String title, int pages, String publisher, int publish_year,
             String description, String cover, List<Author> authors, List<Genre> genres) {
         this.book_id = book_id;
-        this.isbn = isbn;
+        this.isbn13 = isbn13;
         this.title = title;
         this.pages = pages;
         this.publisher = publisher;
@@ -44,20 +66,20 @@ public class Book {
     }
 
     //getters and setters
-    public int getBook_id() {
+    public int getBookId() {
         return book_id;
     }
 
-    public void setBook_id(int book_id) {
+    public void setBookId(int book_id) {
         this.book_id = book_id;
     }
 
-    public String getIsbn() {
-        return isbn;
+    public String getIsbn13() {
+        return isbn13;
     }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
+    public void setIsbn13(String isbn13) {
+        this.isbn13 = isbn13;
     }
 
     public String getTitle() {
@@ -84,11 +106,11 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public int getPublish_year() {
+    public int getPublishYear() {
         return publish_year;
     }
 
-    public void setPublish_year(int publish_year) {
+    public void setPublishYear(int publish_year) {
         this.publish_year = publish_year;
     }
 
@@ -128,7 +150,7 @@ public class Book {
     @Override
     public String toString() {
         return "Book [authors=" + authors + ", book_id=" + book_id + ", cover=" + cover
-                + ", description=" + description + ", genres=" + genres + ", isbn=" + isbn + ", pages="
+                + ", description=" + description + ", genres=" + genres + ", isbn=" + isbn13 + ", pages="
                 + pages + ", publish_year=" + publish_year + ", publisher=" + publisher + ", title=" + title + "]";
     }
 
@@ -153,5 +175,6 @@ public class Book {
         if (book_id != other.book_id)
             return false;
         return true;
-    }  
+    }
+    
 }
