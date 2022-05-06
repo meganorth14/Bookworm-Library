@@ -2,6 +2,7 @@ package com.revature.bookwormlibrary.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,10 +19,11 @@ public class Genre {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-    private int genre_id;
+	@Column(name="genre_id")
+    private int genreId;
     private String name;
     
-    @ManyToMany(mappedBy="category")
+    @ManyToMany(mappedBy="genres")
     private List<Book> books;
 
     //constructors
@@ -29,18 +31,18 @@ public class Genre {
     	
     }
 
-    public Genre(int genre_id, String name) {
-        this.genre_id = genre_id;
+    public Genre(int genreId, String name) {
+        this.genreId = genreId;
         this.name = name;
     }
 
     //getters and setters
     public int getGenreId() {
-        return genre_id;
+        return genreId;
     }
 
-    public void setGenreId(int genre_id) {
-        this.genre_id = genre_id;
+    public void setGenreId(int genreId) {
+        this.genreId = genreId;
     }
 
     public String getName() {
@@ -54,7 +56,7 @@ public class Genre {
     //toString
     @Override
     public String toString() {
-        return "Genre [genre_id=" + genre_id + ", name=" + name + "]";
+        return "Genre [genreId=" + genreId + ", name=" + name + "]";
     }
 
     // hashCode and equals
@@ -62,7 +64,7 @@ public class Genre {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + genre_id;
+        result = prime * result + genreId;
         return result;
     }
 
@@ -75,7 +77,7 @@ public class Genre {
         if (getClass() != obj.getClass())
             return false;
         Genre other = (Genre) obj;
-        if (genre_id != other.genre_id)
+        if (genreId != other.genreId)
             return false;
         return true;
     }
