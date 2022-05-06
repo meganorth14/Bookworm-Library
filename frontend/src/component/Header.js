@@ -23,7 +23,7 @@ function Header() {
     <>
       <Navbar bg="dark" variant="dark" sticky="top" expand="lg">
         <Container>
-          <Navbar.Brand as={Link} to="/">
+          <Navbar.Brand className="navbar-title" as={Link} to="/">
             <img
               alt="Bookworm Library Logo"
               src={templogo}

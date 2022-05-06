@@ -1,12 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Grandstander:wght@200&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
-@import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rancho&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
 
 :root{
   --primary: #57b6a4;
@@ -80,12 +75,8 @@
   --dark3: #212529;
   --basicfont: 'Grandstander', cursive;
   --retrofont: 'Pacifico', cursive;
-  --melodyfont: 'Hi Melody', cursive;
-  --indiefont: 'Indie Flower', cursive;
-  --markerfont: 'Permanent Marker', cursive;
-  --gloriafont: 'Glorio Hollelujah', cursive;
-  --patrickfont: 'Patrick Hand', cursive;
   --ranchofont: 'Rancho', cursive;
+  --dancingfont: 'Dancing Script', cursive;
 }
 
 body{
@@ -96,25 +87,73 @@ h1, h2, h3, h4{
   font-family: var(--basicfont);
 }
 
+/**//* HOME PAGE *//**/
+/* COMPONENT: BOOK RECS SECTION */
+.recommendations .container {
+  background-color: var(--darkgrey);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px 0 20px;
+}
+.rec-title{
+  font-family: var(--basicfont);
+  color: #fff;
+  text-align: center;
+}
+.recommendations .gallery{
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+/**/
+/* COMPONENT: SEARCH BANNER */
+.search-banner{
+  width: 100%;
+  padding: 45px 0 20px;
+  text-align: center;
+  box-sizing: border-box;
+  background-color: var(--dark2);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  color: var(--lightgrey);
+}
+.banner-main{
+  background-color: transparent;
+  justify-content: center;
+}
+.browse-container{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+/**/
+/**/
+
+/**//* HEADER & NAVBAR *//**/
+.navbar-title{
+  font-family: var(--dancingfont);
+}
 .center{
     text-align: center;
 }
-
 .headerbtn{
     background-color: transparent;
     color:rgb(155, 155, 155);
     border:none;
 }
-
 .headerbtn:hover{
     color:lightgray;
 }
-
 .navoffset{
     margin-top: 2%;
 }
+/**/
+/**/
 
-/* Login/Registration Form */
+
+/**//* LOGIN/REGISTER FORM *//**/
 .formheading {
     text-align: center;
     padding: 20px 5px 0 5px;
@@ -158,9 +197,6 @@ h1, h2, h3, h4{
     color: var(--contrast);
     font-weight: bold;
 }
-
-
-
 .formbuttons {
     display: flexbox;
     justify-content: center;
@@ -168,7 +204,7 @@ h1, h2, h3, h4{
     color: var(--light);
     font-size: large;
     text-align: center;
-    font-family: var(--markerfont);
+    font-family: var(--ranchofont);
 }
 .selectedbutton {
     width: 50%;
@@ -194,7 +230,6 @@ h1, h2, h3, h4{
     /* border: var(--primary-light) solid 2px; */
     color: white;
 }
-
 .loginbtn {
     background: var(--primary);
     padding: 5px 10px;
@@ -212,32 +247,29 @@ h1, h2, h3, h4{
     font-family: var(--ranchofont);
     letter-spacing: 1.5px;
 }
-
 .loginbtn:hover,
 .resetbtn:hover {
     background-color: var(--primary-light);
     border: var(--primary-light) solid 2px;
     color: white;
 }
-
 .error {
     color: red;
     font-size: smaller;
 }
+/**/
+/**/
 
 
-
-/* Cart */
+/**//* CART *//**/
 .cartdetails{
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-
 .cover{
     max-width:80px;
 }
-
 @media (max-width:420px){
     .cover{
         max-width: 50px;
@@ -246,12 +278,10 @@ h1, h2, h3, h4{
         width:100%;
     }
 }
-
 .checkoutbtn{
     float:right;
     margin: 10px;
 }
-
 .removebtn{
     width: fit-content;
     border:none;
@@ -262,24 +292,24 @@ h1, h2, h3, h4{
 .removebtn:hover{
     color:var(--secondary);
 }
-
 #cartlist{
     width:80%;
     margin:auto;
 }
-
 #cartlist th, td{
     text-align: center;
     border-bottom:lightgray solid 1px;
     vertical-align: middle;
 }
-
 .deletebtn{
     background-color: transparent;
     border:none;
 }
+/**/
+/**/
 
 
+/**//* ACCOUNT PAGE *//**/
 .account-page {
     text-align: center;
     padding : 15px;
@@ -287,7 +317,6 @@ h1, h2, h3, h4{
     border : solid black;
     color: darkslateblue;
 }
-
 .updateAccount {
     text-align: center;
     width: 40%;
@@ -296,10 +325,6 @@ h1, h2, h3, h4{
     background: #57b6a4;
     color: darkblue;
 }
-
-/* .editbtn {
-    margin-left: 180px;
-} */
 .submitBtn {
 background-color: darkblue; 
   border: none;
@@ -310,12 +335,14 @@ background-color: darkblue;
   display: inline-block;
   font-size: 16px;
 }
-
 .submitBtn:hover {
     background-color: goldenrod;
   }
+/**/
+/**/
 
-/* Product Page */
+
+/**//* PRODUCT PAGE *//**/
 /* overall product container */
 .gallery{
     margin:auto 5%;
@@ -324,7 +351,6 @@ background-color: darkblue;
     flex-direction: row;
     justify-content:space-evenly;
 }
-
 /* each book's card element */
 .bookcard{
     width: 20%;
@@ -333,76 +359,62 @@ background-color: darkblue;
     height:fit-content;
     text-align: center;
 }
-
 .bookcard img{
     width: 100%;
     /* padding: 20px; */
     margin: auto;
     border-bottom: lightgrey solid 1px;
 }
-
 .cartbtn {
     background: var(--contrast);
     padding: 8px;
     border: var(--contrast) solid 2px;
     color: white;
 }
-
 .cartbtn:hover {
     background-color: var(--secondary);
     border: var(--secondary) solid 2px;
     color: white;
 }
-
 .tooltip-inner {
     background-color: rgb(97, 188, 97);
 }
-
 .tooltip .tooltip-arrow::before {
     border-right-color: rgb(97, 188, 97);
 }
-
 .descriptionbtn{
     color:lightgray;
     font-weight: lighter;
 }
-
 .sortfilter{
     display: flex;
     margin-right: 5%;
     justify-content: right;
 }
-
 .sortfilterbtn{
     background-color: transparent;
     border:none;
     color:var(--primary);
 }
-
 .sortfilterbtn:hover{
     color:var(--contrast);
 }
-
 .iconbtn{
     background-color: transparent;
     border:none;
 }
-
 #search{
     width:70%;
 }
-
 #searchtype{
     width:fit-content;
     background-color: var(--contrast);
     border-color: var(--contrast);
     color:white;
 }
-
 #searchvalue{
     width: 70%;
 }
-
 #searchbtn{
     background-color: var(--contrast);
     color:white;
@@ -411,7 +423,6 @@ background-color: darkblue;
     border-bottom-right-radius: 5px;
     padding:5px 20px;
 }
-
 @media (max-width:420px) {
     #search {
         width: 100%;
@@ -429,7 +440,6 @@ background-color: darkblue;
         padding: 5px 10px;
     }
 }
-
 @media (min-width:420px) and (max-width:1100px) {
     #search {
         width: 90%;
@@ -447,8 +457,12 @@ background-color: darkblue;
         padding: 5px 10px;
     }
 }
+/**/
+/**/
 
-/* FOOTER */
+
+
+/**//* FOOTER *//**/
 footer{
   position: relative;
   bottom: 0;
@@ -456,7 +470,6 @@ footer{
   height: auto;
   letter-spacing: 2px;
 }
-
 .site-footer{
   background-color: var(--dark2);
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
@@ -482,7 +495,6 @@ footer{
   color: var(--neongreen);
   text-decoration: none;
 }
-
 .footer-links a:active,.footer-links a:focus,.footer-links a:hover{
   color: var(--neongreen);
   text-decoration: none;
@@ -509,7 +521,6 @@ footer{
   text-align: left;
   vertical-align: middle;
 }
-
 @media (max-width:767px)
 {
   .site-footer
@@ -592,3 +603,5 @@ footer{
     font-weight:600
   }
 }
+/**/
+/**/

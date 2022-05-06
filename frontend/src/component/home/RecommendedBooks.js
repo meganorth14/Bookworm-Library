@@ -44,7 +44,7 @@ function RecommendedBooks() {
     <>
       <div className="recommendations">
         <div className="container">
-          <div className="bannertitle">
+          <div className="rec-title">
             <h3>Our Current Recommendations:</h3>
           </div>
           <hr></hr>
