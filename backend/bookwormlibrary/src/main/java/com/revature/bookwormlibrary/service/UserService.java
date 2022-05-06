@@ -1,6 +1,11 @@
 package com.revature.bookwormlibrary.service;
 
+import java.util.Collection;
 import java.util.List;
+<<<<<<< HEAD
+import java.util.Optional;
+=======
+>>>>>>> a495280298d51afe1b8fee26c327b0067fed0b71
 
 import com.revature.bookwormlibrary.entity.User;
 
@@ -10,15 +15,16 @@ public interface UserService {
     /**
      * Create a new user in the database
      * @param user user information
+     * @return 
      */
-    public void createUser(User user);
+    public User createUser(User user);
 
     /**
      * Retrieve specific user's information from database
      * @param id user's unique id
      * @return User object with information
      */
-    public User getUserById(int id);
+    public Optional<User> getUserById(Integer id);
 
     /**
      * Retrieve specific user's information from database (for login)
@@ -43,13 +49,16 @@ public interface UserService {
      * Deletes user from database
      * @param id Unique id of user to delete
      */
-    public void deleteUser(int id);
-
+    @SuppressWarnings("null")
+	public default void deleteUser(Integer id) {
+        Collection<User> user = null;
+		user.removeIf(u -> u.getId().equals(id));		
+   }
     /**
      * Filters users based on a condition
      * @return List of users that meet condition
      */
-    public List<User> filterUsers();
+    public List<User> filterUsers(List<User> user);
     // public List<User> filterUsersById(int id);
     // public List<User> filterUsersByUsername(String username);
     // public List<User> filterUsersByRole(String role);
@@ -61,4 +70,6 @@ public interface UserService {
      * @return access token
      */
     public String validateUser(User user);
+
+//	List<User> filterUsers(List<User> user);
 }

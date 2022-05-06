@@ -29,8 +29,11 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "sass": "^1.50.1",
+<<<<<<< HEAD
+=======
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
+>>>>>>> a495280298d51afe1b8fee26c327b0067fed0b71
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },

@@ -15,7 +15,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="users")
 public class User {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private int user_id;
@@ -27,6 +26,9 @@ public class User {
     private String role_type;
     private LocalDate registration_date;
     private LocalDate last_login;
+
+    @OneToMany
+    private List<Order> orders;
 
     //constructors
     public User(){}
