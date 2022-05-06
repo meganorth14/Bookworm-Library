@@ -1,5 +1,6 @@
 package com.revature.bookwormlibrary.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void createOrder(Order order) {
+
+    	order.setOrderDate(LocalDate.now());
         repository.save(order);
     }
 

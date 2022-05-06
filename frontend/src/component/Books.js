@@ -12,11 +12,11 @@ function Books({book, addToCart}) {
         }
         <Card.Body>
           <Card.Title>{book.title}</Card.Title>
-          {book.author?
-              <Card.Subtitle className="text-muted">{book.author}</Card.Subtitle>
+          {book.authors?
+              <Card.Subtitle className="text-muted">{book.authors}</Card.Subtitle>
             : <Card.Subtitle className="text-muted">Unknown Author</Card.Subtitle>
           }
-          <div><small className="text-muted">{book.genre}</small></div>
+          <div><small className="text-muted">{book.genres}</small></div>
         </Card.Body>
         <OverlayTrigger
           placement="right"
@@ -37,9 +37,9 @@ function Books({book, addToCart}) {
               {book.pages &&
                 <div><small className="text-muted">{book.pages} pages</small></div>
               }
-              <div><small className="text-muted">{book.publisher} 
-              {book.publisher && book.publish_date && <b> | </b>} 
-              {book.publish_date}</small></div>
+              <div><small className="text-muted">{book.publisher}
+              {book.publisher && book.publish_year && <b> | </b>} 
+              {book.publish_year}</small></div>
               {book.isbn && 
                 <div><small className="text-muted">ISBN:{book.isbn}</small></div>}
             </Accordion.Body>

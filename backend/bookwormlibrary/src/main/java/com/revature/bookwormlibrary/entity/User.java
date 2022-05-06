@@ -15,10 +15,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="users")
 public class User {
-<<<<<<< HEAD
-=======
-	
->>>>>>> a495280298d51afe1b8fee26c327b0067fed0b71
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private int user_id;
@@ -30,20 +26,15 @@ public class User {
     private String role_type;
     private LocalDate registration_date;
     private LocalDate last_login;
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> a495280298d51afe1b8fee26c327b0067fed0b71
     @OneToMany
     private List<Order> orders;
-    
 
     //constructors
     public User(){}
     
     public User(int user_id, String username, String password, String email, String first_name, String last_name,
-            String role_type, LocalDate registration_date, LocalDate last_login, List<Order> orders) {
+            String role_type, LocalDate registration_date, LocalDate last_login) {
         this.user_id = user_id;
         this.username = username;
         this.password = password;
@@ -53,7 +44,6 @@ public class User {
         this.role_type = role_type;
         this.registration_date = registration_date;
         this.last_login = last_login;
-        this.orders = orders;
     }
 
     //getters and setters
@@ -129,19 +119,11 @@ public class User {
         this.last_login = last_login;
     }
 
-    public List<Order> getOrders(){
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders){
-        this.orders = orders;
-    }
-
     //toString
     @Override
     public String toString() {
         return "User [email=" + email + ", first_name=" + first_name + ", last_login=" + last_login + ", last_name="
-                + last_name + ", orders=" + orders + ", password=" + password + ", registration_date=" 
+                + last_name + ", password=" + password + ", registration_date=" 
                 + registration_date + ", role_type=" + role_type + ", user_id=" + user_id + ", username=" + username + "]";
     }
 
@@ -167,9 +149,5 @@ public class User {
             return false;
         return true;
     }
-
-	
-
-
 }
 
