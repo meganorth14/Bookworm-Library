@@ -17,13 +17,22 @@ public class GenreServiceImpl implements GenreService {
 	GenreRepository genreRepo;
 	
 	@Override
-	public void createGenre(Genre genre) {
-		genreRepo.save(genre);
+	public Genre createGenre(Genre genre) {
+		Optional<Genre> genreFound = genreRepo.findByName(genre.getName());
+		if(genreFound.isEmpty()) {
+			return genreRepo.save(genre);
+		}
+		return genreFound.get();
 	}
 
 	@Override
 	public Optional<Genre> getGenreById(int id) {
 		return genreRepo.findById(id);
+	}
+	
+	@Override
+	public Optional<Genre> getGenreByName(String name) {
+		return genreRepo.findByName(name);
 	}
 
 	@Override

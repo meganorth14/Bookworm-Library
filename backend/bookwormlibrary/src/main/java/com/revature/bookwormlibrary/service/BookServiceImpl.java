@@ -1,6 +1,5 @@
 package com.revature.bookwormlibrary.service;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -18,15 +17,27 @@ public class BookServiceImpl implements BookService {
 	
 	@Autowired
 	BookRepository bookRepo;
+	@Autowired
+	AuthorService authorService;
+	@Autowired
+	GenreService genreService;
 	
 	@Override
-	public void createBook(Book book) {
-		bookRepo.save(book);
+	public Book createBook(Book book) {
+		List<Author> authors = book.getAuthors();
+		for(int i=0;i<authors.size();i++) {
+			authors.set(i, authorService.createAuthor(authors.get(i)));
+		}
+		List<Genre> genres = book.getGenres();
+		for(int i=0;i<genres.size();i++) {
+			genres.set(i, genreService.createGenre(genres.get(i)));
+		}
+		return bookRepo.save(book);
 	}
-
+	
 	@Override
-	public Optional<Book> getBookById(int id) {
-		return bookRepo.findById(id);
+	public Optional<Book> getBookByIsbn13(String isbn13) {
+		return bookRepo.findByIsbn13(isbn13);
 	}
 
 	@Override
@@ -43,47 +54,29 @@ public class BookServiceImpl implements BookService {
 	public void deleteBook(int id) {
 		if(bookRepo.existsById(id)) bookRepo.delete(bookRepo.findById(id).get());
 	}
-	
+
 	@Override
-	public List<Book> sortBooksByISBN13(List<Book> books) {
-		Comparator<Book> byISBN13 = Comparator.comparing(Book::getIsbn13);
-		return books.stream().sorted(byISBN13).toList();
+	public List<Book> filterBooksByAuthorName(List<Book> books, String authorName) {
+		Author author;
+		Optional<Author> authorFound = authorService.getAuthorByName(authorName);
+		if(authorFound.isPresent()) {
+			author = authorFound.get();
+			Predicate<Book> hasAuthor = book -> (book.getAuthors().contains(author));
+			return books.stream().filter(hasAuthor).toList();
+		}
+		return null;
 	}
 
 	@Override
-	public List<Book> sortBooksByTitle(List<Book> books) {
-		Comparator<Book> byTitle = Comparator.comparing(Book::getTitle);
-		return books.stream().sorted(byTitle).toList();
-	}
-	
-	@Override
-	public List<Book> sortBooksByPages(List<Book> books) {
-		Comparator<Book> byPages = Comparator.comparing(Book::getPages);
-		return books.stream().sorted(byPages).toList();
-	}
-
-	@Override
-	public List<Book> sortBooksByPublisher(List<Book> books) {
-		Comparator<Book> byPublisher = Comparator.comparing(Book::getPublisher);
-		return books.stream().sorted(byPublisher).toList();
-	}
-
-	@Override
-	public List<Book> sortBooksByPublishYear(List<Book> books) {
-		Comparator<Book> byPublishYear = Comparator.comparing(Book::getPublishYear);
-		return books.stream().sorted(byPublishYear).toList();
-	}
-
-	@Override
-	public List<Book> filterBooksByAuthor(List<Book> books, Author author) {
-		Predicate<Book> hasAuthor = book -> (book.getAuthors().contains(author));
-		return books.stream().filter(hasAuthor).toList();
-	}
-
-	@Override
-	public List<Book> filterBooksByGenre(List<Book> books, Genre genre) {
-		Predicate<Book> hasGenre = book -> (book.getGenres().contains(genre));
-		return books.stream().filter(hasGenre).toList();
+	public List<Book> filterBooksByGenreName(List<Book> books, String genreName) {
+		Genre genre;
+		Optional<Genre> genreFound = genreService.getGenreByName(genreName);
+		if(genreFound.isPresent()) {
+			genre = genreFound.get();
+			Predicate<Book> hasGenre = book -> (book.getGenres().contains(genre));
+			return books.stream().filter(hasGenre).toList();
+		}
+		return null;
 	}
 
 	@Override

@@ -17,13 +17,22 @@ public class AuthorServiceImpl implements AuthorService {
 	AuthorRepository authorRepo;
 
 	@Override
-	public void createAuthor(Author author) {
-		authorRepo.save(author);
+	public Author createAuthor(Author author) {
+		Optional<Author> authorFound = authorRepo.findByName(author.getName());
+		if(authorFound.isEmpty()) {
+			return authorRepo.save(author);
+		}
+		return authorFound.get();
 	}
 
 	@Override
 	public Optional<Author> getAuthorById(int id) {
 		return authorRepo.findById(id);
+	}
+	
+	@Override
+	public Optional<Author> getAuthorByName(String name) {
+		return authorRepo.findByName(name);
 	}
 
 	@Override
