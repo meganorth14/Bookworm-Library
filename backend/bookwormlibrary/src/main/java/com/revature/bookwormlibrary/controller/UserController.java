@@ -1,89 +1,72 @@
 package com.revature.bookwormlibrary.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyProperties.Identityprovider.Verification;
-import org.springframework.http.HttpStatus;
-//import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.bookwormlibrary.entity.User;
 import com.revature.bookwormlibrary.service.UserService;
 
-
-
+@RestController
 public class UserController {
 	
+	@Autowired
+	UserService userService;
 
-		@Autowired
-		UserService userService;
+	//http://localhost:8080/newUser
+	@PostMapping("/newUser")
+	public void newUser(User user) {
 		
-		//Retrieve all employees
-		@GetMapping("/getAllUsers")
-		public ModelAndView getAllEmployees() {
-			List<User> listOfUsers = userService.getAllUsers();
-			Map<String, Object> userModel = new HashMap<String, Object>();
-			
-			if (!listOfUsers.isEmpty()) {
-				userModel.put("listOfUsers", listOfUsers);
-				return new ModelAndView("allemployee", userModel, HttpStatus.OK);
-			} else {
-				userModel.put("message", "No user found");
-				return new ModelAndView("nodatafound", userModel, HttpStatus.NOT_FOUND);
-			}
-
-		}
-		
-		// GetEmployeeForm
-			@GetMapping("/userById")
-			public ModelAndView getUserById(@ModelAttribute User user) {
-				ModelAndView modelAndView = new ModelAndView("getUser");
-				return modelAndView;
-			}
-			
-			// Create
-			@PostMapping("/addUser")
-			public ModelAndView createUser(User user) {
-				User newUser = userService.createUser(user);
-				ModelAndView modelAndView;
-				// Model in Spring Web MVC is a map
-				Map<String, Object> messageModel = new HashMap<String, Object>();
-				if (newUser != null) {
-					messageModel.put("emplData", newUser);
-					modelAndView = new ModelAndView("user created succesfully", messageModel);
-				} else {
-					messageModel.put("errormsg", "Unable to add user");
-					modelAndView = new ModelAndView("errorMsg", messageModel);
-				}
-				return modelAndView;
-			}
-	
-
-
-			@RequestMapping(value="/users/{id}", method = RequestMethod.PUT)
-			public void getUser(@PathVariable String id, @RequestBody User user) {
-
-				userService.updateUser(user);
-
+		userService.createUser(user);
 	}
-			
-			@RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
-			 public void deleteUser(@PathVariable Integer id) {
-			      userService.deleteUser(id);
-			 }
-			
+	
+	//http://localhost:8080/userbyid/1
+	@GetMapping("/userbyid/{id}")
+	public User getUser(@PathVariable Integer id) {
+		
+		return userService.getUserById(id);
+	}
+	
+	//http://localhost:8080/user?username=morth
+	@GetMapping("/user")
+	public User getUserByUsername(@RequestParam String username) {
+
+		return userService.getUserByUsername(username);
+	}
+	
+	//http://localhost:8080/allusers
+	@GetMapping("/allusers")
+	public List<User> getUsers() {
+
+		return userService.getAllUsers();
+	}
+	
+	//http://localhost:8080/updateuser
+	@PutMapping("/updateuser")
+	public void updateUser(@RequestBody User user) {
+		
+		userService.updateUser(user);
+	}
+	
+	//http://localhost:8080/deleteuser
+	@DeleteMapping("/deleteuser")
+	public void deleteUser(User user) {
+		
+		userService.deleteUser(user);
+	}
+	
+	//http://localhost:8080/login
+	@PostMapping("/login")
+	public String login(@RequestBody User user) {
+		
+		return userService.validateUser(user);
+	}
 }
-
-
-

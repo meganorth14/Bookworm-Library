@@ -1,13 +1,4 @@
 package com.revature.bookwormlibrary.entity;
-<<<<<<< HEAD
-=======
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
->>>>>>> a495280298d51afe1b8fee26c327b0067fed0b71
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,10 +14,6 @@ import javax.persistence.Table;
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) // auto-generated id numbers
-<<<<<<< HEAD
-    @Column(name = "emp_id")
-=======
->>>>>>> a495280298d51afe1b8fee26c327b0067fed0b71
     private int author_id;
 
     @Column(name="name")

@@ -11,7 +11,7 @@ function SearchBanner() {
       <div className="search-banner">
         <div className="container">
           <div className="banner-main">
-            <h5>Welcome to the Bookworm Digital Library!</h5>
+            <h2>Welcome to the Bookworm Digital Library!</h2>
             {/* <ButtonToolbar aria-label="searchtoolbar">
               <ButtonGroup className="me-2" aria-label="genrebutton">
                 <Button href="/genres">Genres</Button>
