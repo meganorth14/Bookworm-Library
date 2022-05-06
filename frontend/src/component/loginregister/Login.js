@@ -133,8 +133,8 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
         </Modal.Header>
 
         <Modal.Body>
-          <Form.Group className="mb-2 logininput">
-            <FloatingLabel controlId='floatingInput' label="Username" className='mb-3 floatinglabel'>
+          <Form.Group className="logininput">
+            <FloatingLabel controlId='floatingInput' label="Username" className='floatinglabel'>
               <Form.Control
                 type='text'
                 name='username'
@@ -145,8 +145,8 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
               {renderErrorMessage("uname")}
             </FloatingLabel>
           </Form.Group>
-          <Form.Group className="mb-2 logininput">
-            <FloatingLabel controlId='floatingPassword' label="Password" className='mb-3 floatinglabel'>
+          <Form.Group className="logininput">
+            <FloatingLabel controlId='floatingPassword' label="Password" className='floatinglabel'>
               <Form.Control
                 type='passwprd'
                 name='password'

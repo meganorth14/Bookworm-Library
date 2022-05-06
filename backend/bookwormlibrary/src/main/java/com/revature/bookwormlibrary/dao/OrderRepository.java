@@ -10,6 +10,7 @@ import com.revature.bookwormlibrary.entity.Order;
 
 @Repository
 public interface OrderRepository extends CrudRepository<Order, Integer> {
-    @Query("SELECT o FROM Order WHERE o.user_id = ?1")
+
+    @Query("SELECT o FROM Order o WHERE o.user.userid = ?1")
     List<Order> getOrderByUserid(Integer id);
 }

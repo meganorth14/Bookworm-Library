@@ -79,6 +79,13 @@
   --dancingfont: 'Dancing Script', cursive;
 }
 
+body{
+  letter-spacing: 0.5px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h1, h2, h3, h4{
+  font-family: var(--basicfont);
+}
 
 /**//* HOME PAGE *//**/
 /* COMPONENT: BOOK RECS SECTION */
@@ -176,7 +183,7 @@
     justify-content: space-between;
 }
 .floatinglabel{
-    color: var(--bluegrey);
+    color: black;
     opacity: 40%;
     text-align: center;
     border-radius: 10px;
@@ -354,7 +361,7 @@ background-color: darkblue;
 }
 .bookcard img{
     width: 100%;
-    padding: 20px;
+    /* padding: 20px; */
     margin: auto;
     border-bottom: lightgrey solid 1px;
 }
@@ -402,6 +409,7 @@ background-color: darkblue;
 #searchtype{
     width:fit-content;
     background-color: var(--contrast);
+    border-color: var(--contrast);
     color:white;
 }
 #searchvalue{
@@ -510,7 +518,7 @@ footer{
 .copyright-text
 {
   margin:0;
-  text-align: center;
+  text-align: left;
   vertical-align: middle;
 }
 @media (max-width:767px)

@@ -3,6 +3,7 @@ package com.revature.bookwormlibrary.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,13 +20,15 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer order_id;
+    @Column(name="order_id")
+    private Integer orderid;
     
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
     private User user;
     
-    private LocalDate order_date;
+    @Column(name="order_date")
+    private LocalDate orderDate;
 
     @ManyToMany
     @JoinTable(
@@ -37,36 +40,36 @@ public class Order {
     //constructors
     public Order(){}
 
-    public Order(Integer order_id, User user, LocalDate order_date, List<Book> books) {
-        this.order_id = order_id;
+    public Order(Integer orderid, User user, LocalDate orderDate, List<Book> books) {
+        this.orderid = orderid;
         this.user = user;
-        this.order_date = order_date;
+        this.orderDate = orderDate;
         this.books = books;
     }
 
     //getters and setters
-    public Integer getOrder_id() {
-        return order_id;
+    public Integer getOrderid() {
+        return orderid;
     }
 
-    public void setOrder_id(Integer order_id) {
-        this.order_id = order_id;
+    public void setOrderid(Integer orderid) {
+        this.orderid = orderid;
     }
 
-    public User getUser_id() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser_id(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public LocalDate getOrder_date() {
-        return order_date;
+    public LocalDate getOrderDate() {
+        return orderDate;
     }
 
-    public void setOrder_date(LocalDate order_date) {
-        this.order_date = order_date;
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
     }
 
     public List<Book> getBooks() {
@@ -80,7 +83,7 @@ public class Order {
     //toString
     @Override
     public String toString() {
-        return "Order [books=" + books + ", order_date=" + order_date + ", order_id=" + order_id
+        return "Order [books=" + books + ", order_date=" + orderDate + ", order_id=" + orderid
                 + ", user=" + user + "]";
     }
 
@@ -89,7 +92,7 @@ public class Order {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + order_id;
+        result = prime * result + orderid;
         return result;
     }
 
@@ -102,7 +105,7 @@ public class Order {
         if (getClass() != obj.getClass())
             return false;
         Order other = (Order) obj;
-        if (order_id != other.order_id)
+        if (orderid != other.orderid)
             return false;
         return true;
     }
