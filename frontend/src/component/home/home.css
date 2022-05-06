@@ -88,10 +88,7 @@
   --ranchofont: 'Rancho', cursive;
 }
 
-body{
-  letter-spacing: 1px;
-  font-family: var(--basicfont);
-}
+
 
 .recommendations {
   background-color: var(--darkgrey);
