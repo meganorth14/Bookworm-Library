@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.bookwormlibrary.entity.Order;
@@ -26,9 +27,9 @@ public class OrderController {
     	orderService.createOrder(order);
     }
     
-    //http:localhost:8080/order/1
-    @GetMapping("/order/{id}")
-    public Order getOrderById(@PathVariable Integer id) {
+    //http:localhost:8080/getorder?id=1
+    @GetMapping("/getorder")
+    public Order getOrderById(@RequestParam Integer id) {
     	
     	Optional<Order> order = orderService.getOrderById(id);
     	
@@ -40,8 +41,8 @@ public class OrderController {
     	}	
     }
     
-    //http:localhost:8080/order/1
-    @GetMapping("/orders/{id}")
+    //http:localhost:8080/orders/user/1
+    @GetMapping("/orders/user/{id}")
     public List<Order> getOrderByUserid(@PathVariable Integer id) {
     	
     	return orderService.getOrderByUserid(id);
