@@ -23,7 +23,7 @@ public class OrderController {
     //http:localhost:8080/newOrder
     @PostMapping("/newOrder")
     public void newOrder(@RequestBody Order order) {
-    	
+
     	orderService.createOrder(order);
     }
     
