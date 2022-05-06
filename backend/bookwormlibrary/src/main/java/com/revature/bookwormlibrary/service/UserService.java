@@ -2,7 +2,10 @@ package com.revature.bookwormlibrary.service;
 
 import java.util.Collection;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Optional;
+=======
+>>>>>>> a495280298d51afe1b8fee26c327b0067fed0b71
 
 import com.revature.bookwormlibrary.entity.User;
 

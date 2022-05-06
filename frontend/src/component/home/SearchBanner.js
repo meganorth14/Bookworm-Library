@@ -2,6 +2,8 @@ import React from "react";
 // import { Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
 import Search from "../products/Search";
 // import SearchBar from "./Searchbar";
+import { FcSearch } from "react-icons/fc";
+
 
 function SearchBanner() {
   return (

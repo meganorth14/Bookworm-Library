@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import {signin} from '../../slices/login/LoginSlice'
+import { FloatingLabel } from 'react-bootstrap';
 //import axios from "axios";
 
 function Login({showLogin, setShowLogin, setShowRegister}) {
@@ -113,44 +114,48 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Form id="loginform" onSubmit={handleSubmit}>
+      <Form id="loginform" className='loginform' onSubmit={handleSubmit}>
+        <div className="formbuttons">
+          <button className="selectedbutton" disabled>
+            Sign In
+          </button>
+          <button className="unselectedbutton" onClick={changeForm}>
+            Sign Up
+          </button>
+        </div>
         <Modal.Header closeButton>
           <img
             alt="Bookworm Library Logo"
             src="./bookworm_logo.svg"
             width="30"
           />{' '}
-          <h3>Sign In</h3>
+          <h3>Login:</h3>
         </Modal.Header>
 
         <Modal.Body>
-          <div className="formbuttons">
-            <button className="selectedbutton" disabled>
-              Sign In
-            </button>
-            <button className="unselectedbutton" onClick={changeForm}>
-              Sign Up
-            </button>
-          </div>
-          <Form.Group className="mb-2">
-            <Form.Label>Enter username: </Form.Label>
-            <Form.Control
-              type="text"
-              name="username"
-              placeholder="username"
-              required
-            />
-            {renderErrorMessage("uname")}
+          <Form.Group className="mb-2 logininput">
+            <FloatingLabel controlId='floatingInput' label="Username" className='mb-3 floatinglabel'>
+              <Form.Control
+                type='text'
+                name='username'
+                placeholder='Username..'
+                required
+                className='formcontrol'
+              />
+              {renderErrorMessage("uname")}
+            </FloatingLabel>
           </Form.Group>
-          <Form.Group className="mb-2">
-            <Form.Label>Enter password: </Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              placeholder="password"
-              required
-            />
-            {renderErrorMessage("pass")}
+          <Form.Group className="mb-2 logininput">
+            <FloatingLabel controlId='floatingPassword' label="Password" className='mb-3 floatinglabel'>
+              <Form.Control
+                type='passwprd'
+                name='password'
+                placeholder='Password..'
+                required
+                className='formcontrol'
+              />
+              {renderErrorMessage("pass")}
+            </FloatingLabel>
           </Form.Group>
         </Modal.Body>
 

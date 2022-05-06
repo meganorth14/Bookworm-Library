@@ -15,6 +15,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="users")
 public class User {
+<<<<<<< HEAD
+=======
+	
+>>>>>>> a495280298d51afe1b8fee26c327b0067fed0b71
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private int user_id;
@@ -26,7 +30,11 @@ public class User {
     private String role_type;
     private LocalDate registration_date;
     private LocalDate last_login;
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> a495280298d51afe1b8fee26c327b0067fed0b71
     @OneToMany
     private List<Order> orders;
     
