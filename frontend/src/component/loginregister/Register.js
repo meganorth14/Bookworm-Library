@@ -15,6 +15,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
   const errors = {
     fullname: "please enter your name",
     uname: "username should be between 6-30 characters and only contain letters, numbers, periods, or underscores",
+    pass: "password should be at least 8 characters long",
     unameused: "username taken",
     email: "invalid email format"
   };
@@ -61,6 +62,10 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
 
       setErrorMessages({ name: "uname", message: errors.uname });
 
+    } else if (password.value.length < 8) {
+
+      setErrorMessages({ name: "pass", message: errors.pass });
+
     } else if (!email.value.trim() || !email.value.match(emailFormat)) {
 
       setErrorMessages({ name: "email", message: errors.email });
@@ -94,9 +99,8 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
         } else {
           // new user
           const newUser = {
-            userid: null,
-            firstname: first.value,
-            lastname: last.value,
+            firstName: first.value,
+            lastName: last.value,
             username: username.value,
             password: password.value,
             email: email.value
@@ -157,8 +161,8 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
         </Modal.Header>
 
         <Modal.Body>
-          <Form.Group className="mb-2 logininput">
-            <FloatingLabel controlId='floatingInput' label="First Name" className='mb-3 floatinglabel'>
+          <Form.Group className="logininput">
+            <FloatingLabel controlId='floatingInput' label="First Name" className='floatinglabel'>
               <Form.Control
                 type='text'
                 name='first'
@@ -169,8 +173,8 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
               {renderErrorMessage("fullname")}
             </FloatingLabel>
           </Form.Group>
-          <Form.Group className="mb-2 logininput">
-            <FloatingLabel controlId='floatingInput' label="Last Name" className='mb-3 floatinglabel'>
+          <Form.Group className="logininput">
+            <FloatingLabel controlId='floatingInput' label="Last Name" className='floatinglabel'>
               <Form.Control
                 type='text'
                 name='last'
@@ -181,8 +185,8 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
               {renderErrorMessage("fullname")}
             </FloatingLabel>
           </Form.Group>
-          <Form.Group className="mb-2 logininput">
-            <FloatingLabel controlId='floatingInput' label="Username" className='mb-3 floatinglabel'>
+          <Form.Group className="logininput">
+            <FloatingLabel controlId='floatingInput' label="Username" className='floatinglabel'>
               <Form.Control
                 type='text'
                 name='username'
@@ -194,8 +198,8 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
               {renderErrorMessage("uname")}
             </FloatingLabel>
           </Form.Group>
-          <Form.Group className="mb-2 logininput">
-            <FloatingLabel controlId='floatingInput' label="Password" className='mb-3 floatinglabel'>
+          <Form.Group className="logininput">
+            <FloatingLabel controlId='floatingInput' label="Password" className='floatinglabel'>
               <Form.Control
                 type='password'
                 name='password'
@@ -206,8 +210,8 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
               {renderErrorMessage("pass")}
             </FloatingLabel>
           </Form.Group>          
-          <Form.Group className="mb-2 logininput">
-            <FloatingLabel controlId='floatingInput' label="Email" className='mb-3 floatinglabel'>
+          <Form.Group className="logininput">
+            <FloatingLabel controlId='floatingInput' label="Email" className='floatinglabel'>
               <Form.Control
                 type='email'
                 name='email'
