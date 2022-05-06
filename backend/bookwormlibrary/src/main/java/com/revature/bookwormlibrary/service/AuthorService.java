@@ -12,7 +12,7 @@ public interface AuthorService {
      * Creates new author record in database
      * @param author Information about author
      */
-    public void createAuthor(Author author);
+    public Author createAuthor(Author author);
 
     /**
      * Retrieves specific author from database
@@ -20,6 +20,8 @@ public interface AuthorService {
      * @return Author information
      */
     public Optional<Author> getAuthorById(int id);
+    
+    public Optional<Author> getAuthorByName(String name);
 
     /**
      * Retrieves all author records from database

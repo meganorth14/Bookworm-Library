@@ -7,17 +7,21 @@ import com.revature.bookwormlibrary.entity.Genre;
 
 public interface GenreService {
     /**
-     * Creates new genre record in database
-     * @param genre
+     * Creates a new record in the database for the given Genre and returns it,
+     * or returns an existing Genre with the same <b>name</b> field
+     * @param genre a Genre object
+     * @return a Genre object of a new/existing record in the database
      */
-    public void createGenre(Genre genre);
+    public Genre createGenre(Genre genre);
 
     /**
-     * Retrieves specific genre from database
+     * Returns a Genre object of a record in the database with the given <b>id</b> field
      * @param id Unique identifier for genre
      * @return Information about the genre
      */
     public Optional<Genre> getGenreById(int id);
+    
+    public Optional<Genre> getGenreByName(String name);
 
     /**
      * Retrieves all genre records from database
