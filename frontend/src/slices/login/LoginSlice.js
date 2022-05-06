@@ -9,11 +9,11 @@ export const loginSlice = createSlice({
         value: persistedState && persistedState.user ? 
         persistedState.user.value
         :{
-            user_id: -1,
+            userid: -1,
             username: "",
-            first_name: "",
-            last_name: "",
-            role_type: null,
+            firstName: "",
+            lastName: "",
+            roleType: null,
         } 
         
 
@@ -22,11 +22,11 @@ export const loginSlice = createSlice({
         signin: (state, action) => {
             //update state with user info
             state.value = {
-                user_id: action.payload.user_id,
+                userid: action.payload.userid,
                 username: action.payload.username,
-                first_name: action.payload.first_name,
-                last_name: action.payload.last_name,
-                role_type: action.payload.role_type,
+                firstName: action.payload.firstName,
+                lastName: action.payload.lastName,
+                roleType: action.payload.roleType,
             }
         },
         editAccount: (state, action) => {
@@ -34,18 +34,18 @@ export const loginSlice = createSlice({
             state.value = {
                 ...state.value,
                 username: action.payload.username,
-                first_name: action.payload.first_name,
-                last_name: action.payload.last_name,
+                firstName: action.payload.firstName,
+                lastName: action.payload.lastName,
             }
         },
         signout: (state) => {
             //remove user info
             state.value = {
-                user_id: -1,
+                userid: -1,
                 username: "",
-                first_name: "",
-                last_name: "",
-                role_type: null,
+                firstName: "",
+                lastName: "",
+                roleType: null,
 
             }
         },
