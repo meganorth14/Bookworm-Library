@@ -17,11 +17,11 @@ public class UserServiceImpl implements UserService {
 	UserRepository repository;
 	
 	@Override
-	public void createUser(User user) {
+	public User createUser(User user) {
 		
 		user.setRegistrationDate(LocalDate.now());
 		user.setLastLogin(LocalDate.now());
-		repository.save(user);
+		return repository.save(user);
 	}
 
 	@Override
@@ -60,7 +60,6 @@ public class UserServiceImpl implements UserService {
 		
 		repository.delete(user);
 	}
-
 
 	@Override
 	public String validateUser(User u) {

@@ -10,8 +10,9 @@ public interface UserService {
     /**
      * Create a new user in the database
      * @param user user information
+     * @return 
      */
-    public void createUser(User user);
+    public User createUser(User user);
 
     /**
      * Retrieve specific user's information from database
