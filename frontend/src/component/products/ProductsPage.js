@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import { AiOutlineSearch } from 'react-icons/ai';
+import { IoIosCloseCircleOutline } from 'react-icons/io';
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../slices/cart/CartSlice";
 import Books from "../Books";
@@ -99,7 +100,12 @@ function ProductsPage() {
   return(
     <>
       {search?
-          <Search handleSearch={handleSearch}/>
+        <>
+          <h2 className="navoffset center">Search
+            <button type="button" className="iconbtn" onClick={() => setSearch(false)}><IoIosCloseCircleOutline /></button>
+          </h2>
+          <Search handleSearch={handleSearch} />
+        </>
         :
           <h2 className="center navoffset">Current Selection 
             <button type="button" className="iconbtn" onClick={()=>setSearch(true)}><AiOutlineSearch /></button>
