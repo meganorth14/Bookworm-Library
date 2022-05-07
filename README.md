@@ -24,8 +24,7 @@ This application is an open-source online library platform where users can read 
 * View previously checked out books
 * Search for a specific book
 
-**Admin Users can: **
-
+**Admin Users can:**
 * View all inventory, authors, and genres
 * Add books
 * Remove books
@@ -33,8 +32,7 @@ This application is an open-source online library platform where users can read 
 * Remove users
 * View library transactions 
 
-To-do list:
-
+**To-do list:**
 Allow users to:
 * Recover their password through email 
 * Filter books by category
@@ -52,16 +50,17 @@ In PostgreSQL:
 
 In your terminal:
 1. Copy the repository to your local machine
-   `git clone https://github.com/meganorth14/Bookworm-Library.git`
+   * `git clone https://github.com/meganorth14/Bookworm-Library.git`
 2. Launch backend server
-   `cd backend`
-   `java -jar backend/bookwormlibrary/target/bookwormlibrary-0.0.1-SNAPSHOT.jar com.revature.bookwormlibrary.BookwormlibraryApplication`
+   * `cd backend`
+   * `java -jar backend/bookwormlibrary/target/bookwormlibrary-0.0.1-SNAPSHOT.jar com.revature.bookwormlibrary.BookwormlibraryApplication`
 4. Launch frontend server
-   `cd frontend`
-   `npm install`
+   * `cd frontend`
+   * `npm install`
+   * `npm start`
    
 In your browser:
-1. Navigate to http://localhost:8080
+1. Navigate to http://localhost:3000
 2. Enjoy your library experience
 
 
@@ -80,8 +79,11 @@ In your browser:
 
 ## Contributors
 
-> Here list the people who have contributed to this project. (ignore this section, if its a solo project)
+Gino Townsend
+Madison Schweikert
+Megan Orth
+Samuel Sholib
 
 ## License
 
-This project uses the following license: [<license_name>](<link>).
+This project uses the following license: MIT(<https://opensource.org/licenses/MIT>).

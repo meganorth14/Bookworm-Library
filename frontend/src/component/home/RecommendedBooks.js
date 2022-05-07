@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import { DropdownButton, Dropdown, CardGroup } from "react-bootstrap";
+import React from "react";
+import { CardGroup } from "react-bootstrap";
 import Books from "../Books";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../slices/cart/CartSlice";

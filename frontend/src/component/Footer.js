@@ -7,14 +7,11 @@ function Footer() {
     <>
       <footer className="site-footer">
         <div className="container">
-          <hr></hr>
-        </div>
-        <div className="container">
           <div className="row">
-            <div className="col-md-8 col-sm-6 col-xs-12">
+            <div className="copyright">
               <p className="copyright-text">Bookworm Library &copy; 2022 All Rights Reserved.</p>
             </div>
-            <div className="col-md-4 col-sm-6 col-xs-12">
+            <div>
               <ul className="social-icons">
                 <li>
                   <a className="facebook" href="/">
@@ -34,6 +31,9 @@ function Footer() {
               </ul>
             </div>
           </div>
+        </div>
+        <div className="container">
+          <hr></hr>
         </div>
       </footer>
     </>
