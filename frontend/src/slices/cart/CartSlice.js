@@ -17,7 +17,7 @@ export const cartSlice = createSlice({
     reducers: {
         addToCart: (state, action) => {
             //add item to cart
-            if(!state.value.items.find((book)=>book.book_id === action.payload.book_id)){
+            if(!state.value.items.find((book)=>book.bookId === action.payload.bookId)){
                 state.value = {
                     count: state.value.count + 1,
                     items: [...state.value.items, action.payload]
@@ -28,7 +28,7 @@ export const cartSlice = createSlice({
             //remove item from cart
             state.value = {
                 count: state.value.count - 1,
-                items: state.value.items.filter((book) => book.book_id !== action.payload)
+                items: state.value.items.filter((book) => book.bookId !== action.payload)
             }   
         },
         emptyCart: (state) => {

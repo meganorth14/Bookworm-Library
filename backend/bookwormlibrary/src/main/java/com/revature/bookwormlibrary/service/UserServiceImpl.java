@@ -38,9 +38,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserByUsername(String username) {
+	public boolean getUserByUsername(String username) {
 		
-		return repository.findUserByUsername(username);
+		return repository.findUserByUsername(username) != null;
 	}
 
 	@Override
@@ -62,23 +62,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String validateUser(User u) {
+	public User validateUser(User u) {
 		User user = repository.findUserByUsername(u.getUsername());
 		
 		if(user == null) {
-			return "No user found";
+			return null;
 		}
 		
 		if(!user.getPassword().equals(u.getPassword())) {
 			
-			return "Incorrect Password";
+			return null;
 		}
 		
 		user.setLastLogin(LocalDate.now());
 		
 		repository.save(user);
 		
-		return "User found with role: " + user.getRoleType();
+		return user;
 	}
 
 }

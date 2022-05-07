@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FloatingLabel } from 'react-bootstrap';
-//import axios from "axios";
+import axios from "axios";
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import { useDispatch } from 'react-redux'
@@ -20,31 +20,6 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
     email: "invalid email format"
   };
 
-  const fakeDB = [
-    {
-      user_id: 1,
-      username: "morth",
-      password: "password",
-      first_name: "Megan",
-      last_name: "Orth",
-      email: "megan@gmail.com",
-      role_id: 1,
-      registration_date: "04-22-2022",
-      last_login: "04-22-2022"
-    },
-    {
-      user_id: 2,
-      username: "lknope",
-      password: "parksnrec",
-      first_name: "Leslie",
-      last_name: "Knope",
-      email: "leslie@gmail.com",
-      role_id: 2,
-      registration_date: "02-12-2020",
-      last_login: "04-22-2022"
-    }
-  ];
-
   //POST AXIOS & EMAIL AND VALIDATION
   function handleSubmit(e) {
     e.preventDefault();
@@ -58,7 +33,9 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
     const usernameFormat = /^[a-zA-Z0-9._-]*$/;
 
     //check that username is not only whitespace
-    if (username.value.trim().length < 6 || username.value.trim().length > 30 || !username.value.match(usernameFormat)) {
+    if (username.value.trim().length < 6 || 
+        username.value.trim().length > 30 || 
+        !username.value.match(usernameFormat)) {
 
       setErrorMessages({ name: "uname", message: errors.uname });
 
@@ -73,29 +50,14 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
 
     } else {
 
-      //check if username is in database
-     // axios.get(`http://localhost:4000/users/userByName/${username.value}`)
-     // .then((res) => {
+    //   check if username is in database
+     axios.get(`http://localhost:8080/user?username=${username.value}`)
+     .then((res) => {
+        //res.data will be true if user found from username
+        if (res.data) {
+          //username taken
+          setErrorMessages({ name: "unameused", message: errors.unameused });
 
-     //   const existingUser = res.data;
-
-        const existingUser = fakeDB.find((user) => user.username === username.value);
-        if (existingUser) {
-          //username in system - check if returning user
-          if (existingUser.password === password.value) {
-
-            setShowRegister(false);
-
-            //PASS DATA RECIEVED FROM AXIOS CALL TO SETUSER
-            //setUser(existingUser);
-            dispatch(signin(existingUser));
-            setErrorMessages({});
-
-          } else {
-            //username taken
-            setErrorMessages({ name: "unameused", message: errors.unameused });
-
-          }
         } else {
           // new user
           const newUser = {
@@ -105,15 +67,15 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
             password: password.value,
             email: email.value
           }
-          //axios.post(`http://localhost:4000/users/newUser`, newUser)
-          //.then((res) => {
+          axios.post(`http://localhost:8080/newUser`, newUser)
+          .then((res) => {
 
             setShowRegister(false);
-            dispatch(signin(newUser));
+            dispatch(signin(res.data));
             setErrorMessages({});
-          //});
+          });
         }
-     // })
+      })
     }
   }
 
@@ -162,7 +124,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
 
         <Modal.Body>
           <Form.Group className="logininput">
-            <FloatingLabel controlId='floatingInput' label="First Name" className='floatinglabel'>
+            <FloatingLabel label="First Name" className='floatinglabel'>
               <Form.Control
                 type='text'
                 name='first'
@@ -174,7 +136,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
             </FloatingLabel>
           </Form.Group>
           <Form.Group className="logininput">
-            <FloatingLabel controlId='floatingInput' label="Last Name" className='floatinglabel'>
+            <FloatingLabel label="Last Name" className='floatinglabel'>
               <Form.Control
                 type='text'
                 name='last'
@@ -186,7 +148,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
             </FloatingLabel>
           </Form.Group>
           <Form.Group className="logininput">
-            <FloatingLabel controlId='floatingInput' label="Username" className='floatinglabel'>
+            <FloatingLabel label="Username" className='floatinglabel'>
               <Form.Control
                 type='text'
                 name='username'
@@ -199,7 +161,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
             </FloatingLabel>
           </Form.Group>
           <Form.Group className="logininput">
-            <FloatingLabel controlId='floatingInput' label="Password" className='floatinglabel'>
+            <FloatingLabel label="Password" className='floatinglabel'>
               <Form.Control
                 type='password'
                 name='password'
@@ -211,7 +173,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
             </FloatingLabel>
           </Form.Group>          
           <Form.Group className="logininput">
-            <FloatingLabel controlId='floatingInput' label="Email" className='floatinglabel'>
+            <FloatingLabel label="Email" className='floatinglabel'>
               <Form.Control
                 type='email'
                 name='email'
