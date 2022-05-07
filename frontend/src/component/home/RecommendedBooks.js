@@ -1,6 +1,5 @@
-import React, {useState} from "react";
-import { DropdownButton, Dropdown, CardGroup } from "react-bootstrap";
-import { addToCart } from "../../slices/cart/CartSlice";
+import React from "react";
+import { CardGroup } from "react-bootstrap";
 import Books from "../Books";
 
 function RecommendedBooks() {
