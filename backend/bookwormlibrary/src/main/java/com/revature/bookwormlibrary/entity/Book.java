@@ -29,6 +29,7 @@ public class Book {
     private String publisher;
     @Column(name="publish_year")
     private int publishYear;
+    @Column(columnDefinition="TEXT")
     private String description;
     private String cover;
     
