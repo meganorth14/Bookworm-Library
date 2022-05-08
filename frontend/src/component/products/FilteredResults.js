@@ -16,13 +16,16 @@ function FilteredResults() {
   const [sortedList, setSortedList] = useState([]);
 
   useEffect(()=>{
-    axios.get(`http://localhost:8080/booksby${type}?request=${request}`).then((res) => {
+    axios.get(`http://localhost:8080/books/${type}/${request}`).then((res) => {
 
-      const books = flatten(res.data);
-      setSortedList(books.sort((a, b) => b.publishYear - a.publishYear));
-
+      if(res.data){
+        const books = flatten(res.data);
+        setSortedList(books.sort((a, b) => b.publishYear - a.publishYear));
+      } else {
+        setSortedList([]);
+      }
     })
-  },[])
+  },[type, request])
 
   //flattens the author and genre objects into a string list
   function flatten(books){
@@ -93,8 +96,10 @@ function FilteredResults() {
     <>
       <h2 className="navoffset center">Search</h2>
       <Search handleSearch={handleSearch} />
-      <h2>Search Results: ({sortedList.length} results found)</h2>
-      <div className="sortfilter">
+      <h3 className="resultheading">Results:</h3>
+      <span className="sortfilter">
+        {sortedList.length === 1 ? <p><b>1 result found</b></p>
+        : <p><b>{sortedList.length} results found</b></p> }
         <DropdownButton
           key="sort"
           title="Sort By"
@@ -109,7 +114,7 @@ function FilteredResults() {
           <Dropdown.Item as="button" type="button" onClick={()=>sort("date")}>Publish Date (newest)</Dropdown.Item>
           <Dropdown.Item as="button" type="button" onClick={() => sort("datedesc")}>Publish Date (oldest)</Dropdown.Item>
         </DropdownButton>
-      </div>
+      </span>
       <div className="gallery">
         {sortedList.map((book)=>{
           return <Books key={book.bookId} book={book} addToCart={() => dispatch(addToCart(book))} />

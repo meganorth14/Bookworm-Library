@@ -57,9 +57,6 @@ function ProductsPage() {
     const type = document.getElementById("searchtype").value;
     const request = document.getElementById("searchvalue").value;
 
-    console.log(type);
-    console.log(request);
-
     navigate(`/results/${type}/${request}`);
   }
 
