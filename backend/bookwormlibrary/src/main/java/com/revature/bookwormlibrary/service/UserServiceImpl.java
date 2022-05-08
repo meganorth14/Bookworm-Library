@@ -1,6 +1,6 @@
 package com.revature.bookwormlibrary.service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,8 +19,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createUser(User user) {
 		
-		user.setRegistrationDate(LocalDate.now());
-		user.setLastLogin(LocalDate.now());
+		user.setRegistrationDate(LocalDateTime.now());
+		user.setLastLogin(LocalDateTime.now());
 		return repository.save(user);
 	}
 
@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 		
-		user.setLastLogin(LocalDate.now());
+		user.setLastLogin(LocalDateTime.now());
 		
 		repository.save(user);
 		
