@@ -1,54 +1,62 @@
-import React, { useEffect, useState, } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { RiPencilLine } from "react-icons/ri";
-import DataContext from "../../dataStore/dataStore";
 import OrderHistory from "./OrderHistory.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DataStore from "../../dataStore/dataStore";
+import axios from 'axios';
+import ProfilePic from '../../component/images/avatar.png'
 
 const AccountPage = (props) => {
 
     const [profile, setProfile] = useState({});
     const [books, setBooks] = useState([]);
 
-    const navigate = useNavigate();
     let params = useParams();
 
-    let username;
+    let id;
 
-    if (props.username) {
-        username = props.username;
+    if (props.id) {
+        id = props.id;
     } else {
-        username = params.username;
+        id = params.id;
     }
 
+    useEffect(() => {
 
-    // const pageContent = 
-    
+
+        axios.get(`http://localhost:8080/userbyid/${profile.id}`).then((res) => {
+            setProfile(res.data)
+        });
+
+        axios.get(`http://localhost:8080/getBookById/${profile.id}`).then((res) => {
+            setProfile(res.data)
+        });
+
+
+    }, []);
+
+    let navigate = useNavigate();
+    const routeChange = () => {
+        let path = "../editAccount/";
+        navigate(path);
+    }
+
     return (
         <Container className="account-page">
             <Row className="justify-content-md-center mb-4">
-                {/* <Col xs="auto">
-                    <img src={"../../../images/" + (profile.pic ? profile.pic : "user-badge-purple.svg")}
+                <Col xs="auto">
+                    <img src={ProfilePic}
                         className="account-pic" alt="User Avatar" />
-                </Col> */}
+                </Col>
                 <Col md={6}>
                     <Card >
-                        <Card.Header bsPrefix='account-heading'>
-
-
-                            <button
-                                type="button"
-                                className="editbtn"
-                                onClick={() => navigate('/editAccount')}>
-                                <RiPencilLine />
-                            </button>
-
-                        </Card.Header>
-                        <Card.Body>
+                        <Card.Body className='userbody'>
                             <Row>
                                 <p><b>First name:</b> {profile.first_name}</p>
                             </Row>
+        
                             <Row>
                                 <p><b>Last name:</b> {profile.last_name}</p>
                             </Row>
@@ -65,12 +73,19 @@ const AccountPage = (props) => {
                                 <p><b>Last login:</b> {profile.last_login}</p>
                             </Row>
                         </Card.Body>
+
+                        <button
+                                type="button"
+                                className="editbtn"
+                                onClick={() => navigate('/editAccount')}>
+                                editAccount<RiPencilLine />
+                            </button>
                     </Card>
                 </Col>
 
-                <Row className="justify-content-md-center">
+                <Row className="booksHeader">
                     <Col>
-                        <h3 className='text-center'>Books checked out</h3>
+                        <h3 className='books-list'>Books checked out</h3>
                         {books ?
                             books.map((book) => {
                                 return (
@@ -82,12 +97,10 @@ const AccountPage = (props) => {
                 </Row>
 
 
-                <Col md={6}>
+                <Col className='booksContainer'>
                     <Card >
-                        <Card.Header bsPrefix='account-heading'>
-
-                        </Card.Header>
-                        <Card.Body>
+        
+                        <Card.Body >
                             <Row>
                                 <p><b>Title:</b> {books.title}</p>
                             </Row>
@@ -97,7 +110,7 @@ const AccountPage = (props) => {
                             <Row>
                                 <p><b>Isbn:</b> {books.isbn13}</p>
                             </Row>
-                
+
                         </Card.Body>
                     </Card>
                 </Col>
