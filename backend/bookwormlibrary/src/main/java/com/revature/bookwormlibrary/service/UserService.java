@@ -26,7 +26,7 @@ public interface UserService {
      * @param username user's unique username
      * @return User object with information
      */
-    public User getUserByUsername(String username);
+    public boolean getUserByUsername(String username);
 
     /**
      * Retrieves list of all users in database
@@ -50,7 +50,7 @@ public interface UserService {
      * Validates user login credentials against database
      * Creates access token for exisiting user based on role type
      * @param user - login information taken from form
-     * @return access token
+     * @return complete user information
      */
-    public String validateUser(User user);
+    public User validateUser(User user);
 }

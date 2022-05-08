@@ -1,40 +1,48 @@
 package com.revature.bookwormlibrary.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
 /**
  * Author class defines the unique identifier and name of each author
  */
 @Entity
 @Table(name="authors")
 public class Author {
+	
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // auto-generated id numbers
-    private int author_id;
-
-    @Column(name="name")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="author_id")
+    private int authorId;
     private String name;
+    
+    @ManyToMany(mappedBy="authors")
+    private List<Book> books;
 
     //constructors
     public Author(){
+    	
     }
 
     public Author(int id, String name){
-        this.author_id = id;
+        this.authorId = id;
         this.name = name;
     }
 
     //getters and setters
-    public int getAuthor_id() {
-        return author_id;
+    public int getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthor_id(int author_id) {
-        this.author_id = author_id;
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
     }
 
     public String getName() {
@@ -48,16 +56,15 @@ public class Author {
     //toString
     @Override
     public String toString() {
-        return "Author [author_id=" + author_id + ", name=" + name + "]";
+        return "Author [authorId=" + authorId + ", name=" + name + "]";
     }
-
 
     //hashCode and equals
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + author_id;
+        result = prime * result + authorId;
         return result;
     }
 
@@ -70,7 +77,7 @@ public class Author {
         if (getClass() != obj.getClass())
             return false;
         Author other = (Author) obj;
-        if (author_id != other.author_id)
+        if (authorId != other.authorId)
             return false;
         if (name == null) {
             if (other.name != null)
@@ -79,5 +86,6 @@ public class Author {
             return false;
         return true;
     }
+    
 }
 
