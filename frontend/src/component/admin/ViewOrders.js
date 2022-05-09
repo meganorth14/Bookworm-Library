@@ -7,7 +7,13 @@ function ViewOrders() {
   const [orders,setOrders] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/orders').then(res => setOrders(res.data))
+    axios.get('http://localhost:8080/orders').then(res => {
+      let orderList = res.data;
+      if(!!orderList) {
+        orderList.sort((a,b) => a.userid - b.userid).reverse();
+      }  
+      setOrders(orderList);
+    })
   },[]);
 
   const renderAuthors = (authors) => (
