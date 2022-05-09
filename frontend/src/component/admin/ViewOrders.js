@@ -29,9 +29,11 @@ function ViewOrders() {
   );
 
   const dateToString = (date) => {
-    date = date.map(dt => dt>10 ? dt:`0${dt}`);
-    const [year,month,day] =  date;
-    return `${month}/${day}/${year}`;
+    if(!!date) {
+        date = date.map(dt => dt>10 ? dt:`0${dt}`);
+        const [year,month,day] =  date;
+        return `${month}/${day}/${year}`;
+    }
   }
   
   const renderBooks = (books) => (
