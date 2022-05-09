@@ -67,6 +67,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
             password: password.value,
             email: email.value
           }
+
           axios.post(`http://localhost:8080/newUser`, newUser)
           .then((res) => {
 

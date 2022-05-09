@@ -18,7 +18,7 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@Override
 	public Author createAuthor(Author author) {
-		Optional<Author> authorFound = authorRepo.findByName(author.getName());
+		Optional<Author> authorFound = authorRepo.findByNameIgnoreCase(author.getName());
 		if(authorFound.isEmpty()) {
 			return authorRepo.save(author);
 		}
@@ -32,7 +32,7 @@ public class AuthorServiceImpl implements AuthorService {
 	
 	@Override
 	public Optional<Author> getAuthorByName(String name) {
-		return authorRepo.findByName(name);
+		return authorRepo.findByNameIgnoreCase(name);
 	}
 
 	@Override

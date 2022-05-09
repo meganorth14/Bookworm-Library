@@ -71,7 +71,7 @@
   --lighter: #e9ecef;
   --darkgrey: #333533;
   --dark: #1e2d2f;
-  --dark2: #26272b;
+  --dark2: #212529;
   --dark3: #212529;
   --basicfont: 'Grandstander', cursive;
   --retrofont: 'Pacifico', cursive;
@@ -89,16 +89,31 @@ h1, h2, h3, h4{
 
 /**//* HOME PAGE *//**/
 /* COMPONENT: BOOK RECS SECTION */
-.recommendations .container {
+/* .recommendations .container {
   background-color: var(--darkgrey);
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   width: 100%;
   padding: 20px 0 20px;
 }
-.rec-title{
+
+.rec-title {
   font-family: var(--basicfont);
   color: #fff;
+  text-align: center;
+} */
+.recommendations {
+  /* background-color: #e2fef9; */
+  background-color: var(--darkgrey);
+  /* border: var(--dark2) solid 3px; */
+  padding: 2em 0;
+  margin: 2em;
+}
+.rec-title{
+  font-family: var(--basicfont);
+  /* color: black; */
+  color: white;
+  width: 100%;
   text-align: center;
 }
 .recommendations .gallery{
@@ -112,6 +127,13 @@ h1, h2, h3, h4{
 /* COMPONENT: SEARCH BANNER */
 .search-banner{
   width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  background-color: var(--dark2);
+  color: var(--lightgrey);
+}
+/* .search-banner {
+  width: 100%;
   padding: 45px 0 20px;
   text-align: center;
   box-sizing: border-box;
@@ -119,15 +141,17 @@ h1, h2, h3, h4{
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   color: var(--lightgrey);
 }
-.banner-main{
+
+.banner-main {
   background-color: transparent;
   justify-content: center;
 }
-.browse-container{
+
+.browse-container {
   justify-content: center;
   align-items: center;
   text-align: center;
-}
+} */
 /**/
 /* CONTACT US BANNER */
 .contact-banner{
@@ -414,8 +438,13 @@ background-color: darkblue;
 }
 .sortfilter{
     display: flex;
-    margin-right: 5%;
-    justify-content: right;
+    margin: 0 10%;
+    justify-content:space-between;
+}
+.productssortfilter{
+  display: flex;
+  margin: 0 10%;
+  justify-content: right;
 }
 .sortfilterbtn{
     background-color: transparent;
@@ -482,6 +511,9 @@ background-color: darkblue;
     #searchbtn {
         padding: 5px 10px;
     }
+}
+.resultheading{
+  margin: 20px 10% 0;
 }
 /**/
 /**/
