@@ -22,16 +22,16 @@ const AccountPage = (props) => {
 
 
     }, []);
-    // const dateToString = (date) => {
-    //     date = date.map(dt => dt>10 ? dt:`0${dt}`);
-    //     const [year,month,day] =  date;
-    //     return `${month}/${day}/${year}`;
-    //   }
-    //   const dateTimeToString = (dateTime) => {
-    //     dateTime = dateTime.map(dt => dt>10 ? dt:`0${dt}`);
-    //     let [year,month,day,hour,min,sec] = dateTime;
-    //     return `${month}/${day}/${year} ${hour}:${min}:${sec}`;
-    //   }  
+    const dateToString = (date) => {
+        date = date.map(dt => dt>10 ? dt:`0${dt}`);
+        const [year,month,day] =  date;
+        return `${month}/${day}/${year}`;
+      }
+      const dateTimeToString = (dateTime) => {
+        dateTime = dateTime.map(dt => dt>10 ? dt:`0${dt}`);
+        let [year,month,day,hour,min,sec] = dateTime;
+        return `${month}/${day}/${year} ${hour}:${min}:${sec}`;
+      }  
 
     let navigate = useNavigate();
     const routeChange = () => {
@@ -63,10 +63,10 @@ const AccountPage = (props) => {
                                 <p><b>Email:</b> {profile.email}</p>
                             </Row>
                             <Row>
-                                <p><b>Registration date:</b> {profile.registrationDate}</p>
+                                <p><b>Registration date:</b> {dateToString(profile.registrationDate)}</p>
                             </Row>
                             <Row>
-                                <p><b>Last login:</b> {profile.lastLogin}</p>
+                                <p><b>Last login:</b> {dateTimeToString(profile.lastLogin)}</p>
                             </Row>
                         </Card.Body>
                         <div className='buttonContainer'>
