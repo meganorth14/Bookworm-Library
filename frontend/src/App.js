@@ -14,11 +14,13 @@ import AccountPage from './component/account/AccountPage';
 import AdminPage from './component/admin/AdminPage';
 import EditAccount from './component/account/EditAccount';
 import FilteredResults from './component/products/FilteredResults';
+import Footer from "./component/Footer";
 
 function App() {
   return (<>
     <BrowserRouter>
       <Header />
+      <div className="page-content">
       <Routes>  
         <Route path='/'         element={<Home />}/>
         <Route path='/login'    element={<LoginRegisterPage />}/>
@@ -30,6 +32,8 @@ function App() {
         <Route path='/editAccount'    element={<EditAccount />}/>
         <Route path='/results/:type/:request' element = {<FilteredResults />} />
       </Routes>
+      </div>
+      <Footer />
     </BrowserRouter>
   </>);
 }

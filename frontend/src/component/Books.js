@@ -8,7 +8,7 @@ function Books({book, addToCart}) {
       <Card className="bookcard">
         {book.cover?
           <img src={`http://localhost:3000/${book.cover}`} alt={`Cover for ${book.title}`}/>
-        : <img src="./no_cover.png" alt={`Cover for ${book.title}`}/>
+        : <img src="http://localhost:3000/no_cover.png" alt={`Cover for ${book.title}`}/>
         }
         <Card.Body>
           <Card.Title>{book.title}</Card.Title>
@@ -41,7 +41,7 @@ function Books({book, addToCart}) {
               {book.publisher && book.publishYear && <b> | </b>} 
               {book.publishYear}</small></div>
               {book.isbn13 && 
-                <div><small className="text-muted">ISBN:{book.isbn13}</small></div>}
+                <div><small className="text-muted">ISBN {book.isbn13}</small></div>}
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
