@@ -13,6 +13,13 @@ function OrderHistory() {
         setOrders(res.data);
     }) 
     }, [])
+
+    const dateToString = (date) => {
+      date = date.map(dt => dt>10 ? dt:`0${dt}`);
+      const [year,month,day] =  date;
+      return `${month}/${day}/${year}`;
+    }
+  
     const renderAuthors = (authors) => (
         authors.length === 1 ? ( authors[0].name ) : (
           <ListGroup>
@@ -38,11 +45,10 @@ function OrderHistory() {
         ))
       );
     const renderOrders = orders.map(order => (
-        <Card key={order.orderId} style={{ marginTop: '10px' }}>
-          <Card.Header>{order.orderDate}</Card.Header>
+        <Card key={order.orderid} style={{ marginTop: '10px' }}>
+             <Card.Header>{dateToString(order.orderDate)}</Card.Header>
           <Card.Body>
-            <Card.Title>Order #{order.orderId}</Card.Title>
-            <Card.Subtitle>Username: {order.username}</Card.Subtitle>
+            <Card.Title>Order #{order.orderid}</Card.Title>
             <Table striped bordered hover responsive style={{ marginTop: '10px' }}>
               <thead>
                 <tr>

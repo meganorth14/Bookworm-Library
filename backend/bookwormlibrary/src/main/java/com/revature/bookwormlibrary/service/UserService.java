@@ -38,7 +38,7 @@ public interface UserService {
      * Updates specific user's information in database
      * @param user User object that contains all up-to-date information
      */
-    public User updateUser(User user);
+    public void updateUser(User user);
 
     /**
      * Deletes user from database
