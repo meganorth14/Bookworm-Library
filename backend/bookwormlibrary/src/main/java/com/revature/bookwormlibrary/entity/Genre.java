@@ -18,8 +18,8 @@ import javax.persistence.Table;
 public class Genre {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="genre_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="genre_id",columnDefinition="serial")
     private int genreId;
     private String name;
     

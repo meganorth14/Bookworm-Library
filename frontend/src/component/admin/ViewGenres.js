@@ -1,18 +1,14 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Card, Table } from "react-bootstrap";
 
 function ViewGenres() {
 
-  const genres = [
-    { genreId: 1, name: 'Mystery' },
-    { genreId: 2, name: 'Epistolary' },
-    { genreId: 3, name: 'Picaresque' },
-    { genreId: 4, name: 'Historical Fiction' },
-    { genreId: 5, name: 'Roman à clef' },
-    { genreId: 6, name: 'Children\'s Literature' },
-    { genreId: 7, name: 'Dark Fantasy' },
-    { genreId: 8, name: 'Fairy Tale' }
-  ];
+  const [genres,setGenres] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/allGenres').then(res => setGenres(res.data))
+  },[]);
 
   const renderGenres = genres.map(genre => (
     <tr key={genre.genreId}>

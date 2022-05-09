@@ -11,6 +11,7 @@ import templogo from "./assets/images/bookworm_logo.svg";
 
 function Header() {
   const user = useSelector((state)=>state.login.value.roleType);
+  const name = useSelector((state)=>state.login.value.firstName);
   const cartCount = useSelector((state) => state.cart.value.count);
   const dispatch = useDispatch();
   const [showLogin, setShowLogin] = useState(false);
@@ -39,6 +40,7 @@ function Header() {
             />{' '}
             Bookworm Digital Library
           </Navbar.Brand>
+          <Navbar.Text>Welcome{!!name ? ' '+name : name}!</Navbar.Text>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
             <Nav>

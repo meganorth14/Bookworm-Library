@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,12 +20,18 @@ import javax.persistence.Table;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="order_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="order_id",columnDefinition="serial")
     private Integer orderid;
     
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
+    @JoinColumn(
+    	name="user_id",
+    	foreignKey=@ForeignKey(
+    		name="fk_user_id",
+    		foreignKeyDefinition="FOREIGN KEY (user_id) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE SET NULL"
+    	)
+    )
     private User user;
     
     @Column(name="order_date")
@@ -33,8 +40,21 @@ public class Order {
     @ManyToMany
     @JoinTable(
         name="selection", 
-        joinColumns = @JoinColumn(name="order_id"),
-        inverseJoinColumns = @JoinColumn(name="book_id"))
+        joinColumns = @JoinColumn(
+        	name="order_id",
+        	foreignKey=@ForeignKey(
+        		name="fk_order_id",
+        		foreignKeyDefinition="FOREIGN KEY (order_id) REFERENCES orders(order_id) ON UPDATE CASCADE ON DELETE CASCADE"
+        	)
+        ),
+        inverseJoinColumns = @JoinColumn(
+    		name="book_id",
+    		foreignKey=@ForeignKey(
+    			name="fk_book_id",
+    			foreignKeyDefinition="FOREIGN KEY (book_id) REFERENCES books(book_id) ON UPDATE CASCADE ON DELETE SET NULL"
+        	)
+    	)
+    )
     private List<Book> books;
 
     //constructors

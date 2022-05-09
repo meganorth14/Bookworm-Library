@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,17 +20,18 @@ import javax.persistence.Table;
 @Table(name="books")
 public class Book {
 	
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="book_id")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="book_id",columnDefinition="serial")
     private int bookId;
+    @Column(nullable=false)
     private String isbn13;
     private String title;
     private int pages;
     private String publisher;
     @Column(name="publish_year")
     private int publishYear;
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "text")
     private String description;
     private String cover;
     
@@ -39,15 +41,41 @@ public class Book {
     @ManyToMany
     @JoinTable(
     	name="credit",
-    	joinColumns = @JoinColumn(name="author_id"),
-    	inverseJoinColumns = @JoinColumn(name="book_id"))
+		joinColumns = @JoinColumn(
+			name="book_id",
+			foreignKey=@ForeignKey(
+				name="fk_book_id",
+				foreignKeyDefinition="FOREIGN KEY (book_id) REFERENCES books(book_id) ON UPDATE CASCADE ON DELETE CASCADE"
+    		)
+	    ),
+    	inverseJoinColumns = @JoinColumn(
+    		name="author_id",
+    		foreignKey=@ForeignKey(
+				name="fk_author_id",
+				foreignKeyDefinition="FOREIGN KEY (author_id) REFERENCES authors(author_id) ON UPDATE CASCADE ON DELETE CASCADE"
+	    	)
+    	)
+    )
     private List<Author> authors;
     
     @ManyToMany
     @JoinTable(
     	name="category",
-    	joinColumns = @JoinColumn(name="genre_id"),
-    	inverseJoinColumns = @JoinColumn(name="book_id"))
+    	joinColumns = @JoinColumn(
+			name="book_id",
+			foreignKey=@ForeignKey(
+				name="fk_book_id",
+				foreignKeyDefinition="FOREIGN KEY (book_id) REFERENCES books(book_id) ON UPDATE CASCADE ON DELETE CASCADE"
+    		)
+    	),
+    	inverseJoinColumns = @JoinColumn(
+    		name="genre_id",
+    		foreignKey=@ForeignKey(
+				name="fk_genre_id",
+				foreignKeyDefinition="FOREIGN KEY (genre_id) REFERENCES genres(genre_id) ON UPDATE CASCADE ON DELETE CASCADE"
+    		)
+    	)
+    )
     private List<Genre> genres;
 
     //constructors

@@ -3,7 +3,6 @@ package com.revature.bookwormlibrary.controller;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +14,6 @@ import com.revature.bookwormlibrary.entity.Book;
 import com.revature.bookwormlibrary.service.BookService;
 
 @RestController
-@CrossOrigin(origins={"http://localhost:3000"})
 public class BookController {
 	
 	@Autowired
@@ -55,13 +53,13 @@ public class BookController {
 	
 	// http://localhost:8080/addBook
 	@PostMapping("/addBook")
-	public void addBook(@RequestBody Book book) {
-		service.createBook(book);
+	public Book addBook(@RequestBody Book book) {
+		return service.createBook(book);
 	}
 	
-	// http://localhost:8080/deleteBook
-	@DeleteMapping("/deleteBook")
-	public void deleteBook(int id) {
+	// http://localhost:8080/deleteBook/
+	@DeleteMapping("/deleteBook/{id}")
+	public void deleteBook(@PathVariable int id) {
 		service.deleteBook(id);
 	}
 	

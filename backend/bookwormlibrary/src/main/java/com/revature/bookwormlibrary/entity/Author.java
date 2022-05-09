@@ -17,9 +17,9 @@ import javax.persistence.Table;
 @Table(name="authors")
 public class Author {
 	
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="author_id")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="author_id",columnDefinition="serial")
     private int authorId;
     private String name;
     
