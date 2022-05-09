@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 
-function AccountForm({ reportInfo, setReportInfo }) {
+function AccountForm({ setKey }) {
   const userid = useSelector((state) => state.login.value.userid);
 
   const [userData, setUserData] = useState({});
@@ -36,6 +36,7 @@ function AccountForm({ reportInfo, setReportInfo }) {
 
     }
     axios.put('http://localhost:8080/updateuser', updatedInfo);
+    setKey('account');
 
   };
 

@@ -15,7 +15,7 @@ function AccountTabs() {
                     <AccountPage />
                 </Tab>
                 <Tab eventKey='edit' title='Edit Account' tabClassName="tabs">
-                    <EditAccount />
+                    <EditAccount setKey={setKey}/>
                 </Tab>
                 <Tab eventKey='orders' title='Order History' tabClassName="tabs">
                     <OrderHistory />
