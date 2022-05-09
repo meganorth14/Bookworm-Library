@@ -54,6 +54,8 @@ In your terminal:
 2. Launch backend server
    * `cd backend`
    * `java -jar backend/bookwormlibrary/target/bookwormlibrary-0.0.1-SNAPSHOT.jar com.revature.bookwormlibrary.BookwormlibraryApplication`
+   > Or use the Maven command
+   * `mvn spring-boot:run`
 4. Launch frontend server
    * `cd frontend`
    * `npm install`
@@ -63,26 +65,18 @@ In your browser:
 1. Navigate to http://localhost:3000
 2. Enjoy your library experience
 
-
-(include git clone command)
-(include all environment setup steps)
-
-> Be sure to include BOTH Windows and Unix command  
-> Be sure to mention if the commands only work on a specific platform (eg. AWS, GCP)
-
-- All the `code` required to get started
-- Images of what it should look like
-
 ## Usage
 
-> Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
+> After completing the above steps, you will have the ability to create an account (or log in as the default admin) to interact with the site. You can view the newest additions to the site, view the full catalog, add items to your cart, and checkout. You will also be able to view and edit your account as well as view your previous orders. If you logged on as an admin, you can view and manage the users and inventory of the site.
+> This site is meant to function as an open source library that will be connected to an external data source that stores the digital books and will send download links to the users to be read on their personal devices.
+> You can view how the site should look in resources/images
 
 ## Contributors
 
-Gino Townsend
-Madison Schweikert
-Megan Orth
-Samuel Sholib
+* Gino Townsend
+* Madison Schweikert
+* Megan Orth
+* Samuel Sholib
 
 ## License
 

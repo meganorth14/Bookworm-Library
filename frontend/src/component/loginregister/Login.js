@@ -93,7 +93,7 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
         <Modal.Header closeButton>
           <img
             alt="Bookworm Library Logo"
-            src="./bookworm_logo.svg"
+            src="http://localhost:3000/bookworm_logo.svg"
             width="30"
           />{' '}
           <h3>Login:</h3>

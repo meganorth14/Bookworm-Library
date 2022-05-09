@@ -14,7 +14,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
   const [errorMessages, setErrorMessages] = useState({});
   const errors = {
     fullname: "please enter your name",
-    uname: "username should be between 6-30 characters and only contain letters, numbers, periods, or underscores",
+    uname: "username should be between 3-30 characters and only contain letters, numbers, periods, or underscores",
     pass: "password should be at least 8 characters long",
     unameused: "username taken",
     email: "invalid email format"
@@ -33,7 +33,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
     const usernameFormat = /^[a-zA-Z0-9._-]*$/;
 
     //check that username is not only whitespace
-    if (username.value.trim().length < 6 || 
+    if (username.value.trim().length < 3 || 
         username.value.trim().length > 30 || 
         !username.value.match(usernameFormat)) {
 
@@ -117,7 +117,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
         <Modal.Header closeButton>
           <img
             alt="Bookworm Library Logo"
-            src="./bookworm_logo.svg"
+            src="http://localhost:3000/bookworm_logo.svg"
             width="30"
           />{' '}
           <h3>Register an Account:</h3>
@@ -182,7 +182,7 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
                 required
                 className='formcontrol'
               />
-              {renderErrorMessage("pass")}
+              {renderErrorMessage("email")}
             </FloatingLabel>
           </Form.Group>   
         </Modal.Body>
