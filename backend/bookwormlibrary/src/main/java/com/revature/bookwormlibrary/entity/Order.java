@@ -29,7 +29,7 @@ public class Order {
     	name="user_id",
     	foreignKey=@ForeignKey(
     		name="fk_user_id",
-    		foreignKeyDefinition="FOREIGN KEY (user_id) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE SET NULL"
+    		foreignKeyDefinition="FOREIGN KEY (user_id) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE CASCADE"
     	)
     )
     private User user;
@@ -51,7 +51,7 @@ public class Order {
     		name="book_id",
     		foreignKey=@ForeignKey(
     			name="fk_book_id",
-    			foreignKeyDefinition="FOREIGN KEY (book_id) REFERENCES books(book_id) ON UPDATE CASCADE ON DELETE SET NULL"
+    			foreignKeyDefinition="FOREIGN KEY (book_id) REFERENCES books(book_id) ON UPDATE CASCADE ON DELETE CASCADE"
         	)
     	)
     )

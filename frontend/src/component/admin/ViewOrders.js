@@ -7,7 +7,13 @@ function ViewOrders() {
   const [orders,setOrders] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/orders').then(res => setOrders(res.data))
+    axios.get('http://localhost:8080/orders').then(res => {
+      let orderList = res.data;
+      if(!!orderList) {
+        orderList.sort((a,b) => a.userid - b.userid).reverse();
+      }  
+      setOrders(orderList);
+    })
   },[]);
 
   const renderAuthors = (authors) => (
@@ -23,9 +29,11 @@ function ViewOrders() {
   );
 
   const dateToString = (date) => {
-    date = date.map(dt => dt>10 ? dt:`0${dt}`);
-    const [year,month,day] =  date;
-    return `${month}/${day}/${year}`;
+    if(!!date) {
+        date = date.map(dt => dt>10 ? dt:`0${dt}`);
+        const [year,month,day] =  date;
+        return `${month}/${day}/${year}`;
+    }
   }
   
   const renderBooks = (books) => (

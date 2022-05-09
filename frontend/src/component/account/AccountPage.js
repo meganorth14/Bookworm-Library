@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { RiPencilLine } from "react-icons/ri";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,7 +7,7 @@ import axios from 'axios';
 import ProfilePic from '../../component/images/avatar.png';
 import { useSelector } from 'react-redux';
 
-const AccountPage = (props) => {
+const AccountPage = () => {
     const userid = useSelector((state) => state.login.value.userid);
 
     const [profile, setProfile] = useState({});
@@ -17,27 +17,27 @@ const AccountPage = (props) => {
 
         axios.get(`http://localhost:8080/userbyid/${userid}`).then((res) => {
             setProfile(res.data)
-            console.log(res.data);
         });
 
 
-    }, []);
+
+    }, [userid]);
     const dateToString = (date) => {
-        date = date.map(dt => dt>10 ? dt:`0${dt}`);
-        const [year,month,day] =  date;
-        return `${month}/${day}/${year}`;
+        if(!!date) {
+            date = date.map(dt => dt>10 ? dt:`0${dt}`);
+            const [year,month,day] =  date;
+            return `${month}/${day}/${year}`;
+        }
       }
       const dateTimeToString = (dateTime) => {
-        dateTime = dateTime.map(dt => dt>10 ? dt:`0${dt}`);
-        let [year,month,day,hour,min,sec] = dateTime;
-        return `${month}/${day}/${year} ${hour}:${min}:${sec}`;
+        if(!!dateTime) {
+            dateTime = dateTime.map(dt => dt>10 ? dt:`0${dt}`);
+            let [year,month,day,hour,min,sec] = dateTime;
+            return `${month}/${day}/${year} ${hour}:${min}:${sec}`;
+        }
       }  
 
     let navigate = useNavigate();
-    const routeChange = () => {
-        let path = "../editAccount/";
-        navigate(path);
-    }
 
     return (
         <Container className="account-page">

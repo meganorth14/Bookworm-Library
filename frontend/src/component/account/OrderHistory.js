@@ -1,6 +1,5 @@
 import axios from 'axios';
-import react from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Card, ListGroup, Table } from "react-bootstrap";
 
@@ -12,12 +11,14 @@ function OrderHistory() {
     axios.get(`http://localhost:8080/orders/user/${userid}`).then(res=> {
         setOrders(res.data);
     }) 
-    }, [])
+    }, [userid])
 
     const dateToString = (date) => {
-      date = date.map(dt => dt>10 ? dt:`0${dt}`);
-      const [year,month,day] =  date;
-      return `${month}/${day}/${year}`;
+      if(!!date) {
+          date = date.map(dt => dt>10 ? dt:`0${dt}`);
+          const [year,month,day] =  date;
+          return `${month}/${day}/${year}`;
+      }
     }
   
     const renderAuthors = (authors) => (
