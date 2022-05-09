@@ -1,7 +1,7 @@
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import {signin} from '../../slices/login/LoginSlice'
 import { FloatingLabel } from 'react-bootstrap';
@@ -10,7 +10,7 @@ import axios from "axios";
 function Login({showLogin, setShowLogin, setShowRegister}) {
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   //potential error messages when validating form
   const [errorMessages, setErrorMessages] = useState({});
@@ -116,7 +116,7 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
           <Form.Group className="logininput">
             <FloatingLabel controlId='floatingPassword' label="Password" className='floatinglabel'>
               <Form.Control
-                type='passwprd'
+                type='password'
                 name='password'
                 placeholder='Password..'
                 required

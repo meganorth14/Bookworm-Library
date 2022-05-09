@@ -1,14 +1,14 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Card, Table } from "react-bootstrap";
 
 function ViewAuthors() {
 
-  const authors = [
-    { authorId: 1, name: 'Aravind Adiga' },
-    { authorId: 2, name: 'Ernest Hemingway' },
-    { authorId: 3, name: 'Neil Gaiman' },
-    { authorId: 4, name: 'Dave McKean' }
-  ];
+  const [authors,setAuthors] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/allAuthors').then(res => setAuthors(res.data))
+  },[]);
   
   const renderAuthors = authors.map(author => (
     <tr key={author.authorId}>

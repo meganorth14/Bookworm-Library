@@ -41,7 +41,7 @@ function Books({book, addToCart}) {
               {book.publisher && book.publishYear && <b> | </b>} 
               {book.publishYear}</small></div>
               {book.isbn13 && 
-                <div><small className="text-muted">ISBN:{book.isbn13}</small></div>}
+                <div><small className="text-muted">ISBN: {book.isbn13}</small></div>}
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>

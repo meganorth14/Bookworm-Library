@@ -16,8 +16,8 @@ import javax.persistence.Table;
 @Table(name="users")
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="user_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="user_id",columnDefinition="serial")
     private Integer userid;
 	@Column(name="username", length=30)
     private String username;
@@ -33,7 +33,7 @@ public class User {
     private String roleType = "user";
 	@Column(name="registration_date")
     private LocalDate registrationDate;
-	@Column(name="last_login", columnDefinition="TIMESTAMPTZ")
+	@Column(name="last_login", columnDefinition="TIMESTAMPTZ(2)")
     private LocalDateTime lastLogin;
 
     //constructors
