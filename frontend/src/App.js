@@ -10,7 +10,7 @@ import LoginRegisterPage from './component/loginregister/LoginRegisterPage';
 import Logout from './component/Logout';
 import ProductsPage from './component/products/ProductsPage';
 import CartPage from './component/cart/CartPage';
-import AccountPage from './component/account/AccountPage';
+import AccountTabs from './component/account/AccountTabs';
 import AdminPage from './component/admin/AdminPage';
 import EditAccount from './component/account/EditAccount';
 import OrderHistory from './component/account/OrderHistory';
@@ -28,7 +28,7 @@ function App() {
         <Route path='/logout'   element={<Logout />}/>
         <Route path='/products' element={<ProductsPage />}/>
         <Route path='/cart'     element={<CartPage />}/>
-        <Route path='/account'  element={<AccountPage />} />
+        <Route path='/account'  element={<AccountTabs />} />
         <Route path='/admin'    element={<AdminPage />}/>
         <Route path='/editAccount'    element={<EditAccount />}/>
         <Route path='/orderHistory'    element={<OrderHistory />}/>

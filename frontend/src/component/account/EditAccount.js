@@ -36,37 +36,36 @@ function AccountForm({ reportInfo, setReportInfo }) {
 
     }
     axios.put('http://localhost:8080/updateuser', updatedInfo);
-    window.location.reload(false);
 
   };
 
   return (
 
     <Form id="updateForm" className='updateAccount' onSubmit={submitUpdatedInfo}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" >
         <Form.Label>First Name</Form.Label>
         <Form.Control onChange={e => setField('firstName', e.target.value)} defaultValue={userData.firstName} type="text" placeholder="Enter First name" />
         <Form.Text className="text-muted">
         </Form.Text>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" >
         <Form.Label>Last Name</Form.Label>
         <Form.Control onChange={e => setField('lastName', e.target.value)} defaultValue={userData.lastName} type="text" placeholder="Enter last name" />
         <Form.Text className="text-muted">
         </Form.Text>
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" >
         <Form.Label>Password</Form.Label>
-        <Form.Control onChange={e => setField('password', e.target.value)} defaultValue={userData.password}  type="text" placeholder="Enter your password" />
+        <Form.Control onChange={e => setField('password', e.target.value)} defaultValue={userData.password}  type="password" placeholder="Enter your password" />
         <Form.Text className="text-muted">
         </Form.Text>
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" >
         <Form.Label>Email address</Form.Label>
         <Form.Control onChange={e => setField('email', e.target.value)} defaultValue={userData.email} type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
+        <Form.Text>
           We'll never share your email with anyone else.
         </Form.Text>
       </Form.Group>
