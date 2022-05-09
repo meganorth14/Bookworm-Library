@@ -86,26 +86,13 @@ body{
 h1, h2, h3, h4{
   font-family: var(--basicfont);
 }
-
+.page-content{
+  min-height: 100vh;
+}
 /**//* HOME PAGE *//**/
 /* COMPONENT: BOOK RECS SECTION */
-/* .recommendations .container {
-  background-color: var(--darkgrey);
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-  box-sizing: border-box;
-  width: 100%;
-  padding: 20px 0 20px;
-}
-
-.rec-title {
-  font-family: var(--basicfont);
-  color: #fff;
-  text-align: center;
-} */
 .recommendations {
-  /* background-color: #e2fef9; */
   background-color: var(--darkgrey);
-  /* border: var(--dark2) solid 3px; */
   padding: 2em 0;
   margin: 2em;
 }
@@ -116,12 +103,9 @@ h1, h2, h3, h4{
   width: 100%;
   text-align: center;
 }
-.recommendations .gallery{
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-evenly;
+
+.recommendations .bookcard{
+  max-width: 300px;
 }
 /**/
 /* COMPONENT: SEARCH BANNER */
@@ -132,31 +116,12 @@ h1, h2, h3, h4{
   background-color: var(--dark2);
   color: var(--lightgrey);
 }
-/* .search-banner {
-  width: 100%;
-  padding: 45px 0 20px;
-  text-align: center;
-  box-sizing: border-box;
-  background-color: var(--dark2);
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-  color: var(--lightgrey);
-}
 
-.banner-main {
-  background-color: transparent;
-  justify-content: center;
-}
-
-.browse-container {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-} */
 /**/
 /* CONTACT US BANNER */
 .contact-banner{
   background: #e5e5e5;
-  padding: 2em;
+  padding: 2em 0;
   margin: 2em;
   text-align: center;
 }
