@@ -20,7 +20,7 @@ function AddUserForm(props) {
     const errorsFound = {};
 
     if(!!!username) errorsFound.username='Required'
-    else if(username.length<3) errorsFound.username='Username too short'
+    else if(username.length<6) errorsFound.username='Username too short'
     else if(username.length>30) errorsFound.username='Username too long'
     else {
       let newUsernameL = username.toLowerCase();
@@ -107,7 +107,7 @@ function AddUserForm(props) {
                 onChange={ e => setField('username', e.target.value) }
                 isValid={ form.uesrname && !!!errors.username && !!submits }
                 isInvalid={ !!errors.username } />
-              <Form.Text>3-30 characters</Form.Text>
+              <Form.Text>6-30 characters</Form.Text>
               <Form.Control.Feedback type="invalid">{errors.username}</Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col}>
