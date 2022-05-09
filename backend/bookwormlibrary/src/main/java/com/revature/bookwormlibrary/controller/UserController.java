@@ -3,6 +3,7 @@ package com.revature.bookwormlibrary.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.revature.bookwormlibrary.entity.User;
 import com.revature.bookwormlibrary.service.UserService;
 
 @RestController
+@CrossOrigin(origins={"http://localhost:3000"})
 public class UserController {
 	
 	@Autowired
@@ -23,9 +25,9 @@ public class UserController {
 
 	//http://localhost:8080/newUser
 	@PostMapping("/newUser")
-	public void newUser(@RequestBody User user) {
+	public User newUser(@RequestBody User user) {
 		
-		userService.createUser(user);
+		return userService.createUser(user);
 	}
 	
 	//http://localhost:8080/userbyid/1
@@ -37,7 +39,7 @@ public class UserController {
 	
 	//http://localhost:8080/user?username=morth
 	@GetMapping("/user")
-	public User getUserByUsername(@RequestParam String username) {
+	public boolean getUserByUsername(@RequestParam String username) {
 
 		return userService.getUserByUsername(username);
 	}
@@ -51,9 +53,9 @@ public class UserController {
 	
 	//http://localhost:8080/updateuser
 	@PutMapping("/updateuser")
-	public void updateUser(@RequestBody User user) {
+	public User updateUser(@RequestBody User user) {
 		
-		userService.updateUser(user);
+		return userService.updateUser(user);
 	}
 	
 	//http://localhost:8080/deleteuser
@@ -65,7 +67,7 @@ public class UserController {
 	
 	//http://localhost:8080/login
 	@PostMapping("/login")
-	public String login(@RequestBody User user) {
+	public User login(@RequestBody User user) {
 		
 		return userService.validateUser(user);
 	}

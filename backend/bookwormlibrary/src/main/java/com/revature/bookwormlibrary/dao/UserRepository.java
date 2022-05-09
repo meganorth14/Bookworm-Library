@@ -8,5 +8,5 @@ import com.revature.bookwormlibrary.entity.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
 
-	User findUserByUsername(String username);
+	User findUserByUsernameIgnoreCase(String username);
 }

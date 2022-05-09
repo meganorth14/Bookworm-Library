@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import {signin} from '../../slices/login/LoginSlice'
 import { FloatingLabel } from 'react-bootstrap';
-//import axios from "axios";
+import axios from "axios";
 
 function Login({showLogin, setShowLogin, setShowRegister}) {
 
@@ -17,33 +17,8 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
 
   const errors = {
     uname: "invalid username",
-    pass: "invalid password"
+    login: "invalid username or password"
   };
-
-  const fakeDB = [
-    {
-      user_id:1,
-      username:"morth",
-      password:"password",
-      first_name:"Megan",
-      last_name:"Orth",
-      email:"megan@gmail.com",
-      role_type:"admin",
-      registration_date:"04-22-2022",
-      last_login:"04-22-2022"
-    },
-    {
-      user_id: 2,
-      username: "lknope",
-      password: "parksnrec",
-      first_name: "Leslie",
-      last_name: "Knope",
-      email: "leslie@gmail.com",
-      role_type: "user",
-      registration_date: "02-12-2020",
-      last_login: "04-22-2022"
-    }
-  ];
 
   //validates user information upon submit
   async function handleSubmit(e) {
@@ -61,33 +36,25 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
     } else {
 
       //check if username is in database
-      //const { data } = await axios.get(`http://localhost:4000/users/userByName/${username.value}`);
-      const data = fakeDB.find((user) => user.username === username.value);
+      const { data } = await axios.post(`http://localhost:8080/login`, {username: username.value, password:password.value});
 
       if (data) {
 
-        //username in system - check if passwords match
-        if (data.password === password.value) {
-          setShowLogin(false);
+        setShowLogin(false);
+        dispatch(signin(data));
+        setErrorMessages({});
 
-          dispatch(signin(data));
-          setErrorMessages({});
-
-        } else {
-          // Invalid password
-          setErrorMessages({ name: "pass", message: errors.pass });
-        }
       } else {
         // Username not found
-        setErrorMessages({ name: "uname", message: errors.uname });
+        setErrorMessages({ name: "login", message: errors.login });
       }
     }
   }
 
-  function forgotPassword(){
-    setShowLogin(false);
-    navigate('/');
-  }
+  // function forgotPassword(){
+  //   setShowLogin(false);
+  //   navigate('/');
+  // }
 
   function renderErrorMessage(name) {
     if (name === errorMessages.name) {
@@ -133,6 +100,8 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
         </Modal.Header>
 
         <Modal.Body>
+          {renderErrorMessage("uname")}
+          {renderErrorMessage("login")}
           <Form.Group className="logininput">
             <FloatingLabel controlId='floatingInput' label="Username" className='floatinglabel'>
               <Form.Control
@@ -142,7 +111,6 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
                 required
                 className='formcontrol'
               />
-              {renderErrorMessage("uname")}
             </FloatingLabel>
           </Form.Group>
           <Form.Group className="logininput">
@@ -154,13 +122,12 @@ function Login({showLogin, setShowLogin, setShowRegister}) {
                 required
                 className='formcontrol'
               />
-              {renderErrorMessage("pass")}
             </FloatingLabel>
           </Form.Group>
         </Modal.Body>
 
         <Modal.Footer>
-          <button type="button" className="removebtn" onClick={forgotPassword}>Forgot Password?</button>
+          {/* <button type="button" className="removebtn" onClick={forgotPassword}>Forgot Password?</button> */}
           <button className="resetbtn" variant="none" type="reset" onClick={() => setErrorMessages({})}>
             Clear
           </button>

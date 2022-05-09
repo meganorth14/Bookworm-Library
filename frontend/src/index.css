@@ -71,7 +71,7 @@
   --lighter: #e9ecef;
   --darkgrey: #333533;
   --dark: #1e2d2f;
-  --dark2: #26272b;
+  --dark2: #212529;
   --dark3: #212529;
   --basicfont: 'Grandstander', cursive;
   --retrofont: 'Pacifico', cursive;
@@ -89,16 +89,31 @@ h1, h2, h3, h4{
 
 /**//* HOME PAGE *//**/
 /* COMPONENT: BOOK RECS SECTION */
-.recommendations .container {
+/* .recommendations .container {
   background-color: var(--darkgrey);
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   width: 100%;
   padding: 20px 0 20px;
 }
-.rec-title{
+
+.rec-title {
   font-family: var(--basicfont);
   color: #fff;
+  text-align: center;
+} */
+.recommendations {
+  /* background-color: #e2fef9; */
+  background-color: var(--darkgrey);
+  /* border: var(--dark2) solid 3px; */
+  padding: 2em 0;
+  margin: 2em;
+}
+.rec-title{
+  font-family: var(--basicfont);
+  /* color: black; */
+  color: white;
+  width: 100%;
   text-align: center;
 }
 .recommendations .gallery{
@@ -112,6 +127,13 @@ h1, h2, h3, h4{
 /* COMPONENT: SEARCH BANNER */
 .search-banner{
   width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  background-color: var(--dark2);
+  color: var(--lightgrey);
+}
+/* .search-banner {
+  width: 100%;
   padding: 45px 0 20px;
   text-align: center;
   box-sizing: border-box;
@@ -119,17 +141,46 @@ h1, h2, h3, h4{
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   color: var(--lightgrey);
 }
-.banner-main{
+
+.banner-main {
   background-color: transparent;
   justify-content: center;
 }
-.browse-container{
+
+.browse-container {
   justify-content: center;
   align-items: center;
   text-align: center;
+} */
+/**/
+/* CONTACT US BANNER */
+.contact-banner{
+  background: #e5e5e5;
+  padding: 2em;
+  margin: 2em;
+  text-align: center;
+}
+.contact-text h3{
+  color: var(--bs-danger);
+  letter-spacing: 1px;
+  line-height: 1.1;
+  font-weight: 600;
+  font-size: xx-large;
+}
+.contact-text h4{
+  font-size: 20px;
+}
+.contactinfo{
+  justify-content: space-evenly;
+  display: inline-block;
+}
+.contact-icons .icon span{
+  text-align: justify;
+  justify-content: space-evenly;
 }
 /**/
 /**/
+
 
 /**//* HEADER & NAVBAR *//**/
 .navbar-title{
@@ -177,7 +228,7 @@ h1, h2, h3, h4{
 }
 .logininput{
     padding: 10px 0;
-    font-family: var(--melodyfont);
+    font-family: var(--basicfont);
     font-size: 20px;
     color: var(--brown);
     justify-content: space-between;
@@ -227,7 +278,6 @@ h1, h2, h3, h4{
 }
 .unselectedbutton:hover {
     background: var(--primary-light);
-    /* border: var(--primary-light) solid 2px; */
     color: white;
 }
 .loginbtn {
@@ -255,7 +305,7 @@ h1, h2, h3, h4{
 }
 .error {
     color: red;
-    font-size: 12px;
+    font-size: smaller;
 }
 /**/
 /**/
@@ -388,8 +438,13 @@ background-color: darkblue;
 }
 .sortfilter{
     display: flex;
-    margin-right: 5%;
-    justify-content: right;
+    margin: 0 10%;
+    justify-content:space-between;
+}
+.productssortfilter{
+  display: flex;
+  margin: 0 10%;
+  justify-content: right;
 }
 .sortfilterbtn{
     background-color: transparent;
@@ -457,6 +512,9 @@ background-color: darkblue;
         padding: 5px 10px;
     }
 }
+.resultheading{
+  margin: 20px 10% 0;
+}
 /**/
 /**/
 
@@ -481,27 +539,6 @@ footer{
   line-height: 24px;
   color: #737373;
 }
-.site-footer hr{
-  border-top-color: #bbb;
-  opacity: 0.5;
-}
-.site-footer hr.small{
-  margin: 20px 0;
-}
-.site-footer a{
-  color: #737373;
-}
-.site-footer a:hover{
-  color: var(--neongreen);
-  text-decoration: none;
-}
-.footer-links a:active,.footer-links a:focus,.footer-links a:hover{
-  color: var(--neongreen);
-  text-decoration: none;
-}
-.footer-links.inline li{
-  display: inline-block;
-}
 .site-footer .social-icons{
   text-align: right;
 }
@@ -518,7 +555,7 @@ footer{
 .copyright-text
 {
   margin:0;
-  text-align: left;
+  text-align: center;
   vertical-align: middle;
 }
 @media (max-width:767px)
@@ -586,11 +623,7 @@ footer{
 {
   background-color:#00aced
 }
-.social-icons a.linkedin:hover
-{
-  background-color:#007bb6
-}
-.social-icons a.dribbble:hover
+.social-icons a.github:hover
 {
   background-color:#ea4c89
 }

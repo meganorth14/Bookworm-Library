@@ -1,6 +1,7 @@
 package com.revature.bookwormlibrary.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public class UserServiceImpl implements UserService {
 	public User createUser(User user) {
 		
 		user.setRegistrationDate(LocalDate.now());
-		user.setLastLogin(LocalDate.now());
+		user.setLastLogin(LocalDateTime.now());
 		return repository.save(user);
 	}
 
@@ -38,9 +39,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserByUsername(String username) {
+	public boolean getUserByUsername(String username) {
 		
-		return repository.findUserByUsername(username);
+		return repository.findUserByUsernameIgnoreCase(username) != null;
 	}
 
 	@Override
@@ -50,9 +51,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void updateUser(User user) {
+	public User updateUser(User user) {
 		
-		repository.save(user);
+		return repository.save(user);
 	}
 
 	@Override
@@ -62,23 +63,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String validateUser(User u) {
-		User user = repository.findUserByUsername(u.getUsername());
+	public User validateUser(User u) {
+		User user = repository.findUserByUsernameIgnoreCase(u.getUsername());
 		
 		if(user == null) {
-			return "No user found";
+			return null;
 		}
 		
-		if(!user.getPassword().equals(u.getPassword())) {
+		if(user.getPassword() == null || !user.getPassword().equals(u.getPassword())) {
 			
-			return "Incorrect Password";
+			return null;
 		}
 		
-		user.setLastLogin(LocalDate.now());
+		user.setLastLogin(LocalDateTime.now());
 		
 		repository.save(user);
 		
-		return "User found with role: " + user.getRoleType();
+		return user;
 	}
 
 }

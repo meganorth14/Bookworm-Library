@@ -1,32 +1,31 @@
 import React from "react";
-// import { Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
 import Search from "../products/Search";
-// import SearchBar from "./Searchbar";
-import { FcSearch } from "react-icons/fc";
+import {useNavigate} from 'react-router-dom';
 
 
 function SearchBanner() {
+
+  const navigate = useNavigate();
+
+  //sends to filtered result page
+  function handleSearch() {
+
+    const type = document.getElementById("searchtype").value;
+    const request = document.getElementById("searchvalue").value;
+
+    navigate(`/results/${type}/${request}`);
+  }
+
   return (
     <>
       <div className="search-banner">
         <div className="container">
           <div className="banner-main">
             <h2>Welcome to the Bookworm Digital Library!</h2>
-            {/* <ButtonToolbar aria-label="searchtoolbar">
-              <ButtonGroup className="me-2" aria-label="genrebutton">
-                <Button href="/genres">Genres</Button>
-              </ButtonGroup>
-              <ButtonGroup className="me-2" aria-label="titlesbutton">
-                <Button href="/titles">Titles</Button>
-              </ButtonGroup>
-              <ButtonGroup className="me-2" aria-label="authorbutton">
-                <Button href="/authors">Authors</Button>
-              </ButtonGroup>
-            </ButtonToolbar> */}
           </div>
           <hr></hr>
           <div className="browse-container">
-            <Search />
+            <Search handleSearch={handleSearch}/>
           </div>
         </div>
       </div>

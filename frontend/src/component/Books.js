@@ -7,7 +7,7 @@ function Books({book, addToCart}) {
     <>
       <Card className="bookcard">
         {book.cover?
-          <img src={`./${book.cover}`} alt={`Cover for ${book.title}`}/>
+          <img src={`http://localhost:3000/${book.cover}`} alt={`Cover for ${book.title}`}/>
         : <img src="./no_cover.png" alt={`Cover for ${book.title}`}/>
         }
         <Card.Body>
@@ -21,7 +21,7 @@ function Books({book, addToCart}) {
         <OverlayTrigger
           placement="right"
           delay={100}
-          overlay={<Tooltip id={`tooltip${book.book_id}`} className="tooltip cartcheck"><AiOutlineCheck/></Tooltip>}
+          overlay={<Tooltip id={`tooltip${book.bookId}`} className="tooltip cartcheck"><AiOutlineCheck/></Tooltip>}
           trigger="focus"
         >
           <button className="cartbtn" onClick={addToCart}>Add to Cart</button>
@@ -38,10 +38,10 @@ function Books({book, addToCart}) {
                 <div><small className="text-muted">{book.pages} pages</small></div>
               }
               <div><small className="text-muted">{book.publisher}
-              {book.publisher && book.publish_year && <b> | </b>} 
-              {book.publish_year}</small></div>
-              {book.isbn && 
-                <div><small className="text-muted">ISBN:{book.isbn}</small></div>}
+              {book.publisher && book.publishYear && <b> | </b>} 
+              {book.publishYear}</small></div>
+              {book.isbn13 && 
+                <div><small className="text-muted">ISBN:{book.isbn13}</small></div>}
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>

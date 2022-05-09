@@ -85,7 +85,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<Book> filterBooksByTitle(List<Book> books, String title) {
-		Predicate<Book> hasTitle = book -> (book.getTitle().equals(title));
+		Predicate<Book> hasTitle = book -> (book.getTitle().equalsIgnoreCase(title));
 		return books.stream().filter(hasTitle).toList();
 	}
 

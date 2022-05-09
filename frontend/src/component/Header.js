@@ -10,7 +10,7 @@ import { emptyCart } from "../slices/cart/CartSlice";
 import templogo from "./assets/images/bookworm_logo.svg";
 
 function Header() {
-  const user = useSelector((state)=>state.login.value.role_type);
+  const user = useSelector((state)=>state.login.value.roleType);
   const cartCount = useSelector((state) => state.cart.value.count);
   const dispatch = useDispatch();
   const [showLogin, setShowLogin] = useState(false);
@@ -18,6 +18,12 @@ function Header() {
   
 
   const navigate = useNavigate();
+
+  function logout(){
+    dispatch(signout()); 
+    dispatch(emptyCart());
+    navigate('/');
+  }
 
   return(
     <>
@@ -44,7 +50,7 @@ function Header() {
               {user !== null?
                 <>
                 <button className="headerbtn" onClick={() => navigate('/account')}>Account</button>
-                <button className="headerbtn" onClick={() => {dispatch(signout()); dispatch(emptyCart())}}>Logout</button>
+                <button className="headerbtn" onClick={() => {logout()}}>Logout</button>
                 </>
                 : <button className="headerbtn" onClick={() => setShowLogin(true)}>Login/Register</button>
               }
