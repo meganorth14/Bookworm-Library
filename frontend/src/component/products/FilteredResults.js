@@ -1,32 +1,31 @@
 import {useState, useEffect} from "react";
-import{useNavigate} from 'react-router-dom';
+import { useParams, useNavigate } from "react-router-dom";
 import { DropdownButton, Dropdown } from "react-bootstrap";
-import { AiOutlineSearch } from 'react-icons/ai';
-import { IoIosCloseCircleOutline } from 'react-icons/io';
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../slices/cart/CartSlice";
 import Books from "../Books";
 import Search from "./Search";
 import axios from 'axios';
 
-function ProductsPage() {
+function FilteredResults() {
 
-  const [search, setSearch] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {type, request} = useParams();
 
   const [sortedList, setSortedList] = useState([]);
 
-  //retrieve products from database
   useEffect(()=>{
-    axios.get('http://localhost:8080/allBooks').then((res)=>{
+    axios.get(`http://localhost:8080/books/${type}/${request}`).then((res) => {
 
-      const books = flatten(res.data);
-
-      //set product list default sorted by most recent
-      setSortedList(books.sort((a, b) => b.publishYear - a.publishYear));
+      if(res.data){
+        const books = flatten(res.data);
+        setSortedList(books.sort((a, b) => b.publishYear - a.publishYear));
+      } else {
+        setSortedList([]);
+      }
     })
-  },[])
+  },[type, request])
 
   //flattens the author and genre objects into a string list
   function flatten(books){
@@ -54,10 +53,13 @@ function ProductsPage() {
   //retrieves search results from database
   function handleSearch(){
 
-    const type = document.getElementById("searchtype").value;
-    const request = document.getElementById("searchvalue").value;
+    const newtype = document.getElementById("searchtype").value;
+    const newrequest = document.getElementById("searchvalue").value;
 
-    navigate(`/results/${type}/${request}`);
+    console.log(newtype);
+    console.log(newrequest);
+
+    navigate(`/results/${newtype}/${newrequest}`);
   }
 
   //sort functionality
@@ -92,19 +94,12 @@ function ProductsPage() {
 
   return(
     <>
-      {search?
-        <>
-          <h2 className="navoffset center">Search
-            <button type="button" className="iconbtn" onClick={() => setSearch(false)}><IoIosCloseCircleOutline /></button>
-          </h2>
-          <Search handleSearch={handleSearch} />
-        </>
-        :
-          <h2 className="center navoffset">Current Selection 
-            <button type="button" className="iconbtn" onClick={()=>setSearch(true)}><AiOutlineSearch /></button>
-          </h2>
-      }
-      <div className="productssortfilter">
+      <h2 className="navoffset center">Search</h2>
+      <Search handleSearch={handleSearch} />
+      <h3 className="resultheading">Results:</h3>
+      <span className="sortfilter">
+        {sortedList.length === 1 ? <p><b>1 result found</b></p>
+        : <p><b>{sortedList.length} results found</b></p> }
         <DropdownButton
           key="sort"
           title="Sort By"
@@ -119,7 +114,7 @@ function ProductsPage() {
           <Dropdown.Item as="button" type="button" onClick={()=>sort("date")}>Publish Date (newest)</Dropdown.Item>
           <Dropdown.Item as="button" type="button" onClick={() => sort("datedesc")}>Publish Date (oldest)</Dropdown.Item>
         </DropdownButton>
-      </div>
+      </span>
       <div className="gallery">
         {sortedList.map((book)=>{
           return <Books key={book.bookId} book={book} addToCart={() => dispatch(addToCart(book))} />
@@ -129,4 +124,4 @@ function ProductsPage() {
   );
 }
 
-export default ProductsPage;
+export default FilteredResults;

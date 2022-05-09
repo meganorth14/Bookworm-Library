@@ -9,5 +9,5 @@ import com.revature.bookwormlibrary.entity.Genre;
 
 @Repository
 public interface GenreRepository extends CrudRepository<Genre, Integer> {
-	Optional<Genre> findByName(String name);
+	Optional<Genre> findByNameIgnoreCase(String name);
 }

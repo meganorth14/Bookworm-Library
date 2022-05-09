@@ -18,7 +18,7 @@ public class GenreServiceImpl implements GenreService {
 	
 	@Override
 	public Genre createGenre(Genre genre) {
-		Optional<Genre> genreFound = genreRepo.findByName(genre.getName());
+		Optional<Genre> genreFound = genreRepo.findByNameIgnoreCase(genre.getName());
 		if(genreFound.isEmpty()) {
 			return genreRepo.save(genre);
 		}
@@ -32,7 +32,7 @@ public class GenreServiceImpl implements GenreService {
 	
 	@Override
 	public Optional<Genre> getGenreByName(String name) {
-		return genreRepo.findByName(name);
+		return genreRepo.findByNameIgnoreCase(name);
 	}
 
 	@Override

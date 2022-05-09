@@ -4,7 +4,6 @@ function Search({handleSearch}){
 
     return(
         <div id="search" className="container navoffset">
-            {/* <h2 className="center">Search</h2> */}
             <div className="d-flex">
                 <InputGroup>
                     <FormSelect id="searchtype">

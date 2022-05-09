@@ -11,6 +11,7 @@ import templogo from "./assets/images/bookworm_logo.svg";
 
 function Header() {
   const user = useSelector((state)=>state.login.value.roleType);
+  const name = useSelector((state)=>state.login.value.firstName);
   const cartCount = useSelector((state) => state.cart.value.count);
   const dispatch = useDispatch();
   const [showLogin, setShowLogin] = useState(false);
@@ -18,6 +19,12 @@ function Header() {
   
 
   const navigate = useNavigate();
+
+  function logout(){
+    dispatch(signout()); 
+    dispatch(emptyCart());
+    navigate('/');
+  }
 
   return(
     <>
@@ -33,6 +40,7 @@ function Header() {
             />{' '}
             Bookworm Digital Library
           </Navbar.Brand>
+          <Navbar.Text>Welcome{!!name ? ' '+name : name}!</Navbar.Text>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
             <Nav>
@@ -44,7 +52,7 @@ function Header() {
               {user !== null?
                 <>
                 <button className="headerbtn" onClick={() => navigate('/account')}>Account</button>
-                <button className="headerbtn" onClick={() => {dispatch(signout()); dispatch(emptyCart())}}>Logout</button>
+                <button className="headerbtn" onClick={() => {logout()}}>Logout</button>
                 </>
                 : <button className="headerbtn" onClick={() => setShowLogin(true)}>Login/Register</button>
               }

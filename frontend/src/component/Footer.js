@@ -1,5 +1,5 @@
 import React from "react";
-import {  Facebook, Twitter, Github } from "react-bootstrap-icons";
+import { Github } from "react-bootstrap-icons";
 
 
 function Footer() {
@@ -14,17 +14,7 @@ function Footer() {
             <div>
               <ul className="social-icons">
                 <li>
-                  <a className="facebook" href="/">
-                    <Facebook size={30} color="#fff" />
-                  </a>
-                </li>
-                <li>
-                  <a className="twitter" href="/">
-                    <Twitter size={30} color="#fff" />
-                  </a>
-                </li>
-                <li>
-                  <a className="github" href="/">
+                  <a className="github" href="https://github.com/meganorth14/Bookworm-Library">
                     <Github size={30} color="#fff" />
                   </a>
                 </li>

@@ -1,6 +1,7 @@
 package com.revature.bookwormlibrary.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public class UserServiceImpl implements UserService {
 	public User createUser(User user) {
 		
 		user.setRegistrationDate(LocalDate.now());
-		user.setLastLogin(LocalDate.now());
+		user.setLastLogin(LocalDateTime.now());
 		return repository.save(user);
 	}
 
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean getUserByUsername(String username) {
 		
-		return repository.findUserByUsername(username) != null;
+		return repository.findUserByUsernameIgnoreCase(username) != null;
 	}
 
 	@Override
@@ -66,25 +67,25 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void deleteUser(User user) {
+	public void deleteUser(int id) {
 		
-		repository.delete(user);
+		if(repository.existsById(id)) repository.delete(repository.findById(id).get());
 	}
 
 	@Override
 	public User validateUser(User u) {
-		User user = repository.findUserByUsername(u.getUsername());
+		User user = repository.findUserByUsernameIgnoreCase(u.getUsername());
 		
 		if(user == null) {
 			return null;
 		}
 		
-		if(!user.getPassword().equals(u.getPassword())) {
+		if(user.getPassword() == null || !user.getPassword().equals(u.getPassword())) {
 			
 			return null;
 		}
 		
-		user.setLastLogin(LocalDate.now());
+		user.setLastLogin(LocalDateTime.now());
 		
 		repository.save(user);
 		

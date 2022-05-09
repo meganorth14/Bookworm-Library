@@ -3,7 +3,6 @@ package com.revature.bookwormlibrary.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +16,6 @@ import com.revature.bookwormlibrary.entity.User;
 import com.revature.bookwormlibrary.service.UserService;
 
 @RestController
-@CrossOrigin(origins={"http://localhost:3000"})
 public class UserController {
 	
 	@Autowired
@@ -25,7 +23,7 @@ public class UserController {
 
 	//http://localhost:8080/newUser
 	@PostMapping("/newUser")
-	public User newUser(User user) {
+	public User newUser(@RequestBody User user) {
 		
 		return userService.createUser(user);
 	}
@@ -54,16 +52,16 @@ public class UserController {
 	
 	//http://localhost:8080/updateuser
 	@PutMapping("/updateuser")
-	public void updateUser(@RequestBody User user) {
-		System.out.println(user);
-		userService.updateUser(user);
+	public User updateUser(@RequestBody User user) {
+		
+		return userService.updateUser(user);
 	}
 	
 	//http://localhost:8080/deleteuser
-	@DeleteMapping("/deleteuser")
-	public void deleteUser(User user) {
+	@DeleteMapping("/deleteuser/{id}")
+	public void deleteUser(@PathVariable int id) {
 		
-		userService.deleteUser(user);
+		userService.deleteUser(id);
 	}
 	
 	//http://localhost:8080/login

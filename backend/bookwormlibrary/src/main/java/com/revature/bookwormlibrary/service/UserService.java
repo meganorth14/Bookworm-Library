@@ -38,13 +38,13 @@ public interface UserService {
      * Updates specific user's information in database
      * @param user User object that contains all up-to-date information
      */
-    public void updateUser(User user);
+    public User updateUser(User user);
 
     /**
      * Deletes user from database
      * @param id Unique id of user to delete
      */
-    public void deleteUser(User user);
+    public void deleteUser(int id);
 
     /**
      * Validates user login credentials against database

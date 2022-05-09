@@ -1,79 +1,58 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Table } from "react-bootstrap";
 import AddUserForm from "./AddUserForm";
 
 function ViewUsers() {
 
-  const [users, setUsers] = useState([
-    {
-      userId: 1,
-      username: 'gtownsend',
-      email: 'gt@mail.com',
-      firstName: 'Gino',
-      lastName: 'Townsend',
-      role: 'admin',
-      registerDate: '12/31/1999',
-      lastLogin: '12/31/1999'
-    },
-    {
-      userId: 2,
-      username: 'mschweikert',
-      email: 'ms@mail.com',
-      firstName: 'Madison',
-      lastName: 'Schweikert',
-      role: 'admin',
-      registerDate: '12/31/1999',
-      lastLogin: '12/31/1999'
-    },
-    {
-      userId: 3,
-      username: 'morth',
-      email: 'mo@mail.com',
-      firstName: 'Megan',
-      lastName: 'Orth',
-      role: 'admin',
-      registerDate: '12/31/1999',
-      lastLogin: '12/31/1999'
-    },
-    {
-      userId: 4,
-      username: 'ssholib',
-      email: 'ss@mail.com',
-      firstName: 'Samuel',
-      lastName: 'Sholib',
-      role: 'admin',
-      registerDate: '12/31/1999',
-      lastLogin: '12/31/1999'
-    }
-  ]);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/allusers').then(res => setUsers(res.data))
+  },[]);
 
   const handleDelete = (event) => {
     event.preventDefault();
 
     let temp = users.filter(function (value, _index, _arr) {
-      return value.userId !== Number(event.target.value);
+      return value.userid !== Number(event.target.value);
     });
+
+    axios.delete(`http://localhost:8080/deleteuser/${Number(event.target.value)}`);
+
     setUsers(temp);
   };
 
+  const dateToString = (date) => {
+    date = date.map(dt => dt>10 ? dt:`0${dt}`);
+    const [year,month,day] =  date;
+    return `${month}/${day}/${year}`;
+  }
+
+  const dateTimeToString = (dateTime) => {
+    dateTime = dateTime.map(dt => dt>10 ? dt:`0${dt}`);
+    let [year,month,day,hour,min,sec] = dateTime;
+    return `${month}/${day}/${year} ${hour}:${min}:${sec}`;
+  }
+
   const renderUsers = users.map(user => (
-    <tr key={user.userId}>
+    <tr key={user.userid}>
       <td>{user.username}</td>
       <td>{user.email}</td>
       <td>{user.firstName}</td>
       <td>{user.lastName}</td>
-      <td>{user.role}</td>
-      <td>{user.registerDate}</td>
-      <td>{user.lastLogin}</td>
+      <td>{user.roleType}</td>
+      <td>{dateToString(user.registrationDate)}</td>
+      <td>{dateTimeToString(user.lastLogin)}</td>
       <td>
-        <Button value={user.userId} onClick={handleDelete}>Delete</Button>
+        <Button value={user.userid} onClick={handleDelete}>Delete</Button>
       </td>
     </tr>
   ));
 
   return (
     <>
-      <AddUserForm />
+      <AddUserForm users={users}/>
       <Card style={{ marginTop: '10px' }}>
         <Card.Header>Total Users: {users.length}</Card.Header>
         <Card.Body>

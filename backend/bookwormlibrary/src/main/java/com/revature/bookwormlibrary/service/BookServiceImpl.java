@@ -24,15 +24,19 @@ public class BookServiceImpl implements BookService {
 	
 	@Override
 	public Book createBook(Book book) {
-		List<Author> authors = book.getAuthors();
-		for(int i=0;i<authors.size();i++) {
-			authors.set(i, authorService.createAuthor(authors.get(i)));
-		}
-		List<Genre> genres = book.getGenres();
-		for(int i=0;i<genres.size();i++) {
-			genres.set(i, genreService.createGenre(genres.get(i)));
-		}
-		return bookRepo.save(book);
+//		Optional<Book> bookFound = bookRepo.findByIsbn13(book.getISBN13());
+//		if(bookFound.isEmpty()) {
+			List<Author> authors = book.getAuthors();
+			for(int i=0;i<authors.size();i++) {
+				authors.set(i, authorService.createAuthor(authors.get(i)));
+			}
+			List<Genre> genres = book.getGenres();
+			for(int i=0;i<genres.size();i++) {
+				genres.set(i, genreService.createGenre(genres.get(i)));
+			}
+			return bookRepo.save(book);
+//		}
+//		return bookFound.get();
 	}
 	
 	@Override
@@ -81,7 +85,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<Book> filterBooksByTitle(List<Book> books, String title) {
-		Predicate<Book> hasTitle = book -> (book.getTitle().equals(title));
+		Predicate<Book> hasTitle = book -> (book.getTitle().equalsIgnoreCase(title));
 		return books.stream().filter(hasTitle).toList();
 	}
 
