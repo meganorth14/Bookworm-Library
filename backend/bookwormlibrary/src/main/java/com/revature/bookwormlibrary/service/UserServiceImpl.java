@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.bookwormlibrary.dao.UserRepository;
+import com.revature.bookwormlibrary.entity.Order;
 import com.revature.bookwormlibrary.entity.User;
 
 @Service
@@ -16,6 +17,8 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository repository;
+	@Autowired
+	OrderService orderService;
 	
 	@Override
 	public User createUser(User user) {
@@ -69,7 +72,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUser(int id) {
 		
-		if(repository.existsById(id)) repository.delete(repository.findById(id).get());
+		if(repository.existsById(id)) {
+			User user = repository.findById(id).get();
+			List<Order> orders = orderService.getOrderByUserid(id);
+			for(Order order:orders) {
+				orderService.deleteOrder(order);
+			}
+			repository.delete(user);
+		}
 	}
 
 	@Override

@@ -24,15 +24,19 @@ function ViewUsers() {
   };
 
   const dateToString = (date) => {
-    date = date.map(dt => dt>10 ? dt:`0${dt}`);
-    const [year,month,day] =  date;
-    return `${month}/${day}/${year}`;
+    if(!!date) {
+        date = date.map(dt => dt>10 ? dt:`0${dt}`);
+        const [year,month,day] =  date;
+        return `${month}/${day}/${year}`;
+    }
   }
 
   const dateTimeToString = (dateTime) => {
-    dateTime = dateTime.map(dt => dt>10 ? dt:`0${dt}`);
-    let [year,month,day,hour,min,sec] = dateTime;
-    return `${month}/${day}/${year} ${hour}:${min}:${sec}`;
+    if(!!dateTime) {
+        dateTime = dateTime.map(dt => dt>10 ? dt:`0${dt}`);
+        let [year,month,day,hour,min,sec] = dateTime;
+        return `${month}/${day}/${year} ${hour}:${min}:${sec}`;
+    }
   }
 
   const renderUsers = users.map(user => (

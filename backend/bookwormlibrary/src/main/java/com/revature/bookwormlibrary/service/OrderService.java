@@ -31,4 +31,6 @@ public interface OrderService {
      * @return List of all records
      */
     public List<Order> getAllOrders();
+
+	void deleteOrder(Order order);
 }

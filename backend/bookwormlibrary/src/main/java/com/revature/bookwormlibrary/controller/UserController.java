@@ -52,9 +52,9 @@ public class UserController {
 	
 	//http://localhost:8080/updateuser
 	@PutMapping("/updateuser")
-	public User updateUser(@RequestBody User user) {
+	public void updateUser(@RequestBody User user) {
 		
-		return userService.updateUser(user);
+		userService.updateUser(user);
 	}
 	
 	//http://localhost:8080/deleteuser
