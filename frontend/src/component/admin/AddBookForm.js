@@ -79,8 +79,7 @@ function AddBookForm(props) {
       for(let genre of genres.split(',')) newBook.genres.push({name:genre})
       
       axios.post('http://localhost:8080/addBook',newBook);
-
-      alert('New book submitted!')
+      alert('New book submitted!');
       window.location.reload(false);
     }
   }

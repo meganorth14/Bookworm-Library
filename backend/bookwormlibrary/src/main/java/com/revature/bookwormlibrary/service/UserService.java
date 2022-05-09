@@ -44,7 +44,7 @@ public interface UserService {
      * Deletes user from database
      * @param id Unique id of user to delete
      */
-    public void deleteUser(User user);
+    public void deleteUser(int id);
 
     /**
      * Validates user login credentials against database

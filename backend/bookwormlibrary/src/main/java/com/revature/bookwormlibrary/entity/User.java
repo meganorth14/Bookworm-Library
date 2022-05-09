@@ -33,7 +33,7 @@ public class User {
     private String roleType = "user";
 	@Column(name="registration_date")
     private LocalDate registrationDate;
-	@Column(name="last_login", columnDefinition="TIMESTAMPTZ")
+	@Column(name="last_login", columnDefinition="TIMESTAMPTZ(2)")
     private LocalDateTime lastLogin;
 
     //constructors

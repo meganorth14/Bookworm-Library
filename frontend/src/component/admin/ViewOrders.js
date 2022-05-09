@@ -1,58 +1,14 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Card, ListGroup, Table } from "react-bootstrap";
 
 function ViewOrders() {
 
-  const orders = [
-    {
-      orderId: 1,
-      username: 'gtownsend',
-      orderDate: '01/01/2022',
-      books: [
-        {
-          bookId: 1,
-          isbn13: '978-1416562603',
-          title: 'The White Tiger: A Novel',
-          authors: [
-            { authorId: 1, name: 'Aravind Adiga' },
-          ],
-          pages: '320',
-          publisher: 'Free Press',
-          publishYr: '2008'
-        },
-        {
-          bookId: 2,
-          isbn13: '978-0743297332',
-          title: 'The Sun Also Rises: The Authorized Edition',
-          authors: [
-            { authorId: 2, name: 'Ernest Hemingway' }
-          ],
-          pages: '251',
-          publisher: 'Scribner Book Company',
-          publishYr: '2006'
-        }
-      ]
-    },
-    {
-      orderId: 2,
-      username: 'mschweikert',
-      orderDate: '01/01/2022',
-      books: [
-        {
-          bookId: 3,
-          isbn13: '978-0380807345',
-          title: 'Coraline 10th Anniversary Edition',
-          authors: [
-            { authorId: 3, name: 'Neil Gaiman' },
-            { authorId: 4, name: 'Dave McKean' }
-          ],
-          pages: '212',
-          publisher: 'HarperCollins',
-          publishYr: '2012'
-        }
-      ]
-    }
-  ];
+  const [orders,setOrders] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/orders').then(res => setOrders(res.data))
+  },[]);
 
   const renderAuthors = (authors) => (
     authors.length === 1 ? ( authors[0].name ) : (
@@ -74,17 +30,17 @@ function ViewOrders() {
         <td>{renderAuthors(book.authors)}</td>
         <td>{book.pages}</td>
         <td>{book.publisher}</td>
-        <td>{book.publishYr}</td>
+        <td>{book.publishYear}</td>
       </tr>
     ))
   );
   
   const renderOrders = orders.map(order => (
-    <Card key={order.orderId} style={{ marginTop: '10px' }}>
+    <Card key={order.orderid} style={{ marginTop: '10px' }}>
       <Card.Header>{order.orderDate}</Card.Header>
       <Card.Body>
-        <Card.Title>Order #{order.orderId}</Card.Title>
-        <Card.Subtitle>Username: {order.username}</Card.Subtitle>
+        <Card.Title>Order #{order.orderid}</Card.Title>
+        <Card.Subtitle>Username: {order.user.username}</Card.Subtitle>
         <Table striped bordered hover responsive style={{ marginTop: '10px' }}>
           <thead>
             <tr>
@@ -93,7 +49,7 @@ function ViewOrders() {
               <th>Author(s)</th>
               <th>Pages</th>
               <th>Publisher</th>
-              <th>Publish Yr.</th>
+              <th>Publication Year</th>
             </tr>
           </thead>
           <tbody>
