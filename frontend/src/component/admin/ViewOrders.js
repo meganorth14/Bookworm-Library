@@ -21,6 +21,12 @@ function ViewOrders() {
       </ListGroup>
     )
   );
+
+  const dateToString = (date) => {
+    date = date.map(dt => dt>10 ? dt:`0${dt}`);
+    const [year,month,day] =  date;
+    return `${month}/${day}/${year}`;
+  }
   
   const renderBooks = (books) => (
     books.map(book => (
@@ -37,7 +43,7 @@ function ViewOrders() {
   
   const renderOrders = orders.map(order => (
     <Card key={order.orderid} style={{ marginTop: '10px' }}>
-      <Card.Header>{order.orderDate}</Card.Header>
+      <Card.Header>{dateToString(order.orderDate)}</Card.Header>
       <Card.Body>
         <Card.Title>Order #{order.orderid}</Card.Title>
         <Card.Subtitle>Username: {order.user.username}</Card.Subtitle>
