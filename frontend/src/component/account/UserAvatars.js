@@ -5,7 +5,7 @@ function ProfilePics(){
     return(
         <div className="profile-pic-drop-content">
 
-            {/* User Pics */}
+         {/* User Pics  */}
             <Form.Check
                 type="radio"
                 value="user-badge-purple.svg"

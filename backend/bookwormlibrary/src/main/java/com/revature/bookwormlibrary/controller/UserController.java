@@ -33,6 +33,7 @@ public class UserController {
 	//http://localhost:8080/userbyid/1
 	@GetMapping("/userbyid/{id}")
 	public User getUser(@PathVariable Integer id) {
+		System.out.println(id);
 		
 		return userService.getUserById(id);
 	}
@@ -54,7 +55,7 @@ public class UserController {
 	//http://localhost:8080/updateuser
 	@PutMapping("/updateuser")
 	public void updateUser(@RequestBody User user) {
-		
+		System.out.println(user);
 		userService.updateUser(user);
 	}
 	

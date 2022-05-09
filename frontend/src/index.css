@@ -366,11 +366,6 @@ h1, h2, h3, h4{
 .submitBtn:hover {
     background-color: goldenrod;
   }
-
-  .editbtn {
-    background-color: var(--blue2);
-    flex:1
-  }
   .userbody {
     background-color: transparent;
     color: darkblue;
@@ -388,12 +383,37 @@ h1, h2, h3, h4{
   margin-top: 5px;
   margin-left: 1100px;
 }
-.account-pic {
+/* .account-pic {
   justify-items: auto;
   border-radius: 50%;
   width: 50%;
   border-color: #007bb6;
+} */
+
+.orderButton {
+  background-color: var(--blue2);
+  justify-content: end;
+  flex:1;
+ width: fit-content;
+  border-radius: 25%;
 }
+
+.orderButton:hover {
+  background-color: purple;
+}
+.editbtn {
+  background-color: var(--blue2);
+  flex:1;
+  width: fit-content;
+  border-radius: 25%;
+  margin-bottom: 5px;
+
+}
+.editbtn:hover {
+  background-color: purple;
+}
+
+
 
 /**/
 /**/
