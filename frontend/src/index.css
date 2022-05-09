@@ -325,25 +325,36 @@ h1, h2, h3, h4{
 
 
 /**//* ACCOUNT PAGE *//**/
+.tabs{
+  color:var(--primary);
+}
+.tabs:hover{
+  color:var(--secondary);
+}
+.account-header{
+  background-color: var(--primary);
+  padding:10px;
+  color:white;
+}
 .account-page {
-    text-align:left;
+    text-align:center;
     padding : 15px;
     margin-top: 5px;
-    border : solid black;
-    color: darkslateblue;
+    color: var(--dark2);
 }
 
 .updateAccount {
     text-align: center;
     width: 40%;
-    margin-left: 50px;
-    margin-top: 10px;
-    background: black;
+    min-width: 300px;
+    margin:20px auto;
+    padding:20px;
+    background: var(--dark2);
     color: whitesmoke;
     justify-content: center;
 }
 .submitBtn {
-  background-color: darkblue; 
+  background-color: var(--primary); 
   border: none;
   color: white;
   padding: 15px 32px;
@@ -353,11 +364,12 @@ h1, h2, h3, h4{
   font-size: 16px;
 }
 .submitBtn:hover {
-    background-color: goldenrod;
+    background-color: var(--primary-light);
   }
   .userbody {
     background-color: transparent;
-    color: darkblue;
+    padding:20px;
+    color: var(--dark2);
   }
   .booksContainer {
     justify-content: center;
@@ -402,8 +414,25 @@ h1, h2, h3, h4{
   background-color: purple;
 }
 
+.btn-primary{
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+.btn-primary:hover{
+  background-color: var(--secondary) !important;
+  border-color: var(--secondary) !important;
+}
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: var(--primary-light) !important;
+  border-color: var(--primary-light) !important;
+}
 
-
+.nav-tabs {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
 /**/
 /**/
 

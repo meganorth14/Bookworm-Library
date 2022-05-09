@@ -14,19 +14,19 @@ function AdminPage() {
     <>
       <Container style={{ marginTop: '50px' }}>
         <Tabs activeKey={key} onSelect={(k) => setKey(k)}>
-          <Tab eventKey='users' title='Users'>
+          <Tab eventKey='users' title='Users' tabClassName="tabs">
             <ViewUsers />
           </Tab>
-          <Tab eventKey='inventory' title='Inventory'>
+          <Tab eventKey='inventory' title='Inventory' tabClassName="tabs">
             <Inventory />
           </Tab>
-          <Tab eventKey='orders' title='Order History'>
+          <Tab eventKey='orders' title='Order History' tabClassName="tabs">
             <ViewOrders />
           </Tab>
-          <Tab eventKey='authors' title='Authors'>
+          <Tab eventKey='authors' title='Authors' tabClassName="tabs">
             <ViewAuthors />
           </Tab>
-          <Tab eventKey='genres' title='Genres'>
+          <Tab eventKey='genres' title='Genres' tabClassName="tabs">
             <ViewGenres />
           </Tab>
         </Tabs>
