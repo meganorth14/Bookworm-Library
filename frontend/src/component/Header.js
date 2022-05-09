@@ -19,6 +19,12 @@ function Header() {
 
   const navigate = useNavigate();
 
+  function logout(){
+    dispatch(signout()); 
+    dispatch(emptyCart());
+    navigate('/');
+  }
+
   return(
     <>
       <Navbar bg="dark" variant="dark" sticky="top" expand="lg">
@@ -44,7 +50,7 @@ function Header() {
               {user !== null?
                 <>
                 <button className="headerbtn" onClick={() => navigate('/account')}>Account</button>
-                <button className="headerbtn" onClick={() => {dispatch(signout()); dispatch(emptyCart())}}>Logout</button>
+                <button className="headerbtn" onClick={() => {logout()}}>Logout</button>
                 </>
                 : <button className="headerbtn" onClick={() => setShowLogin(true)}>Login/Register</button>
               }

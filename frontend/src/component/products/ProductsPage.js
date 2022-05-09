@@ -104,7 +104,7 @@ function ProductsPage() {
             <button type="button" className="iconbtn" onClick={()=>setSearch(true)}><AiOutlineSearch /></button>
           </h2>
       }
-      <div className="sortfilter">
+      <div className="productssortfilter">
         <DropdownButton
           key="sort"
           title="Sort By"

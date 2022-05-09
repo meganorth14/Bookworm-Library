@@ -1,5 +1,6 @@
 package com.revature.bookwormlibrary.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -30,8 +31,8 @@ public class User {
     private String lastName;
 	@Column(name="role_type", length=5)
     private String roleType = "user";
-	@Column(name="registration_date", columnDefinition="TIMESTAMPTZ")
-    private LocalDateTime registrationDate;
+	@Column(name="registration_date")
+    private LocalDate registrationDate;
 	@Column(name="last_login", columnDefinition="TIMESTAMPTZ")
     private LocalDateTime lastLogin;
 
@@ -39,7 +40,7 @@ public class User {
     public User(){}
     
     public User(Integer userid, String username, String password, String email, String firstName, String lastName,
-            String roleType, LocalDateTime registrationDate, LocalDateTime lastLogin) {
+            String roleType, LocalDate registrationDate, LocalDateTime lastLogin) {
         this.userid = userid;
         this.username = username;
         this.password = password;
@@ -108,11 +109,11 @@ public class User {
         this.roleType = roleType;
     }
 
-    public LocalDateTime getRegistrationDate() {
+    public LocalDate getRegistrationDate() {
         return registrationDate;
     }
 
-    public void setRegistrationDate(LocalDateTime registrationDate) {
+    public void setRegistrationDate(LocalDate registrationDate) {
         this.registrationDate = registrationDate;
     }
 

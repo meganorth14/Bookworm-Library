@@ -54,7 +54,7 @@ function RecommendedBooks() {
           <div className="rec-title">
             <h3>Our Current Recommendations:</h3>
           </div>
-          <hr></hr>
+          {/* <hr></hr> */}
           <div className="gallery">
             <CardGroup>
               {bookrecs.map((book) => {

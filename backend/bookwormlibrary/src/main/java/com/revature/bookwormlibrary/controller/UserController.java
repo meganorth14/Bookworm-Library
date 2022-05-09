@@ -25,7 +25,7 @@ public class UserController {
 
 	//http://localhost:8080/newUser
 	@PostMapping("/newUser")
-	public User newUser(User user) {
+	public User newUser(@RequestBody User user) {
 		
 		return userService.createUser(user);
 	}
@@ -53,9 +53,9 @@ public class UserController {
 	
 	//http://localhost:8080/updateuser
 	@PutMapping("/updateuser")
-	public void updateUser(@RequestBody User user) {
+	public User updateUser(@RequestBody User user) {
 		
-		userService.updateUser(user);
+		return userService.updateUser(user);
 	}
 	
 	//http://localhost:8080/deleteuser

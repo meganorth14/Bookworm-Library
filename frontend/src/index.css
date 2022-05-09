@@ -103,14 +103,16 @@ h1, h2, h3, h4{
   text-align: center;
 } */
 .recommendations {
-  background-color: #c2eee5;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  /* background-color: #e2fef9; */
+  background-color: var(--darkgrey);
+  /* border: var(--dark2) solid 3px; */
   padding: 2em 0;
   margin: 2em;
 }
 .rec-title{
   font-family: var(--basicfont);
-  color: black;
+  /* color: black; */
+  color: white;
   width: 100%;
   text-align: center;
 }
@@ -438,6 +440,11 @@ background-color: darkblue;
     display: flex;
     margin: 0 10%;
     justify-content:space-between;
+}
+.productssortfilter{
+  display: flex;
+  margin: 0 10%;
+  justify-content: right;
 }
 .sortfilterbtn{
     background-color: transparent;
