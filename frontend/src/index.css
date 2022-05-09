@@ -347,10 +347,11 @@ h1, h2, h3, h4{
 .updateAccount {
     text-align: center;
     width: 40%;
-    margin-left: 5px;
-    margin-top: 5px;
-    background: #57b6a4;
-    color: darkblue;
+    margin-left: 50px;
+    margin-top: 10px;
+    background: black;
+    color: whitesmoke;
+    justify-content: center;
 }
 .submitBtn {
   background-color: darkblue; 
