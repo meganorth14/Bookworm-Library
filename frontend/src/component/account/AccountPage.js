@@ -1,56 +1,50 @@
-import React, { useEffect, useState, } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { RiPencilLine } from "react-icons/ri";
-import DataContext from "../../dataStore/dataStore";
-import OrderHistory from "./OrderHistory.js";
+//import OrderHistory from "./OrderHistory.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
+import ProfilePic from '../../component/images/avatar.png';
+import { useSelector } from 'react-redux';
 
 const AccountPage = (props) => {
+    const userid = useSelector((state) => state.login.value.userid);
 
     const [profile, setProfile] = useState({});
-    const [books, setBooks] = useState([]);
 
-    const navigate = useNavigate();
-    let params = useParams();
+    useEffect(() => {
 
-    let username;
 
-    if (props.username) {
-        username = props.username;
-    } else {
-        username = params.username;
+        axios.get(`http://localhost:8080/userbyid/${userid}`).then((res) => {
+            setProfile(res.data)
+        });
+
+
+    }, []);
+
+    let navigate = useNavigate();
+    const routeChange = () => {
+        let path = "../editAccount/";
+        navigate(path);
     }
 
-
-    // const pageContent = 
-    
     return (
         <Container className="account-page">
             <Row className="justify-content-md-center mb-4">
-                {/* <Col xs="auto">
-                    <img src={"../../../images/" + (profile.pic ? profile.pic : "user-badge-purple.svg")}
+                <Col xs="auto">
+                    <img src={ProfilePic}
                         className="account-pic" alt="User Avatar" />
-                </Col> */}
+                </Col>
                 <Col md={6}>
                     <Card >
-                        <Card.Header bsPrefix='account-heading'>
-
-
-                            <button
-                                type="button"
-                                className="editbtn"
-                                onClick={() => navigate('/editAccount')}>
-                                <RiPencilLine />
-                            </button>
-
-                        </Card.Header>
-                        <Card.Body>
+                        <Card.Body className='userbody'>
                             <Row>
-                                <p><b>First name:</b> {profile.first_name}</p>
+                                <p><b>First name:</b> {profile.firstName}</p>
                             </Row>
+
                             <Row>
-                                <p><b>Last name:</b> {profile.last_name}</p>
+                                <p><b>Last name:</b> {profile.lastName}</p>
                             </Row>
                             <Row>
                                 <p><b>Username:</b> {profile.username}</p>
@@ -59,48 +53,36 @@ const AccountPage = (props) => {
                                 <p><b>Email:</b> {profile.email}</p>
                             </Row>
                             <Row>
-                                <p><b>Registration date:</b> {profile.registration_date}</p>
+                                <p><b>Registration date:</b> {profile.registrationDate}</p>
                             </Row>
                             <Row>
-                                <p><b>Last login:</b> {profile.last_login}</p>
+                                <p><b>Last login:</b> {profile.lastLogin}</p>
                             </Row>
                         </Card.Body>
+                        <div className='buttonContainer'>
+                            <div>
+                                <button
+                                    className='editbtn'
+                                    type="button"
+                                    onClick={() => navigate('/editAccount')}>
+                                    editAccount<RiPencilLine />
+                                </button>
+                            </div>
+
+                            <div className='orderButton'>
+                                <button
+                                    type="button"
+                                    onClick={() => navigate('/orderHistory')}>
+                                    Order History
+                                </button>
+
+                            </div>
+
+                        </div>
+
                     </Card>
                 </Col>
 
-                <Row className="justify-content-md-center">
-                    <Col>
-                        <h3 className='text-center'>Books checked out</h3>
-                        {books ?
-                            books.map((book) => {
-                                return (
-                                    <OrderHistory key={books.bookid} profile={profile} books={book} />
-                                );
-                            })
-                            : <p className="text-center">No Books.</p>}
-                    </Col>
-                </Row>
-
-
-                <Col md={6}>
-                    <Card >
-                        <Card.Header bsPrefix='account-heading'>
-
-                        </Card.Header>
-                        <Card.Body>
-                            <Row>
-                                <p><b>Title:</b> {books.title}</p>
-                            </Row>
-                            <Row>
-                                <p><b>Book Id:</b> {books.book_id}</p>
-                            </Row>
-                            <Row>
-                                <p><b>Isbn:</b> {books.isbn13}</p>
-                            </Row>
-                
-                        </Card.Body>
-                    </Card>
-                </Col>
             </Row>
         </Container>
 
