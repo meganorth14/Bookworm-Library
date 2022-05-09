@@ -53,13 +53,13 @@ public class BookController {
 	
 	// http://localhost:8080/addBook
 	@PostMapping("/addBook")
-	public void addBook(@RequestBody Book book) {
-		service.createBook(book);
+	public Book addBook(@RequestBody Book book) {
+		return service.createBook(book);
 	}
 	
-	// http://localhost:8080/deleteBook
-	@DeleteMapping("/deleteBook")
-	public void deleteBook(int id) {
+	// http://localhost:8080/deleteBook/
+	@DeleteMapping("/deleteBook/{id}")
+	public void deleteBook(@PathVariable int id) {
 		service.deleteBook(id);
 	}
 	

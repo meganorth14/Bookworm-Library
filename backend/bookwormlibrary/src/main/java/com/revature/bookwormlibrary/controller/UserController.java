@@ -23,7 +23,7 @@ public class UserController {
 
 	//http://localhost:8080/newUser
 	@PostMapping("/newUser")
-	public void newUser(User user) {
+	public void newUser(@RequestBody User user) {
 		
 		userService.createUser(user);
 	}

@@ -4,31 +4,19 @@ import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 function AddUserForm() {
 
   const [show, setShow] = useState(false);
-  const [validated, setValidated] = useState('false');
   const handleShow = () => {show ? setShow(false) : setShow(true)};
 
   const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if(form.checkValidity() === 'false') {
-      event.preventDefault();
-      event.stopPropogation();
-    }
-
-    setValidated('true');
+    event.preventDefault();
   };
 
   const renderUserForm = (
-    <Modal 
-      noValidate
-      show={show}
-      validated={validated}
-      onHide={handleShow}
-      onSubmit={handleSubmit}>
+    <Modal show={show} onHide={handleShow}>
       <Modal.Header closeButton>
         <Modal.Title>Create New User</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
+        <Form noValidate>
           <Form.Group>
             <Form.Label>Role Type</Form.Label>
             <Form.Select defaultValue="Select Role..." required>
