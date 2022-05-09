@@ -13,6 +13,7 @@ import CartPage from './component/cart/CartPage';
 import AccountPage from './component/account/AccountPage';
 import AdminPage from './component/admin/AdminPage';
 import EditAccount from './component/account/EditAccount';
+import OrderHistory from './component/account/OrderHistory';
 import FilteredResults from './component/products/FilteredResults';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path='/account'  element={<AccountPage />} />
         <Route path='/admin'    element={<AdminPage />}/>
         <Route path='/editAccount'    element={<EditAccount />}/>
+        <Route path='/orderHistory'    element={<OrderHistory />}/>
         <Route path='/results/:type/:request' element = {<FilteredResults />} />
       </Routes>
     </BrowserRouter>

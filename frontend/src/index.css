@@ -361,22 +361,24 @@ h1, h2, h3, h4{
 
 /**//* ACCOUNT PAGE *//**/
 .account-page {
-    text-align: center;
+    text-align:left;
     padding : 15px;
-    background-color: #95CFC4;
+    margin-top: 5px;
     border : solid black;
     color: darkslateblue;
 }
+
 .updateAccount {
     text-align: center;
     width: 40%;
-    margin-left: 5px;
-    margin-top: 5px;
-    background: #57b6a4;
-    color: darkblue;
+    margin-left: 50px;
+    margin-top: 10px;
+    background: black;
+    color: whitesmoke;
+    justify-content: center;
 }
 .submitBtn {
-background-color: darkblue; 
+  background-color: darkblue; 
   border: none;
   color: white;
   padding: 15px 32px;
@@ -388,6 +390,55 @@ background-color: darkblue;
 .submitBtn:hover {
     background-color: goldenrod;
   }
+  .userbody {
+    background-color: transparent;
+    color: darkblue;
+  }
+  .booksContainer {
+    justify-content: center;
+    margin-left: 360px;
+    width: 30%;
+    margin-left: 500px;
+  }
+
+  
+.booksHeader {
+  justify-content: center;
+  margin-top: 5px;
+  margin-left: 1100px;
+}
+/* .account-pic {
+  justify-items: auto;
+  border-radius: 50%;
+  width: 50%;
+  border-color: #007bb6;
+} */
+
+.orderButton {
+  background-color: var(--blue2);
+  justify-content: end;
+  flex:1;
+ width: fit-content;
+  border-radius: 25%;
+}
+
+.orderButton:hover {
+  background-color: purple;
+}
+.editbtn {
+  background-color: var(--blue2);
+  flex:1;
+  width: fit-content;
+  border-radius: 25%;
+  margin-bottom: 5px;
+
+}
+.editbtn:hover {
+  background-color: purple;
+}
+
+
+
 /**/
 /**/
 
