@@ -8,7 +8,10 @@ function Inventory() {
   const [books, setBooks] = useState([]);
   
   useEffect(() => {
-    axios.get('http://localhost:8080/allBooks').then(res => setBooks(res.data))
+    axios.get('http://localhost:8080/allBooks').then(res => {
+      res.data.sort((a,b) => Number(a.isbn13) - Number(b.isbn13));
+      setBooks(res.data);
+    })
   },[])
 
   const handleDelete = (event) => {
@@ -62,8 +65,7 @@ function Inventory() {
     </tr>
   ));
 
-  return (
-    <>
+  return (<>
       <AddBookForm books={books}/>
       <Card style={{ marginTop: '10px' }}>
         <Card.Header>Total Books: {books.length}</Card.Header>
@@ -88,8 +90,7 @@ function Inventory() {
           </Table>
         </Card.Body>
       </Card>
-    </>
-  );
+  </>);
 
 }
 
