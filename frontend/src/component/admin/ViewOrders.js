@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card, ListGroup, Table } from "react-bootstrap";
+import { dateToString } from '../utility/HelperMethods';
 
 function ViewOrders() {
 
@@ -10,6 +11,7 @@ function ViewOrders() {
     axios.get('http://localhost:8080/orders').then(res => {
       let orderList = res.data;
       if(!!orderList) {
+        orderList.map(o => o.orderDate = dateToString(o.orderDate));
         orderList.sort((a,b) => a.userid - b.userid).reverse();
       }  
       setOrders(orderList);
@@ -27,14 +29,6 @@ function ViewOrders() {
       </ListGroup>
     )
   );
-
-  const dateToString = (date) => {
-    if(!!date) {
-        date = date.map(dt => dt>10 ? dt:`0${dt}`);
-        const [year,month,day] =  date;
-        return `${month}/${day}/${year}`;
-    }
-  }
   
   const renderBooks = (books) => (
     books.map(book => (
@@ -51,7 +45,7 @@ function ViewOrders() {
   
   const renderOrders = orders.map(order => (
     <Card key={order.orderid} style={{ marginTop: '10px' }}>
-      <Card.Header>{dateToString(order.orderDate)}</Card.Header>
+      <Card.Header>{order.orderDate}</Card.Header>
       <Card.Body>
         <Card.Title>Order #{order.orderid}</Card.Title>
         <Card.Subtitle>Username: {order.user.username}</Card.Subtitle>
@@ -74,11 +68,9 @@ function ViewOrders() {
     </Card>
   ));
   
-  return (
-    <>
-      {renderOrders}
-    </>
-  );
+  return (<>
+    {renderOrders}
+  </>);
 
 }
 
