@@ -7,21 +7,18 @@ function AddUserForm(props) {
   const [ show, setShow ] = useState(false);
   const [ form, setForm ] = useState({});
   const [ errors, setErrors ] = useState({});
-  const [ submits, setSubmits ] = useState(0);
+  const [ firstSubmit, setFirstSubmit ] = useState(false);
 
   const handleShow = () => {show ? setShow(false) : setShow(true)};
   
-  const setField = (field, value) => {
-    setForm({ ...form, [field]: value })
-  }
+  const setField = (field, value) => setForm({ ...form, [field]: value })
 
   const findFormErrors = () => {
     const {username,password,email,firstName,lastName,roleType} = form;
     const errorsFound = {};
 
     if(!!!username) errorsFound.username='Required'
-    else if(username.length<6) errorsFound.username='Username too short'
-    else if(username.length>30) errorsFound.username='Username too long'
+    else if(username.length<6 || username.length>30) errorsFound.username='Invalid username length'
     else {
       let newUsernameL = username.toLowerCase();
       for(const user of props.users) {
@@ -30,8 +27,7 @@ function AddUserForm(props) {
       }
     }
     if(!!!password) errorsFound.password='Required'
-    else if(password.length<7) errorsFound.password='Password too short'
-    else if(password.length>50) errorsFound.password='Password too long'
+    else if(password.length<7 || password.length>50) errorsFound.password='Invalid password length'
     if(!!!email) errorsFound.email='Required'
     // eslint-disable-next-line
     else if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(email)) errorsFound.email='Invalid email'
@@ -46,7 +42,7 @@ function AddUserForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSubmits(submits+1);
+    if(!firstSubmit) setFirstSubmit(true)
     setErrors({});
 
     const formErrors = findFormErrors();
@@ -80,7 +76,7 @@ function AddUserForm(props) {
             <Form.Select
               defaultValue="Select Role..."
               onChange={ e => setField('roleType', e.target.value) }
-              isValid={ form.roleType && !!!errors.roleType && !!submits }
+              isValid={ form.roleType && !!!errors.roleType && firstSubmit }
               isInvalid={ !!errors.roleType } >
               <option disabled>Select Role...</option>
               <option>user</option>
@@ -94,7 +90,7 @@ function AddUserForm(props) {
               type="email"
               placeholder="user@email.com"
               onChange={ e => setField('email', e.target.value) }
-              isValid={ form.email && !!!errors.email && !!submits }
+              isValid={ form.email && !!!errors.email && firstSubmit }
               isInvalid={ !!errors.email } />
             <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
           </Form.Group>
@@ -105,7 +101,7 @@ function AddUserForm(props) {
                 type="text"
                 placeholder="newUser"
                 onChange={ e => setField('username', e.target.value) }
-                isValid={ form.uesrname && !!!errors.username && !!submits }
+                isValid={ form.username && !!!errors.username && firstSubmit }
                 isInvalid={ !!errors.username } />
               <Form.Text>6-30 characters</Form.Text>
               <Form.Control.Feedback type="invalid">{errors.username}</Form.Control.Feedback>
@@ -116,7 +112,7 @@ function AddUserForm(props) {
                 type="text"
                 placeholder="secretpw"
                 onChange={ e => setField('password', e.target.value) }
-                isValid={ form.password && !!!errors.password && !!submits }
+                isValid={ form.password && !!!errors.password && firstSubmit }
                 isInvalid={ !!errors.password } />
               <Form.Text>7-50 characters</Form.Text>
               <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
@@ -129,7 +125,7 @@ function AddUserForm(props) {
                 type="text"
                 placeholder="John"
                 onChange={ e => setField('firstName', e.target.value) }
-                isValid={ form.firstName && !!!errors.firstName && !!submits }
+                isValid={ form.firstName && !!!errors.firstName && firstSubmit }
                 isInvalid={ !!errors.firstName } />
               <Form.Text>No &gt;50 characters</Form.Text>
               <Form.Control.Feedback type="invalid">{errors.firstName}</Form.Control.Feedback>
@@ -140,7 +136,7 @@ function AddUserForm(props) {
                 type="text"
                 placeholder="Smith"
                 onChange={ e => setField('lastName', e.target.value) }
-                isValid={ form.lastName && !!!errors.lastName && !!submits }
+                isValid={ form.lastName && !!!errors.lastName && firstSubmit }
                 isInvalid={ !!errors.lastName } />
               <Form.Text>No &gt;50 characters</Form.Text>
               <Form.Control.Feedback type="invalid">{errors.lastName}</Form.Control.Feedback>
@@ -156,14 +152,12 @@ function AddUserForm(props) {
     </Modal>
   );
 
-  return(
-    <>
+  return(<>
       <Button onClick={handleShow} style={{ marginTop: '10px' }}>
         Create New User
       </Button>
       {renderUserForm}
-    </>
-  );
+  </>);
 
 }
 

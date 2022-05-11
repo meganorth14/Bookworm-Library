@@ -7,13 +7,11 @@ function AddBookForm(props) {
   const [ show, setShow ] = useState(false);
   const [ form, setForm ] = useState({});
   const [ errors, setErrors ] = useState({});
-  const [ submits, setSubmits ] = useState(0);
+  const [ firstSubmit, setFirstSubmit ] = useState(false);
 
   const handleShow = () => {show ? setShow(false) : setShow(true)};
 
-  const setField = (field, value) => {
-    setForm({ ...form, [field]: value })
-  }
+  const setField = (field, value) => setForm({ ...form, [field]: value })
 
   const isNumber = (char) => {
     return /^\d$/.test(char);
@@ -58,7 +56,7 @@ function AddBookForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSubmits(submits+1);
+    if(!firstSubmit) setFirstSubmit(true)
     setErrors({});
 
     const formErrors = findFormErrors();
@@ -97,7 +95,7 @@ function AddBookForm(props) {
               type="text"
               placeholder='978XXXXXXXXXX'
               onChange={ e => setField('isbn13', e.target.value) }
-              isValid={ form.isbn13 && !!!errors.isbn13 && !!submits }
+              isValid={ form.isbn13 && !!!errors.isbn13 && firstSubmit }
               isInvalid={ !!errors.isbn13 } />
             <Form.Text>Must 13 characters long beginning with "978", numbers only</Form.Text>
             <Form.Control.Feedback type="invalid">{errors.isbn13}</Form.Control.Feedback>
@@ -108,7 +106,7 @@ function AddBookForm(props) {
               <Form.Control
                 type="text"
                 onChange={ e => setField('title', e.target.value) }
-                isValid={ form.title && !!!errors.title && !!submits }
+                isValid={ form.title && !!!errors.title && firstSubmit }
                 isInvalid={ !!errors.title } />
               <Form.Control.Feedback type="invalid">{errors.title}</Form.Control.Feedback>
             </Form.Group>
@@ -117,7 +115,7 @@ function AddBookForm(props) {
               <Form.Control
                 type="number"
                 onChange={ e => setField('pages', e.target.value) }
-                isValid={ form.pages && !!!errors.pages && !!submits }
+                isValid={ form.pages && !!!errors.pages && firstSubmit }
                 isInvalid={ !!errors.pages } />
               <Form.Control.Feedback type="invalid">{errors.pages}</Form.Control.Feedback>
             </Form.Group>
@@ -128,7 +126,7 @@ function AddBookForm(props) {
               <Form.Control 
                 type="text"
                 onChange={ e => setField('publisher', e.target.value) }
-                isValid={ form.publisher && !!!errors.publisher && !!submits }
+                isValid={ form.publisher && !!!errors.publisher && firstSubmit }
                 isInvalid={ !!errors.publisher } />
                 <Form.Control.Feedback type="invalid">{errors.publisher}</Form.Control.Feedback>
             </Form.Group>
@@ -138,7 +136,7 @@ function AddBookForm(props) {
                 type="number"
                 placeholder="XXXX"
                 onChange={ e => setField('publishYear', e.target.value) }
-                isValid={ form.publishYear && !!!errors.publishYear && !!submits }
+                isValid={ form.publishYear && !!!errors.publishYear && firstSubmit }
                 isInvalid={ !!errors.publishYear }/>
               <Form.Text>1970-2022</Form.Text>
               <Form.Control.Feedback type="invalid">{errors.publishYear}</Form.Control.Feedback>
@@ -149,7 +147,7 @@ function AddBookForm(props) {
             <Form.Control
               type="text"
               onChange={ e => setField('authors', e.target.value) }
-              isValid={ form.authors && !!!errors.authors && !!submits }
+              isValid={ form.authors && !!!errors.authors && firstSubmit }
               isInvalid={ !!errors.authors } />
             <Form.Text>Separate multiple authors by commas ","</Form.Text>
             <Form.Control.Feedback type="invalid">{errors.authors}</Form.Control.Feedback>
@@ -159,7 +157,7 @@ function AddBookForm(props) {
             <Form.Control
               type="text"
               onChange={ e => setField('genres', e.target.value) }
-              isValid={ form.genres && !!!errors.genres && !!submits }
+              isValid={ form.genres && !!!errors.genres && firstSubmit }
               isInvalid={ !!errors.genres } />
             <Form.Text>Separate multiple genres by commas ","</Form.Text>
             <Form.Control.Feedback type="invalid">{errors.genres}</Form.Control.Feedback>
@@ -169,7 +167,7 @@ function AddBookForm(props) {
             <Form.Control
               as="textarea"
               onChange={ e => setField('description', e.target.value) }
-              isValid={ form.description && !!!errors.description && !!submits }
+              isValid={ form.description && !!!errors.description && firstSubmit }
               isInvalid={ !!errors.description } />
             <Form.Control.Feedback type="invalid">{errors.description}</Form.Control.Feedback>
           </InputGroup>
@@ -183,14 +181,12 @@ function AddBookForm(props) {
     </Modal>
   );
 
-  return (
-    <>
+  return (<>
       <Button onClick={handleShow} style={{ marginTop: '10px' }}>
         Add New Book
       </Button>
       {renderBookForm}
-    </>
-  );
+  </>);
 
 }
 
