@@ -1,4 +1,5 @@
 export function sort(products, sortType){
+    // eslint-disable-next-line
     switch (sortType) {
         case "title":
             return [...products].sort((a, b) => a.title.localeCompare(b.title));
@@ -48,4 +49,18 @@ function toLine(arr) {
         str += ", " + arr[i].name;
     }
     return str;
+}
+
+//takes an array of numbers and returns them as a string in date format
+export const dateToString = (date) => {
+    date = date.map(dt => dt>10 ? dt:`0${dt}`);
+    const [year,month,day] =  date;
+    return `${month}/${day}/${year}`;
+}
+
+//takes an array of numbers and returns them as a string in datetime format
+export const dateTimeToString = (dateTime) => {
+    dateTime = dateTime.map(dt => dt>10 ? dt:`0${dt}`);
+    let [year,month,day,hour,min,sec] = dateTime;
+    return `${month}/${day}/${year} ${hour}:${min}:${sec}`;
 }
