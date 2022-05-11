@@ -69,10 +69,10 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
           }
 
           axios.post(`http://localhost:8080/newUser`, newUser)
-          .then((res) => {
+          .then((response) => {
 
             setShowRegister(false);
-            dispatch(signin(res.data));
+            dispatch(signin(response.data));
             setErrorMessages({});
           });
         }
@@ -200,7 +200,9 @@ function Register({ showRegister, setShowRegister, setShowLogin }) {
     </Modal>
   );
 
-  return renderForm;
-};
+  return(<>
+    {renderForm}
+  </>);
+}
 
 export default Register;
